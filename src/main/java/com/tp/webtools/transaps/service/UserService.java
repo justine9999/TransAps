@@ -9,9 +9,9 @@ import com.tp.webtools.transaps.model.User;
 
 public interface UserService {
     
-	Optional<User> findById(Long id);
+	User findById(Long id);
  
-	Optional<User> findByName(String name);
+	User findByName(String name);
  
     void saveUser(User user);
  

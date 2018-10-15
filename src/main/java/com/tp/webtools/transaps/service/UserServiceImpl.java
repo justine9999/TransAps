@@ -1,7 +1,6 @@
 package com.tp.webtools.transaps.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -18,11 +17,11 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
  
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+    public User findById(Long id) {
+        return userRepository.findOne(id);
     }
  
-    public Optional<User> findByName(String name) {
+    public User findByName(String name) {
         return userRepository.findByName(name);
     }
  
@@ -35,7 +34,7 @@ public class UserServiceImpl implements UserService{
     }
  
     public void deleteUserById(Long id){
-        userRepository.deleteById(id);
+    	userRepository.delete(id);
     }
  
     public void deleteAllUsers(){
