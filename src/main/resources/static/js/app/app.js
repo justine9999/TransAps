@@ -1,27 +1,53 @@
-var app = angular.module('crudApp',['ui.router','ngStorage']);
+var app = angular.module('mainApp',['ui.router','ngStorage']);
  
 app.constant('urls', {
     BASE: 'http://localhost:8080/TransAps',
-    USER_SERVICE_API : 'http://localhost:8080/TransAps/api/user/'
+    APP_SERVICE_API : 'http://localhost:8080/TransAps/api/app/'
 });
  
-app.config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
- 
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+    function($stateProvider, $urlRouterProvider, $locationProvider) {
+		$locationProvider.html5Mode(true);
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'partials/list',
-                controller:'UserController',
-                controllerAs:'ctrl',
+                templateUrl: 'partials/app_list',
+                controller:'AppController',
+                controllerAs:'appctrl',
                 resolve: {
-                    users: function ($q, UserService) {
-                        console.log('Load all users');
+                    apps: function ($q, AppService) {
+                        console.log('Load all apps');
                         var deferred = $q.defer();
-                        UserService.loadAllUsers().then(deferred.resolve, deferred.resolve);
+                        AppService.loadAllApps().then(deferred.resolve, deferred.resolve);
                         return deferred.promise;
                     }
                 }
             });
         $urlRouterProvider.otherwise('/');
     }]);
+
+app.directive("appWidget", function() {
+    return {
+        templateUrl : 'partials/app_widget'
+    };
+});
+
+directive('stickTop', function ($window) {
+    var $win = angular.element($window);
+
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var topClass = attrs.setClassWhenAtTop,
+                offsetTop = element.offset().top;
+
+            $win.on('scroll', function (e) {
+                if ($win.scrollTop() >= offsetTop) {
+                    element.addClass(topClass);
+                } else {
+                    element.removeClass(topClass);
+                }
+            });
+        }
+    };
+});

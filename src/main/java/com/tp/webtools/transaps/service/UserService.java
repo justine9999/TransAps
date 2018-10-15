@@ -1,7 +1,6 @@
 package com.tp.webtools.transaps.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.tp.webtools.transaps.model.User;
 
