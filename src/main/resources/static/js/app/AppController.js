@@ -6,7 +6,7 @@ angular.module('mainApp').controller('AppController',
  
         var self = this;
         self.getAllApps = getAllApps;
- 
+        $scope.scrollTo = function (target){};
  
         function getAllApps(){
             return AppService.getAllApps();

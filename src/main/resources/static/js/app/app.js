@@ -32,13 +32,13 @@ app.directive("appWidget", function() {
     };
 });
 
-directive('stickTop', function ($window) {
+app.directive('stickTop', function ($window) {
     var $win = angular.element($window);
 
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
-            var topClass = attrs.setClassWhenAtTop,
+            var topClass = attrs.stickTop,
                 offsetTop = element.offset().top;
 
             $win.on('scroll', function (e) {
