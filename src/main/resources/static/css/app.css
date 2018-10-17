@@ -34,6 +34,19 @@
 	padding: 15px;
 }
 
+#main-body-right-container {
+	white-space: nowrap;
+}
+
+#filter-keywords-input {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.filter-dropdown{
+	margin-right: 25px;
+}
+
 #find-app {
 	background-color: #fff;
 	width: 100%;
@@ -49,15 +62,67 @@
 	margin-top: 20px;
 }
 
-#main-body-right-container {
+#apps-container {
 	background-color: #fff;
 	width: 100%;
 }
 
+#app-cnt-container {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+#filter-container {
+	background-color: #fff;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
 .mdl-data-table {
 	width: 100%;
+	border-width: 0px;
 }
 
 .fright {
 	float: right;
+}
+
+#filter-keywords {
+	border-top: solid 1px #e9eaec;
+	border-bottom: solid 1px #e9eaec;
+}
+
+#filter-saved {
+	border-left: solid 1px #e9eaec;
+	width: 15%;
+	text-align: center;
+}
+
+#filter-set-options {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+#app-cnt-number {
+	padding-left: 6px;
+	padding-right:6px;
+}
+
+#table {
+	border-width: 0px;
+}
+
+.app-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+  margin: 10px;
+}
+
+.app-card-square > .mdl-card-pic {
+  background: url('../image/dog.png') bottom right 15% no-repeat #46B6AC;
+}
+
+#app-card {
+	display: inline-block;
+	float: left;
 }

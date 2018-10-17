@@ -1,3 +1,3 @@
 <div ng-repeat="app in appctrl.getAllApps()">
-	<app-widget></app-widget>
+	<app-card></app-card>
 </div>

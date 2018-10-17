@@ -51,3 +51,9 @@ app.directive('stickTop', function ($window) {
         }
     };
 });
+
+app.directive("appCard", function() {
+    return {
+        templateUrl : 'partials/app_card'
+    };
+});
