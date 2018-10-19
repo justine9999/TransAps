@@ -1,5 +1,5 @@
 var app = angular.module('mainApp',['ui.router','ngStorage']);
- 
+
 app.constant('urls', {
     BASE: 'http://localhost:8080/TransAps',
     APP_SERVICE_API : 'http://localhost:8080/TransAps/api/app/'
@@ -26,12 +26,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         $urlRouterProvider.otherwise('/');
     }]);
 
-app.directive("appWidget", function() {
-    return {
-        templateUrl : 'partials/app_widget'
-    };
-});
-
 app.directive('stickTop', function ($window) {
     var $win = angular.element($window);
 
@@ -52,8 +46,26 @@ app.directive('stickTop', function ($window) {
     };
 });
 
-app.directive("appCard", function() {
+app.directive("appCard", function($window) {
     return {
-        templateUrl : 'partials/app_card'
+        templateUrl : 'partials/app_card',
+        scope: false,
+        link: function(scope, element, attrs) {
+        	var apr = scope.apps_per_row;
+        	var width = $('#apps-container').width()/apr-parseInt($(element).css('margin-right'))-3;
+            element.css({
+              width: width,
+            });
+
+            //on resize
+            angular.element($window).bind('resize', function() {
+              width = $('#apps-container').width()/apr-parseInt($(element).css('margin-right'))-3;
+              element.css({
+                width: width,
+              });
+              scope.$apply();
+            })
+
+          }
     };
 });

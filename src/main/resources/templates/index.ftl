@@ -2,7 +2,7 @@
  
 <html lang="en" ng-app="mainApp">
     <head>
-        <title>${title}</title>
+        <title>TransAps</title>
         <link href="css/app.css" rel="stylesheet"/>
         <link rel="stylesheet" href="css/material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -17,8 +17,19 @@
 		          <span class="mdl-layout-title">Transperfect AppStore</span>
 		          <div class="mdl-layout-spacer"></div>
 		          <nav class="mdl-navigation mdl-layout--large-screen-only">
-		            <a class="mdl-navigation__link" href="">Search</a>
-		            <a class="mdl-navigation__link" href="">Account Sign in</a>
+		            <button  class="mdl-button mdl-js-button mdl-js-ripple-effect">
+						<i class="material-icons">account_box</i>
+						<span>Account Sign in ▾</span>
+					</button>
+					<div id="global-search-icon-container" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+			            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+			              <i id="global-search-icon" class="material-icons">search</i>
+			            </label>
+			            <div class="mdl-textfield__expandable-holder">
+			              <input class="mdl-textfield__input" type="text" id="search">
+			              <label class="mdl-textfield__label" for="search">Enter keywords to search...</label>
+			            </div>
+			        </div>
 		          </nav>
 		        </div>
 		      </header>
@@ -32,7 +43,10 @@
 					  				<table class="mdl-data-table mdl-js-data-table">
 									  <thead>
 									    <tr>
-									      <th class="mdl-data-table__cell--non-numeric">FIND APPS</th>
+									      <th class="mdl-data-table__cell--non-numeric">
+									      	<i class="material-icons module-header1-icon">add_box</i>
+									      	<span class="module-header1-text">FIND APPS</span>
+									      </th>
 									      <th></th>
 									    </tr>
 									  </thead>
@@ -74,7 +88,10 @@
 					  				<table class="mdl-data-table mdl-js-data-table">
 									  <thead>
 									    <tr>
-									      <th class="mdl-data-table__cell--non-numeric">MANAGE MY APPS</th>
+									      <th class="mdl-data-table__cell--non-numeric">
+									      	<i class="material-icons module-header1-icon">add_box</i>
+									      	<span class="module-header1-text">MANAGE MY APPS</span>
+									      </th>
 									      <th></th>
 									    </tr>
 									  </thead>
@@ -148,20 +165,12 @@
 												<button  id="filter-language" class="filter-dropdown mdl-button mdl-js-button">Source File Type ▾</button >
 											</td>
 					  						<td id="filter-saved">
-										      	<span>Saved Filters ▾</span>
+					  							<button  id="filter-saved-button" class="filter-dropdown mdl-button mdl-js-button">Saved Filters ▾</button >
 										    </td>
 					  					</tr>
 					  				</tbody>
 					  			</table>
-					  			<div id="app-cnt-container">
-					  				<span class="mdl-chip mdl-chip--contact">
-									    <span id="app-cnt-number" class="mdl-chip__contact mdl-color--teal mdl-color-text--white" ng-model="app_cnt">498</span>
-									    <span class="mdl-chip__text">Amazing Apps</span>
-									</span>
-					  			</div>
-					  			<div id="apps-container">
-					  				<div ui-view></div>
-					  			</div>
+					  			<div ui-view></div>
 		    				</div>
 					  	</div>
 					</div>
