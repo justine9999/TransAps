@@ -14,9 +14,16 @@ app.controller('AppController',
  
         function getAllApps(){
         	var obj = AppService.getAllApps();
-        	//$scope.app_cnt = Object.keys(obj).length;
         	console.log('app+cnt:' + $scope.app_cnt);
         	return obj;
+        }
+        
+        function highlight(){
+        	console.log('highlight');
+        }
+        
+        function fade(){
+        	console.log('fade');
         }
     }
 ]);

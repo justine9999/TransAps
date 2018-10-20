@@ -1,6 +1,6 @@
 <!DOCTYPE html>
  
-<html lang="en" ng-app="mainApp">
+<html lang="en" ng-app="mainApp" ng-controller="AppController">
     <head>
         <title>TransAps</title>
         <link href="css/app.css" rel="stylesheet"/>
@@ -14,7 +14,13 @@
 			<div id="main-nav" stick-top="fix-to-top"">
 		      <header class="mdl-layout__header">
 		        <div class="mdl-layout__header-row">
-		          <span class="mdl-layout-title">Transperfect AppStore</span>
+		          <span id="app-title" class="mdl-layout-title">
+		          	<i id="app-title-icon" class="material-icons">widgets</i>
+		          	<a id="app-title-text">
+		          		<span id="app-title-company-name">Transperfect </span>
+		          		<span id="app-title-tool-name">AppStore</span>
+		          	</a>
+		          </span>
 		          <div class="mdl-layout-spacer"></div>
 		          <nav class="mdl-navigation mdl-layout--large-screen-only">
 		            <button  class="mdl-button mdl-js-button mdl-js-ripple-effect">
