@@ -8,6 +8,8 @@ angular.module('mainApp').factory('AppService',
             var factory = {
                 loadAllApps: loadAllApps,
                 getAllApps: getAllApps,
+                loadMyApps: loadMyApps,
+                getMyApps: getMyApps
             };
  
             return factory;
@@ -29,9 +31,32 @@ angular.module('mainApp').factory('AppService',
                     );
                 return deferred.promise;
             }
+            
+            function loadMyApps() {
+                console.log('Fetching my apps');
+                var deferred = $q.defer();
+                $http.get(urls.APP_SERVICE_API + '/myapps/')
+                    .then(
+                        function (response) {
+                            console.log('Fetched successfully my apps');
+                            $localStorage.myapps = response.data;
+                            deferred.resolve(response);
+                        },
+                        function (errResponse) {
+                            console.error('Error while loading my apps');
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
  
             function getAllApps(){
                 return $localStorage.apps;
+            }
+            
+            function getMyApps(){
+            	console.log("ctrls: " + $localStorage.myapps.length);
+                return $localStorage.myapps;
             }
         }
     ]);

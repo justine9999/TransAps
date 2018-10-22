@@ -1,5 +1,13 @@
 var app = angular.module('mainApp',['ui.router','ngStorage']);
 
+app.run(function ($rootScope,$timeout) {
+    $rootScope.$on('$viewContentLoaded', function() {
+        $timeout(function() {
+          componentHandler.upgradeAllRegistered();
+        })
+    })
+});
+
 app.constant('urls', {
     BASE: 'http://localhost:8080/TransAps',
     APP_SERVICE_API : 'http://localhost:8080/TransAps/api/app/'
@@ -22,7 +30,23 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
                         return deferred.promise;
                     }
                 }
-            });
+            })
+        
+	        .state('my-apps', {
+	            url: '/myapps',
+	            templateUrl: 'partials/my_app_list',
+	            controller:'MyAppController',
+	            controllerAs:'myappctrl',
+	            resolve: {
+	                myapps: function ($q, AppService) {
+	                    console.log('Load my apps');
+	                    var deferred = $q.defer();
+	                    AppService.loadMyApps().then(deferred.resolve, deferred.resolve);
+	                    return deferred.promise;
+	                }
+	            }
+	        })
+	        
         $urlRouterProvider.otherwise('/');
     }]);
 

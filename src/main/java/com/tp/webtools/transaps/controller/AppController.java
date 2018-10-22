@@ -24,10 +24,20 @@ public class AppController {
 	    @Autowired
 	    AppService appService;
 	 
-	    //Retrieve All Users
+	    //Retrieve All Apps
 		@RequestMapping(value = "/app/", method = RequestMethod.GET)
 	    public ResponseEntity<List<App>> listAllApps() {
 			System.out.println("all apps");
+	        List<App> apps = appService.findAllApps();
+	        if (apps.isEmpty()) {
+	            return new ResponseEntity(HttpStatus.NO_CONTENT);
+	        }
+	        return new ResponseEntity<List<App>>(apps, HttpStatus.OK);
+	    }
+		
+		@RequestMapping(value = "/app/myapps", method = RequestMethod.GET)
+	    public ResponseEntity<List<App>> listMyApps() {
+			System.out.println("my apps");
 	        List<App> apps = appService.findAllApps();
 	        if (apps.isEmpty()) {
 	            return new ResponseEntity(HttpStatus.NO_CONTENT);

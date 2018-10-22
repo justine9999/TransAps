@@ -211,7 +211,11 @@
 
 .app-card-square > .mdl-card__title {
   color: #fff;
-  background: url('../image/dog.png') bottom right 15% no-repeat #46B6AC;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-color: #46B6AC !important;
+  background-position: center !important; 
+  background: url('../image/default_profile_pic.png');
 }
 
 .mdl-card__actions > a {
