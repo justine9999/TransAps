@@ -47,7 +47,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
 	            }
 	        })
 	        
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/home');
     }]);
 
 app.directive('stickTop', function ($window) {
