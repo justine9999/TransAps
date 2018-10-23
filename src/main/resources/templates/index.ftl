@@ -6,6 +6,7 @@
         <link href="css/app.css" rel="stylesheet"/>
         <link rel="stylesheet" href="css/material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
         <base href="/TransAps/">
     </head>
     <body>
@@ -45,7 +46,7 @@
     				<div class="mdl-grid">
 					  	<div class="mdl-cell mdl-cell--3-col">
 					  		<div id="main-body-left-container">
-					  			<div id="find-app">
+					  			<div id="find-app" class="mdl-shadow--2dp">
 					  				<table class="mdl-data-table mdl-js-data-table">
 									  <thead>
 									    <tr>
@@ -90,7 +91,7 @@
 									  </tbody>
 									</table>
 					  			</div>
-					  			<div id="manage-app">
+					  			<div id="manage-app" class="mdl-shadow--2dp">
 					  				<table class="mdl-data-table mdl-js-data-table">
 									  <thead>
 									    <tr>
@@ -161,7 +162,11 @@
     	
     	<script src="js/lib/jquery-3.3.1.js"></script>
     	<script src="js/lib/angular.min.js" ></script>
+    	<script src="js/lib/angular-animation.min.js" ></script>
+    	<script src="js/lib/angular-aria.min.js" ></script>
+    	<script src="js/lib/angular-messages.min.js" ></script>
         <script src="js/lib/angular-ui-router.min.js" ></script>
+        <script src="js/lib/angular-material.min.js" ></script>
         <script src="js/lib/localforage.min.js" ></script>
         <script src="js/lib/ngStorage.min.js"></script>
         <script src="js/lib/material.min.js"></script>
@@ -169,5 +174,6 @@
         <script src="js/app/AppService.js"></script>
         <script src="js/app/AppController.js"></script>
         <script src="js/app/MyAppController.js"></script>  
+        <script src="js/app/CreateAppController.js"></script>  
     </body>
 </html>

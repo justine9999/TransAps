@@ -1,3 +1,7 @@
+a {
+	text-decoration: none;
+	color: inherit !important;
+}
 
 #app-title {
 	cursor: pointer;
@@ -241,4 +245,38 @@ app-card {
 #global-search-icon-container {
 	vertical-align: middle;
 	margin-left: 15px;'
+}
+
+#my-apps-toolbar {
+	background-color: #fff;
+	height: 50px;
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#my-apps-toolbar > button {
+	margin-left: 30px;
+}
+
+md-dialog {
+	border-radius: 2px !important;
+	width: 50%;
+}
+
+.tps-modal-headline {
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+	padding: 3px 10px;
+	background-color: #81a7da;
+	font-family: Verdana, Geneva, sans-serif;
+	display: flex;
+	align-items: center;
+}
+
+md-button {
+	font-family: Verdana, Geneva, sans-serif;
 }

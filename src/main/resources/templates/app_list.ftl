@@ -1,4 +1,4 @@
-<table id="filter-container" class="mdl-data-table mdl-js-data-table">
+<table id="filter-container" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 	<tbody>
 		<tr id="filter-current">
 			<td id="filter-current-tags" class="mdl-data-table__cell--non-numeric">some tag</td>
