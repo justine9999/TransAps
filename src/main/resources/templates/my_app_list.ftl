@@ -5,11 +5,9 @@
     	</tr>
   	</thead>
 	<tbody>
-		<div ng-repeat="myapp in myappctrl.getMyApps()">
-			<tr>
-				<td class="mdl-data-table__cell--non-numeric">{{myapp.title}}</td>
-				<td class="mdl-data-table__cell--non-numeric">View Details</td>
-			</tr>
-		</div>
+		<tr ng-repeat="myapp in myappctrl.getMyApps()">
+			<td class="mdl-data-table__cell--non-numeric">{{myapp.title}}</td>
+			<td class="mdl-data-table__cell--non-numeric">View Details</td>
+		</tr>
 	</tbody>
 </table>

@@ -55,7 +55,6 @@ angular.module('mainApp').factory('AppService',
             }
             
             function getMyApps(){
-            	console.log("ctrls: " + $localStorage.myapps.length);
                 return $localStorage.myapps;
             }
         }

@@ -38,10 +38,10 @@ public class AppController {
 		@RequestMapping(value = "/app/myapps", method = RequestMethod.GET)
 	    public ResponseEntity<List<App>> listMyApps() {
 			System.out.println("my apps");
-	        List<App> apps = appService.findAllApps();
-	        if (apps.isEmpty()) {
+	        List<App> myapps = appService.findAllApps();
+	        if (myapps.isEmpty()) {
 	            return new ResponseEntity(HttpStatus.NO_CONTENT);
 	        }
-	        return new ResponseEntity<List<App>>(apps, HttpStatus.OK);
+	        return new ResponseEntity<List<App>>(myapps, HttpStatus.OK);
 	    }
 }

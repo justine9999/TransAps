@@ -7,24 +7,26 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class App implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Getter @Setter private String profilePicture;
-	@Getter @Setter private String title;
-	@Getter @Setter private String description;
-	@Getter @Setter private String content;
-	@Getter @Setter private String author;
-	@Getter @Setter private String division;
-	@Getter @Setter private String purpose;
-	@Getter @Setter private int downloads;
-	@Getter @Setter private int rate;
-	@Getter @Setter private long  creationTime;
-	@Getter @Setter private long  lastUpdateTime;
-	@Getter @Setter private List<String> languages;
-	@Getter @Setter private List<String> sourceFileTypes;
-	@Getter @Setter private List<String> appTypes;
+	private String profilePicture;
+	private String title;
+	private String description;
+	private String content;
+	private String author;
+	private String division;
+	private String purpose;
+	private int downloads;
+	private int rate;
+	private long creationTime;
+	private long lastUpdateTime;
+	private List<String> languages;
+	private List<String> sourceFileTypes;
+	private List<String> appTypes;
 	
 	public App(String title, String description, String author){
 		

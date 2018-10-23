@@ -167,6 +167,7 @@
         <script src="js/lib/material.min.js"></script>
         <script src="js/app/app.js"></script>
         <script src="js/app/AppService.js"></script>
-        <script src="js/app/AppController.js"></script>   
+        <script src="js/app/AppController.js"></script>
+        <script src="js/app/MyAppController.js"></script>  
     </body>
 </html>

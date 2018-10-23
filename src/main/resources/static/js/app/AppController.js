@@ -1,8 +1,7 @@
 
 'use strict';
  
-app.controller('AppController',
-    ['AppService', '$scope',  function( AppService, $scope) {
+app.controller('AppController', ['AppService', '$scope',  function( AppService, $scope) {
  
         var self = this;
         self.getAllApps = getAllApps;
