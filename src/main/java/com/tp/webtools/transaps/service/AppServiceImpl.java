@@ -5,13 +5,20 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tp.webtools.transaps.model.App;
+import com.tp.webtools.transaps.model.User;
+import com.tp.webtools.transaps.repository.AppRepository;
+import com.tp.webtools.transaps.repository.UserRepository;
 
 @Service("appService")
 @Transactional
 public class AppServiceImpl implements AppService{
+	
+	@Autowired
+    private AppRepository appRepository;
  
     public List<App> findAllApps(){
     	List<App> apps = new ArrayList<App>();
@@ -20,6 +27,14 @@ public class AppServiceImpl implements AppService{
     	}
     	
     	return apps;
+    }
+    
+    public void saveApp(App app) {
+        appRepository.save(app);
+    }
+    
+    public boolean isAppExist(App app) {
+        return false;
     }
 
 }

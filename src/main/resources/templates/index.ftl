@@ -174,6 +174,6 @@
         <script src="js/app/AppService.js"></script>
         <script src="js/app/AppController.js"></script>
         <script src="js/app/MyAppController.js"></script>  
-        <script src="js/app/CreateAppController.js"></script>  
+        <script src="js/app/CreateAppFormController.js"></script>  
     </body>
 </html>

@@ -57,5 +57,22 @@ angular.module('mainApp').factory('AppService',
             function getMyApps(){
                 return $localStorage.myapps;
             }
+            
+            function createApp(app) {
+                console.log('Creating App');
+                var deferred = $q.defer();
+                $http.post(urls.APP_SERVICE_API, app)
+                    .then(
+                        function (response) {
+                        	console.log('App created : '+response.data);
+                            deferred.resolve(response.data);
+                        },
+                        function (errResponse) {
+                           console.error('Error while creating App : '+errResponse.data.errorMessage);
+                           deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
         }
     ]);

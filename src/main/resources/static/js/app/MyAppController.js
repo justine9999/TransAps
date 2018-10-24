@@ -14,15 +14,16 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', function
         
         function showCreateAppModal(event) {
         	$mdDialog.show({
-        		controller: 'CreateAppController',
+        		controller: 'CreateAppFormController',
         	    templateUrl: 'partials/create_app',
         	    parent: angular.element(document.body),
         	    targetEvent: event,
         	    clickOutsideToClose: false,
         	    fullscreen: $scope.customFullscreen
         	})
-        	.then(function() {
-        		console.log("submit");
+        	.then(function(app) {
+        		console.log("submit a new app form");
+        		AppService.createApp(app);
         	}, function() {
         		console.log("cancel");
         	});

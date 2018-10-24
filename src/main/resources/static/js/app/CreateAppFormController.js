@@ -24,11 +24,11 @@ app.controller('CreateAppController', ['$scope', '$mdDialog', function($scope, $
 		$scope.filetypes = ['TXML','TXLF','MS Word','MS Excel','MS PowerPoint','XML','XLIFF','PO','Properties','RESX','Ohter Text-Based File','Others'];
 		
 		$scope.cancel = function() {
-	      $mdDialog.cancel();
+			$mdDialog.cancel();
 	    };
 
 	    $scope.submit = function() {
-	      $mdDialog.hide();
+	    	$mdDialog.hide(appinfo);
 	    };
     }
 ]);
