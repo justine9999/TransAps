@@ -22,6 +22,10 @@ public class AppServiceImpl implements AppService{
  
     public List<App> findAllApps(){
     	List<App> apps = new ArrayList<App>();
+    	for(App app : appRepository.findAll()) {
+    		apps.add(app);
+    		System.out.println("find app: " + app);
+    	}
     	for(int i = 0; i < 30; i++){
     		apps.add(new App("titile"+i,"desc"+i,"author"+i));
     	}
@@ -33,8 +37,12 @@ public class AppServiceImpl implements AppService{
         appRepository.save(app);
     }
     
+    public App findByTitle(String title) {
+    	return appRepository.findByTitle(title);
+    }
+    
     public boolean isAppExist(App app) {
-        return false;
+    	return findByTitle(app.getTitle()) != null;
     }
 
 }

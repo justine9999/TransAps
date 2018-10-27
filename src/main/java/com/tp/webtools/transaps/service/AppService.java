@@ -10,5 +10,7 @@ public interface AppService {
 	
 	void saveApp(App app);
 	
+	App findByTitle(String title);
+	
 	boolean isAppExist(App app);
 }

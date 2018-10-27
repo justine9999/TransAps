@@ -21,7 +21,20 @@
 	<tbody>
 		<tr ng-repeat="myapp in myappctrl.getMyApps()">
 			<td class="mdl-data-table__cell--non-numeric">{{myapp.title}}</td>
-			<td class="mdl-data-table__cell--non-numeric">View Details</td>
+			<td class="mdl-data-table__cell--non-numeric">
+				<span class="fright vcenter" ng-show="myappctrl.myappsstatus[myapp.creationTime] === 0">
+					<md-tooltip md-direction="right">View App details</md-tooltip>
+					<i id="app_view_details_icon" class="material-icons">inbox</i>
+				</span>
+				<span class="fright vcenter" ng-show="myappctrl.myappsstatus[myapp.creationTime] === 1">
+					<md-tooltip md-direction="right">Creating App...</md-tooltip>
+					<i id="app_creating_icon" class="material-icons">add_circle</i>		
+				</span>
+				<span class="fright vcenter" ng-show="myappctrl.myappsstatus[myapp.creationTime] === 2">
+					<md-tooltip md-direction="right">Deleting App...</md-tooltip>
+					<i id="app_deleting_icon" class="material-icons">remove_circle</i>	
+				</span>
+			</td>
 		</tr>
 	</tbody>
 </table>

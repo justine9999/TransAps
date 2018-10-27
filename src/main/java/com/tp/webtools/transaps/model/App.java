@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,9 @@ public class App implements Serializable{
 	
     @Column(name="PROFILE_PICTURE")
 	private String profilePicture;
+    
+    @Column(name="APP_SOURCE_FILE")
+	private String appSourceFile;
 	
 	@NotEmpty
     @Column(name="TITLE", nullable=false)
@@ -61,16 +65,22 @@ public class App implements Serializable{
 	private long lastUpdateTime;
 	
 	@Column(name="PURPOSES")
-	private List<String> purpose;
+	@ElementCollection
+	private List<String> purposes;
 	
 	@Column(name="LANGUAGES")
+	@ElementCollection
 	private List<String> languages;
 	
 	@Column(name="SOURCE_FILE_TYPES")
+	@ElementCollection
 	private List<String> sourceFileTypes;
 	
 	@Column(name="APP_TYPES")
+	@ElementCollection
 	private List<String> appTypes;
+	
+	public App() {}
 	
 	public App(String title, String description, String author){
 		
@@ -78,8 +88,17 @@ public class App implements Serializable{
 		this.description = description;
 		this.author = author;
 	}
+
+	@Override
+	public String toString() {
+		return "App [id=" + id + ", profilePicture=" + profilePicture + ", title=" + title + ", description="
+				+ description + ", content=" + content + ", author=" + author + ", division=" + division
+				+ ", downloads=" + downloads + ", rate=" + rate + ", creationTime=" + creationTime + ", lastUpdateTime="
+				+ lastUpdateTime + ", purpose=" + purposes + ", languages=" + languages + ", sourceFileTypes="
+				+ sourceFileTypes + ", appTypes=" + appTypes + "]";
+	}
 	
-	public App(String title, String description, String author, int downloads, int rate, String division, List<String> purpose,
+	/*public App(String title, String description, String author, int downloads, int rate, String division, List<String> purpose,
 			List<String> languages, List<String> sourceFileTypes, List<String> appTypes	){
 		
 		this.title = title;
@@ -94,6 +113,6 @@ public class App implements Serializable{
 		this.appTypes = appTypes;
 		this.creationTime = new Date().getTime();
 		this.lastUpdateTime = new Date().getTime();
-	}
+	}*/
 
 }

@@ -1,15 +1,29 @@
 
 'use strict';
  
-app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', function( AppService, $scope, $mdDialog) {
+app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$element', '$mdToast', function( AppService, $scope, $mdDialog, $element, $mdToast) {
  
         var self = this;
         self.getMyApps = getMyApps;        
-        self.showCreateAppModal = showCreateAppModal; 
+        self.showCreateAppModal = showCreateAppModal;
+        self.insertAppRow = insertAppRow;
+        self.getAppStatus = getAppStatus;
+        self.showActionToast = showActionToast;
+        self.myapps = [];
+        //0-normal, 1-creating, 2-deleting
+        self.myappsstatus = {};
  
         function getMyApps(){
-        	var obj = AppService.getMyApps();
-        	return obj;
+        	self.myapps = AppService.getMyApps();
+        	
+        	//initialize myapps status
+        	if(Object.keys(self.myappsstatus).length === 0){
+        		for (var i = 0; i < self.myapps.length; i++) {
+            		self.myappsstatus[self.myapps[i].creationTime] = 0;
+            	}
+        	}
+        	
+        	return self.myapps;
         }
         
         function showCreateAppModal(event) {
@@ -23,10 +37,46 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', function
         	})
         	.then(function(app) {
         		console.log("submit a new app form");
-        		AppService.createApp(app);
+        		self.insertAppRow(app, 1);
+        		AppService.createApp(app).then(
+        	          function(app_creationTime) {
+        	        	 self.myappsstatus[app_creationTime] = 0;
+        	        	 self.showActionToast()
+                   }, function(app_to_delete) {
+                	   	 deleteAppRow(app_to_delete);
+                });
         	}, function() {
         		console.log("cancel");
         	});
+        }
+        
+        function insertAppRow(app, new_status) {
+        	self.myappsstatus[app.creationTime] = new_status;
+        	self.myapps.unshift(app);
+        }
+        
+        function getAppStatus(app_creationTime) {
+        	return self.myappsstatus[app_creationTime];
+        }
+        
+        function deleteAppRow(app_to_delete) {
+        	delete self.myappsstatus[app_to_delete.creationTime];
+        	var index = self.myapps.indexOf(app_to_delete);
+        	self.myapps.splice(index, 1);
+        }
+        
+        function showActionToast() {
+            var toast = $mdToast.simple()
+              .textContent('Marked as read')
+              .action('UNDO')
+              .highlightAction(true)
+              .position('bottom left');
+
+            $mdToast.show(toast).then(function(response) {
+              if ( response == 'ok' ) {
+                Console.log('You clicked the \'UNDO\' action.');
+              }
+            });
         }
     }
 ]);

@@ -1,5 +1,7 @@
 package com.tp.webtools.transaps.controller;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,8 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.tp.webtools.transaps.service.AppService;
 import com.tp.webtools.transaps.util.CustomError;
 import com.tp.webtools.transaps.model.App;
-import com.tp.webtools.transaps.model.User;
-import com.tp.webtools.transaps.model.UserFactory;
 
 
 @RestController
@@ -56,17 +56,23 @@ public class AppController {
 	    @RequestMapping(value = "/app/", method = RequestMethod.POST)
 	    public ResponseEntity<?> createApp(@RequestBody App app, UriComponentsBuilder ucBuilder) {
 	        logger.info("Creating App : {}", app);
-	 
-	        if (appService.isAppExist(app)) {
-	            logger.error("Unable to create. An App with title {} already exist", app.getTitle());
-	            return new ResponseEntity(new CustomError("Unable to create. An App with title " + 
-	            app.getTitle() + " already exist."), HttpStatus.CONFLICT);
-	        }
 	        
-	        appService.saveApp(app);
-	 
-	        HttpHeaders headers = new HttpHeaders();
-	        headers.setLocation(ucBuilder.path("/api/app/{id}").buildAndExpand(app.getId()).toUri());
-	        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+	        try {
+	        	Thread.sleep(5000);
+		        if (appService.isAppExist(app)) {
+		            logger.error("Unable to create. An App with title {} already exist", app.getTitle());
+		            return new ResponseEntity(new CustomError("Unable to create. An App with title " + 
+		            app.getTitle() + " already exist."), HttpStatus.CONFLICT);
+		        }
+		        
+		        appService.saveApp(app);
+		        
+		        HttpHeaders headers = new HttpHeaders();
+		        headers.setLocation(ucBuilder.path("/api/app/{id}").buildAndExpand(app.getId()).toUri());
+		        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+	        }catch(Exception ex) {
+	        	logger.error("Unable to create. Internal Server Error:", ex);
+	        	return new ResponseEntity(new CustomError("Unable to create. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+	        }  
 	    }
 }

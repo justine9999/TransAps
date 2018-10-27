@@ -7,18 +7,6 @@ a {
 	cursor: pointer;
 }
 
-#app-title-icon {
-	vertical-align: middle;
-	color: white;
-	position: relative;
-	border-radius: 50%;
-	padding: 5px;
-	margin: 3px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-	transition: color 0.2s ease, background-color 0.2s ease, transform 0.3s ease;
-	background-color: #8ee5ef;
-}
-
 #app-title-text {
   	font-weight: bold;
   	font-family: Verdana, Geneva, sans-serif;
@@ -44,6 +32,18 @@ a {
 #app-title-text:hover:after { 
   	width: 100%; 
   	left: 0; 
+}
+
+#app-title-icon {
+	vertical-align: middle;
+	color: white;
+	position: relative;
+	border-radius: 50%;
+	padding: 5px;
+	margin: 3px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	transition: color 0.2s ease, background-color 0.2s ease, transform 0.3s ease;
+	background-color: #8ee5ef;
 }
 
 #app-title-icon:after {
@@ -258,7 +258,8 @@ app-card {
 }
 
 #my-apps-toolbar > button {
-	margin-left: 30px;
+	margin-left: 10px;
+	margin-right: 20px;
 }
 
 md-dialog {
@@ -279,4 +280,100 @@ md-dialog {
 
 md-button {
 	font-family: Verdana, Geneva, sans-serif;
+}
+
+
+#app_creating_icon:after {
+		content: "";
+		width: 100%;
+		height: 100%;
+		border: solid 2px;
+		transform: scale(0.8);
+		position: absolute;
+		top: -2px;
+		left: -2px;
+		border-radius: 50%;
+		transition: all 0.3s ease;
+		border-color: #6caedf;
+}
+
+tr:hover:after #app_creating_icon {
+		transform: scale(1);
+}
+
+tr:hover #app_creating_icon {
+		background-color: transparent;
+		cursor: pointer;
+		box-shadow: none;
+		color: #6caedf;
+}
+
+#app_creating_icon {
+		font-size: 1.5rem;
+		color: white;
+		border-radius: 50%;
+		padding: 5px;
+		transition: color 0.2s ease, background-color 0.2s ease, transform 0.3s ease;
+	    -webkit-animation:spin 2s linear infinite;
+	    -moz-animation:spin 2s linear infinite;
+	    animation:spin 2s linear infinite;
+		background-color: #6caedf;
+}
+
+
+#app_deleting_icon:after {
+		content: "";
+		width: 100%;
+		height: 100%;
+		border: solid 2px;
+		transform: scale(0.8);
+		position: absolute;
+		top: -2px;
+		left: -2px;
+		border-radius: 50%;
+		transition: all 0.3s ease;
+		border-color: #cd8484;
+}
+
+tr:hover:after #app_deleting_icon {
+		transform: scale(1);
+}
+
+tr:hover #app_deleting_icon {
+		background-color: transparent;
+		cursor: pointer;
+		box-shadow: none;
+		color: #cd8484;
+}
+
+#app_deleting_icon {
+		font-size: 1.5rem;
+		color: white;
+		border-radius: 50%;
+		padding: 5px;
+		transition: color 0.2s ease, background-color 0.2s ease, transform 0.3s ease;
+	    -webkit-animation:spin 2s linear infinite;
+	    -moz-animation:spin 2s linear infinite;
+	    animation:spin 2s linear infinite;
+		background-color: #cd8484;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#app_view_details_icon {
+	font-size: 34px;
+}
+
+.md-tooltip {
+    border-radius: 2px !important;
+}
+
+.vcenter {
+	display:flex;
+	align-items: center;
+}
+
+#my-apps-container > tbody {
+	cursor: pointer;
 }

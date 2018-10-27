@@ -14,7 +14,7 @@ datasource:
     maxPoolSize: 10
     hibernate:
       hbm2ddl.method: create-drop
-      show_sql: true
+      show_sql: false
       format_sql: true
       dialect: org.hibernate.dialect.H2Dialect
 ---
@@ -30,6 +30,6 @@ datasource:
     maxPoolSize: 20
     hibernate:
       hbm2ddl.method: update
-      show_sql: true
+      show_sql: false
       format_sql: true
       dialect: org.hibernate.dialect.MySQLDialect

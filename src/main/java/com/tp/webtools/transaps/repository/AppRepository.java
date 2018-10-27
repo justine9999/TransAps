@@ -9,6 +9,6 @@ import com.tp.webtools.transaps.model.App;
 @Repository
 public interface AppRepository extends JpaRepository<App, Long> {
  
-    App findByName(String name);
+    App findByTitle(String title);
  
 }

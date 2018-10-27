@@ -9,7 +9,8 @@ angular.module('mainApp').factory('AppService',
                 loadAllApps: loadAllApps,
                 getAllApps: getAllApps,
                 loadMyApps: loadMyApps,
-                getMyApps: getMyApps
+                getMyApps: getMyApps,
+                createApp: createApp
             };
  
             return factory;
@@ -59,20 +60,20 @@ angular.module('mainApp').factory('AppService',
             }
             
             function createApp(app) {
-                console.log('Creating App');
+                console.log('Creating App: ' + app.title);
                 var deferred = $q.defer();
                 $http.post(urls.APP_SERVICE_API, app)
                     .then(
                         function (response) {
-                        	console.log('App created : '+response.data);
-                            deferred.resolve(response.data);
+                        	console.log('App created: ' + app.title);
+                            deferred.resolve(app.creationTime);
                         },
                         function (errResponse) {
-                           console.error('Error while creating App : '+errResponse.data.errorMessage);
-                           deferred.reject(errResponse);
+                        	console.error('Error while creating App: ' + errResponse.data.errorMessage);
+                        	deferred.reject(app);
                         }
                     );
                 return deferred.promise;
-            }
+           }
         }
     ]);

@@ -1,16 +1,24 @@
 
 'use strict';
  
-app.controller('CreateAppController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
+app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
  
 		$scope.appinfo = {
-			title: '',
-			description: '',
-		    division: 'TPT',
-		    purpose: '',
-		    language: 'English',
-		    apptype: '',
-		    filetype: ''
+			profilePicture: '',
+			appSourceFile: '',
+			title: 'test_title',
+			description: 'test_description',
+			author: 'test_user',
+			division: 'TPT',
+			downloads: '0',
+			rate: '0',
+			creationTime: Date.now(),
+			lastUpdateTime: Date.now(),
+			content: 'some html content',
+			languages: ['English','Spanish'],
+		    purposes: ['Preflight'],		    
+		    appTypes: ['VBA Add-In'],
+		    sourceFileTypes: ['MS Word']
 		};
 		
 		$scope.divisions = ['TPT','TDC','TDCEU','TDCNY','TDCSF','TPTBCN','AD-COM','ARCHITEXT','CRIMSON','ISP','IVERSON','OVERTAAL','ADAMS','TDCAPAC','TDC CORVALLIS','TP-TOKYO','WORLDLINGO','TDC TOKYO','OTHERS'];
@@ -28,7 +36,7 @@ app.controller('CreateAppController', ['$scope', '$mdDialog', function($scope, $
 	    };
 
 	    $scope.submit = function() {
-	    	$mdDialog.hide(appinfo);
+	    	$mdDialog.hide($scope.appinfo);
 	    };
     }
 ]);
