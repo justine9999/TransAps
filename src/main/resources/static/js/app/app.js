@@ -13,9 +13,11 @@ app.constant('urls', {
     APP_SERVICE_API : 'http://localhost:8080/TransAps/api/app/'
 });
  
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
-    function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$mdThemingProvider',
+    function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider) {
 		$locationProvider.html5Mode(true);
+		$mdThemingProvider.theme('success-toast');
+		$mdThemingProvider.theme('error-toast');
         $stateProvider
             .state('home', {
                 url: '/',

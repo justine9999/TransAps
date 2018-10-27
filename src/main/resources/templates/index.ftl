@@ -159,6 +159,7 @@
 		      </footer>
 			</div> 
     	</div>
+    	<div id="toaster-container"><div>
     	
     	<script src="js/lib/jquery-3.3.1.js"></script>
     	<script src="js/lib/angular.min.js" ></script>

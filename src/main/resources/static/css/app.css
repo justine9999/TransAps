@@ -1,3 +1,30 @@
+
+#toaster-container {
+	position: fixed;
+	bottom: 0px;
+	white-space: nowrap;
+}
+
+md-toast.md-success-toast-theme .md-toast-content {
+	background-color: #145fc3 !important;
+	color: #fff !important;
+	opacity: 0.8;
+}
+
+md-toast.md-success-toast-theme .md-toast-content .md-button.md-highlight {
+	color: #70e69f !important;
+}
+
+md-toast.md-error-toast-theme .md-toast-content {
+	background-color: #cd8484 !important;
+	color: #fff !important;
+	opacity: 0.8;
+}
+
+md-toast.md-error-toast-theme .md-toast-content .md-button.md-highlight {
+	color: #f7d905 !important;
+}
+
 a {
 	text-decoration: none;
 	color: inherit !important;
@@ -377,3 +404,4 @@ tr:hover #app_deleting_icon {
 #my-apps-container > tbody {
 	cursor: pointer;
 }
+

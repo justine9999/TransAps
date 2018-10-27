@@ -41,9 +41,10 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
         		AppService.createApp(app).then(
         	          function(app_creationTime) {
         	        	 self.myappsstatus[app_creationTime] = 0;
-        	        	 self.showActionToast()
+        	        	 self.showActionToast('New App created: [ '+app.title+' ]', 'Undo', 'success');
                    }, function(app_to_delete) {
                 	   	 deleteAppRow(app_to_delete);
+                	   	 self.showActionToast('Unable to create App: [ '+app.title+' ]', 'Detail', 'error');
                 });
         	}, function() {
         		console.log("cancel");
@@ -65,12 +66,15 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
         	self.myapps.splice(index, 1);
         }
         
-        function showActionToast() {
+        function showActionToast(textContent, actionText, type) {
             var toast = $mdToast.simple()
-              .textContent('Marked as read')
-              .action('UNDO')
+              .textContent(textContent)
+              .action(actionText)
               .highlightAction(true)
-              .position('bottom left');
+              .parent(document.querySelectorAll('#toaster-container'))
+              .position('bottom left')
+              .hideDelay(300000)
+              .theme(type+'-toast');
 
             $mdToast.show(toast).then(function(response) {
               if ( response == 'ok' ) {
