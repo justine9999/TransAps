@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tp.webtools.transaps.service.AppService;
-import com.microsoft.azure.documentdb.Database;
-import com.microsoft.azure.documentdb.DocumentClient;
-import com.tp.webtools.transaps.dao.CosmosDbFactory;
+import com.tp.webtools.transaps.dao.CassandraSessionFactory;
 import com.tp.webtools.transaps.exception.CustomError;
 import com.tp.webtools.transaps.model.App;
 
@@ -33,18 +31,13 @@ public class AppController {
 	    @Autowired
 	    AppService appService;
 	    @Autowired
-	    CosmosDbFactory cosmosDbFactory;
+	    CassandraSessionFactory cosmosDbFactory;
 	 
 	    //Retrieve all Apps
 		@RequestMapping(value = "/app/", method = RequestMethod.GET)
 	    public ResponseEntity<List<App>> listAllApps() {
 			
-			try {
-				DocumentClient documentClient = cosmosDbFactory.getDocumentClient();
-				Database database = new Database();
-				database.setId("familydb");
-				documentClient.createDatabase(database, null);
-				
+			try {				
 				System.out.println("all apps");
 		        List<App> apps = appService.findAllApps();
 		        if (apps.isEmpty()) {

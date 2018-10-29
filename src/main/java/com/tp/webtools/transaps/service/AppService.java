@@ -6,11 +6,20 @@ import com.tp.webtools.transaps.model.App;
 import com.tp.webtools.transaps.model.User;
 
 public interface AppService {
-	List<App> findAllApps();
 	
-	void saveApp(App app);
+	void createKeyspace(String keyspaceName);
 	
-	App findByTitle(String title);
+	void createTable(String keyspaceName, String talbeName);
 	
-	boolean isAppExist(App app);
+	void deleteTable(String keyspaceName, String talbeName);
+	
+	List<App> findAllApps(String keyspaceName, String talbeName);
+	
+	App findById(int id, String keyspaceName, String talbeName);
+	
+	App findByTitle(String title, String keyspaceName, String talbeName);
+	
+	void saveApp(App app, String keyspaceName, String talbeName);
+
+	boolean isAppExist(App app, String keyspaceName, String talbeName);
 }

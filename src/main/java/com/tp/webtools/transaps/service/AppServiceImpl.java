@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.datastax.driver.core.PreparedStatement;
 import com.tp.webtools.transaps.model.App;
 import com.tp.webtools.transaps.repository.AppRepository;
 
@@ -18,11 +19,22 @@ public class AppServiceImpl implements AppService{
 	@Autowired
     private AppRepository appRepository;
  
-    public List<App> findAllApps(){
+	public void createKeyspace(String keyspaceName) {
+		appRepository.createKeyspace(keyspaceName);
+	}
+	
+	public void createTable(String keyspaceName, String talbeName) {
+		appRepository.createTable(keyspaceName, talbeName);
+	}
+	
+	public void deleteTable(String keyspaceName, String talbeName) {
+		appRepository.deleteTable(keyspaceName, talbeName);
+	}
+	
+    public List<App> findAllApps(String keyspaceName, String talbeName){
     	List<App> apps = new ArrayList<App>();
-    	for(App app : appRepository.findAll()) {
+    	for(App app : appRepository.selectAllApps(keyspaceName, talbeName)) {
     		apps.add(app);
-    		System.out.println("find app: " + app);
     	}
     	for(int i = 0; i < 30; i++){
     		apps.add(new App("titile"+i,"desc"+i,"author"+i));
@@ -31,16 +43,21 @@ public class AppServiceImpl implements AppService{
     	return apps;
     }
     
-    public void saveApp(App app) {
-        appRepository.save(app);
+    public void saveApp(App app, String keyspaceName, String talbeName) {
+    	PreparedStatement statement = appRepository.prepareInsertStatement(keyspaceName, talbeName);
+        appRepository.insertApp(statement, app);
     }
     
-    public App findByTitle(String title) {
-    	return appRepository.findByTitle(title);
+    public App findById(int id, String keyspaceName, String talbeName) {
+    	return appRepository.selectAppById(id, keyspaceName, talbeName);
     }
     
-    public boolean isAppExist(App app) {
-    	return findByTitle(app.getTitle()) != null;
+    public App findByTitle(String title, String keyspaceName, String talbeName) {
+    	return appRepository.selectAppByTitle(title, keyspaceName, talbeName);
+    }
+    
+    public boolean isAppExist(App app, String keyspaceName, String talbeName) {
+    	return findByTitle(app.getTitle(), keyspaceName, talbeName) != null;
     }
 
 }
