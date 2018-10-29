@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tp.webtools.transaps.model.App;
-import com.tp.webtools.transaps.model.User;
 import com.tp.webtools.transaps.repository.AppRepository;
-import com.tp.webtools.transaps.repository.UserRepository;
 
 @Service("appService")
 @Transactional

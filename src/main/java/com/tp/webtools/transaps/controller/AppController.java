@@ -18,6 +18,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tp.webtools.transaps.service.AppService;
 import com.tp.webtools.transaps.util.CustomError;
+import com.microsoft.azure.documentdb.Database;
+import com.microsoft.azure.documentdb.DocumentClient;
+import com.tp.webtools.transaps.dao.CosmosDbFactory;
 import com.tp.webtools.transaps.model.App;
 
 
@@ -29,16 +32,29 @@ public class AppController {
 	 
 	    @Autowired
 	    AppService appService;
+	    @Autowired
+	    CosmosDbFactory cosmosDbFactory;
 	 
 	    //Retrieve all Apps
 		@RequestMapping(value = "/app/", method = RequestMethod.GET)
 	    public ResponseEntity<List<App>> listAllApps() {
-			System.out.println("all apps");
-	        List<App> apps = appService.findAllApps();
-	        if (apps.isEmpty()) {
-	            return new ResponseEntity(HttpStatus.NO_CONTENT);
-	        }
-	        return new ResponseEntity<List<App>>(apps, HttpStatus.OK);
+			
+			try {
+				DocumentClient documentClient = cosmosDbFactory.getDocumentClient();
+				Database database = new Database();
+				database.setId("familydb");
+				documentClient.createDatabase(database, null);
+				
+				System.out.println("all apps");
+		        List<App> apps = appService.findAllApps();
+		        if (apps.isEmpty()) {
+		            return new ResponseEntity(HttpStatus.NO_CONTENT);
+		        }
+		        return new ResponseEntity<List<App>>(apps, HttpStatus.OK);
+			}catch(Exception ex) {
+				logger.error("Unable to retrieve all Apps. Internal Server Error:", ex);
+	        	return new ResponseEntity(new CustomError("Unable to retrieve all Apps. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 	    }
 		
 		//Retrieve all user Apps

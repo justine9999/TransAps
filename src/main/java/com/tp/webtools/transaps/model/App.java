@@ -13,8 +13,6 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 

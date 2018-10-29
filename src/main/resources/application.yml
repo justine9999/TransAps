@@ -17,6 +17,10 @@ datasource:
       show_sql: false
       format_sql: true
       dialect: org.hibernate.dialect.H2Dialect
+    azure:
+      cosmosdb:
+        uri: https://transaps.documents.azure.com:443/
+        key: YJ431Js9xL4VBbjBcD9No83yYWpsds6kuXHxD4Pw8BfBeYMYHXYQ3PhQQptYPBVIe5vfKrMe4fAMMgeS7Dmi4A==
 ---
 spring:
   profiles: prod
