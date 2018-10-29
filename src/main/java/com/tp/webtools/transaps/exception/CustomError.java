@@ -1,4 +1,4 @@
-package com.tp.webtools.transaps.util;
+package com.tp.webtools.transaps.exception;
 
 public class CustomError {
 	private String errorMessage;

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tp.webtools.transaps.service.UserService;
-import com.tp.webtools.transaps.util.CustomError;
+import com.tp.webtools.transaps.exception.CustomError;
 import com.tp.webtools.transaps.model.User;
 import com.tp.webtools.transaps.model.UserAdmin;
 import com.tp.webtools.transaps.model.UserFactory;

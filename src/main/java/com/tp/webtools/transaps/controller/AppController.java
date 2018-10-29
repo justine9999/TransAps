@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tp.webtools.transaps.service.AppService;
-import com.tp.webtools.transaps.util.CustomError;
 import com.microsoft.azure.documentdb.Database;
 import com.microsoft.azure.documentdb.DocumentClient;
 import com.tp.webtools.transaps.dao.CosmosDbFactory;
+import com.tp.webtools.transaps.exception.CustomError;
 import com.tp.webtools.transaps.model.App;
 
 
