@@ -9,74 +9,50 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.datastax.driver.mapping.annotations.*;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-@Table(name="APP")
+@Table(keyspace = "transaps", name = "app")
 public class App implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     protected Long id;
 	
-    @Column(name="PROFILE_PICTURE")
-	private String profilePicture;
-    
-    @Column(name="APP_SOURCE_FILE")
-	private String appSourceFile;
-	
-	@NotEmpty
-    @Column(name="TITLE", nullable=false)
+	private String profile_picture;
+    	
 	private String title;
 	
-	@Column(name="DESCRIPTION")
 	private String description;
 	
-	@Column(name="CONTENT")
 	private String content;
 	
-	@Column(name="AUTHOR")
 	private String author;
 	
-	@Column(name="DIVISION")
 	private String division;
 	
-	@Column(name="DOWNLOADS")
 	private int downloads;
 	
-	@Column(name="RATE")
 	private int rate;
 	
-	@Column(name="CREATION_TIME")
-	private long creationTime;
+	private long creation_time;
 	
-	@Column(name="LAST_UPDATE_TIME")
-	private long lastUpdateTime;
+	private long lastUpdate_time;
 	
-	@Column(name="PURPOSES")
-	@ElementCollection
 	private List<String> purposes;
 	
-	@Column(name="LANGUAGES")
-	@ElementCollection
 	private List<String> languages;
 	
-	@Column(name="SOURCE_FILE_TYPES")
-	@ElementCollection
-	private List<String> sourceFileTypes;
+	private List<String> source_file_types;
 	
-	@Column(name="APP_TYPES")
-	@ElementCollection
-	private List<String> appTypes;
+	private List<String> app_types;
 	
 	public App() {}
 	
@@ -89,11 +65,11 @@ public class App implements Serializable{
 
 	@Override
 	public String toString() {
-		return "App [id=" + id + ", profilePicture=" + profilePicture + ", title=" + title + ", description="
+		return "App [id=" + id + ", profile_picture=" + profile_picture + ", title=" + title + ", description="
 				+ description + ", content=" + content + ", author=" + author + ", division=" + division
-				+ ", downloads=" + downloads + ", rate=" + rate + ", creationTime=" + creationTime + ", lastUpdateTime="
-				+ lastUpdateTime + ", purpose=" + purposes + ", languages=" + languages + ", sourceFileTypes="
-				+ sourceFileTypes + ", appTypes=" + appTypes + "]";
+				+ ", downloads=" + downloads + ", rate=" + rate + ", creation_time=" + creation_time
+				+ ", lastUpdate_time=" + lastUpdate_time + ", purposes=" + purposes + ", languages=" + languages
+				+ ", source_file_types=" + source_file_types + ", app_types=" + app_types + "]";
 	}
 	
 	/*public App(String title, String description, String author, int downloads, int rate, String division, List<String> purpose,

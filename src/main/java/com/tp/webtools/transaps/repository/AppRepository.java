@@ -1,12 +1,12 @@
 package com.tp.webtools.transaps.repository;
 
 
-import java.util.List;
+import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import com.datastax.driver.core.BoundStatement;
@@ -33,49 +33,23 @@ public class AppRepository {
 	private Mapper<App> mapper;
 	
     private Session session;
-
-    public AppRepository() {
-        this.session = cassandraSessionFacotry.getCassandraSession();
-        this.manager = new MappingManager(session);
+    
+    @Value("${datasource.transaps.azure.cosmosdb.cassandra.keyspace_name}")
+    private String keyspaceName;
+    
+    private final static String talbeName = "APP";
+    
+    @PostConstruct
+    public void init() {
+    	this.session = cassandraSessionFacotry.getCassandraSession();
+        this.manager = new MappingManager(this.session);
         this.mapper = manager.mapper(App.class);
-    }
-
-    /**
-     * Create keyspace in cassandra DB
-     */
-    public void createKeyspace(String keyspaceName) {
-        final String query = "CREATE KEYSPACE IF NOT EXISTS " + keyspaceName + " WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : 1 }";
-        session.execute(query);
-        LOGGER.info("Created keyspace: " + "'" + keyspaceName + "'");
-    }
-
-    /**
-     * Create app table in cassandra DB
-     */
-    public void createTable(String keyspaceName, String talbeName) {
-        final String query = "CREATE TABLE IF NOT EXISTS "+ keyspaceName + "." + talbeName + " ("
-        		+ "id int PRIMARY KEY,"
-        		+ "title text,"
-        		+ "description text,"
-        		+ "content text,"
-        		+ "author text,"
-        		+ "division text,"
-        		+ "downloads int,"
-        		+ "rate int,"
-        		+ "creationTime timestamp,"
-        		+ "lastUpdateTime timestamp,"
-        		+ "purpose text,"
-        		+ "languages list<text>,"
-        		+ "sourceFileTypes list<text>,"
-        		+ "appTypes list<text>)";
-        session.execute(query);
-        LOGGER.info("Created table: " + "'" + keyspaceName + "." + talbeName + "'");
     }
 
     /**
      * Select all rows from app table
      */
-    public Result<App> selectAllApps(String keyspaceName, String talbeName) {
+    public Result<App> selectAllApps() {
 
         final String query = "SELECT * FROM "+ keyspaceName + "." + talbeName;
         ResultSet results = session.execute(query);
@@ -83,6 +57,7 @@ public class AppRepository {
         for (Row row : results.all()) {
             LOGGER.info("Obtained row: {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} ", 
             		row.getInt("id"),
+            		row.getString("profile_picture"),
             		row.getString("title"),
             		row.getString("description"),
             		row.getString("content"),
@@ -90,12 +65,12 @@ public class AppRepository {
             		row.getString("division"),
             		row.getInt("downloads"),
             		row.getInt("date"),
-            		row.getTimestamp("creationTime"),
-            		row.getTimestamp("lastUpdateTime"),
-            		row.getString("purpose"),
+            		row.getTimestamp("creation_time"),
+            		row.getTimestamp("lastUpdate_time"),
+            		row.getString("purposes"),
             		row.getList("languages", String.class),
-            		row.getList("sourceFileTypes", String.class),
-            		row.getList("appTypes", String.class));
+            		row.getList("source_file_types", String.class),
+            		row.getList("app_types", String.class));
         }
         
         Result<App> apps = mapper.map(results);
@@ -107,13 +82,14 @@ public class AppRepository {
      *
      * @param id
      */
-    public App selectAppById(int id, String keyspaceName, String talbeName) {
+    public App selectAppById(int id) {
         final String query = "SELECT * FROM "+ keyspaceName + "." + talbeName + " where id = " + id;
         ResultSet results = session.execute(query);
         Row row = results.one();
 
         LOGGER.info("Obtained row: {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} ", 
         		row.getInt("id"),
+        		row.getString("profile_picture"),
         		row.getString("title"),
         		row.getString("description"),
         		row.getString("content"),
@@ -121,12 +97,12 @@ public class AppRepository {
         		row.getString("division"),
         		row.getInt("downloads"),
         		row.getInt("date"),
-        		row.getTimestamp("creationTime"),
-        		row.getTimestamp("lastUpdateTime"),
-        		row.getString("purpose"),
+        		row.getTimestamp("creation_time"),
+        		row.getTimestamp("lastUpdate_time"),
+        		row.getString("purposes"),
         		row.getList("languages", String.class),
-        		row.getList("sourceFileTypes", String.class),
-        		row.getList("appTypes", String.class));
+        		row.getList("source_file_types", String.class),
+        		row.getList("app_types", String.class));
         
         App app = mapper.map(results).one();
         return app;
@@ -137,13 +113,14 @@ public class AppRepository {
      *
      * @param title
      */
-    public App selectAppByTitle(String title, String keyspaceName, String talbeName) {
+    public App selectAppByTitle(String title) {
         final String query = "SELECT * FROM "+ keyspaceName + "." + talbeName + " where title = " + title;
         ResultSet results = session.execute(query);
         Row row = results.one();
 
         LOGGER.info("Obtained row: {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} ", 
         		row.getInt("id"),
+        		row.getString("profile_picture"),
         		row.getString("title"),
         		row.getString("description"),
         		row.getString("content"),
@@ -151,12 +128,12 @@ public class AppRepository {
         		row.getString("division"),
         		row.getInt("downloads"),
         		row.getInt("date"),
-        		row.getTimestamp("creationTime"),
-        		row.getTimestamp("lastUpdateTime"),
-        		row.getString("purpose"),
+        		row.getTimestamp("creation_time"),
+        		row.getTimestamp("lastUpdate_time"),
+        		row.getString("purposes"),
         		row.getList("languages", String.class),
-        		row.getList("sourceFileTypes", String.class),
-        		row.getList("appTypes", String.class));
+        		row.getList("source_file_types", String.class),
+        		row.getList("app_types", String.class));
         
         App app = mapper.map(results).one();
         return app;
@@ -165,7 +142,7 @@ public class AppRepository {
     /**
      * Delete app table.
      */
-    public void deleteTable(String keyspaceName, String talbeName) {
+    public void deleteTable() {
         final String query = "DROP TABLE IF EXISTS "+ keyspaceName + "." + talbeName;
         session.execute(query);
         LOGGER.info("Deleted table: " + "'" + keyspaceName + "." + talbeName + "'");
@@ -178,6 +155,7 @@ public class AppRepository {
         BoundStatement boundStatement = new BoundStatement(statement);
         final String query = boundStatement.bind(
         		app.getId(),
+        		app.getProfile_picture(),
         		app.getTitle(),
         		app.getDescription(),
         		app.getContent(),
@@ -185,12 +163,12 @@ public class AppRepository {
         		app.getDivision(),
         		app.getDownloads(),
         		app.getRate(),
-        		app.getCreationTime(),
-        		app.getLastUpdateTime(),
+        		app.getCreation_time(),
+        		app.getLastUpdate_time(),
         		app.getPurposes(),
         		app.getLanguages(),
-        		app.getSourceFileTypes(),
-        		app.getAppTypes()).toString();
+        		app.getSource_file_types(),
+        		app.getApp_types()).toString();
         
         session.execute(query);
         LOGGER.info("Inserted row: " + app.toString());
@@ -201,9 +179,10 @@ public class AppRepository {
      *
      * @return PreparedStatement
      */
-    public PreparedStatement prepareInsertStatement(String keyspaceName, String talbeName) {
+    public PreparedStatement prepareInsertStatement() {
         final String insertStatement = "INSERT INTO "+ keyspaceName + "." + talbeName + " ("
         		+ "id,"
+        		+ "profile_picture,"
         		+ "title,"
         		+ "description,"
         		+ "content,"
@@ -211,12 +190,12 @@ public class AppRepository {
         		+ "division,"
         		+ "downloads,"
         		+ "rate,"
-        		+ "creationTime,"
-        		+ "lastUpdateTime,"
-        		+ "purpose,"
+        		+ "creation_time,"
+        		+ "lastUpdate_time,"
+        		+ "purposes,"
         		+ "languages,"
-        		+ "sourceFileTypes,"
-        		+ "appTypes"
+        		+ "source_file_types,"
+        		+ "app_types"
         		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         return session.prepare(insertStatement);
     }

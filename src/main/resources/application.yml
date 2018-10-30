@@ -24,6 +24,7 @@ datasource:
           port: 10350
           username: transaps
           password: zOc7WOkbSsz4rLxUneQZPqfQzugroV7G8z31L4dfe1IjaK4u1HEJYVjoVj1Uf6kQ4LvbEFo7LG3IiwJ4vx6Mww==
+          keyspace_name: transaps
           ssl_keystore_file_path: 
           ssl_keystore_password: 
 ---

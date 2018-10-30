@@ -44,12 +44,15 @@ public class CassandraSessionFactory {
     private String ssl_keystore_file_path;
     
     @Value("${datasource.transaps.azure.cosmosdb.cassandra.ssl_keystore_password}")
-    private String  ssl_keystore_password;
+    private String ssl_keystore_password;
+    
+    @Value("${datasource.transaps.azure.cosmosdb.cassandra.keyspace_name}")
+    private String keyspaceName;
     
     private File sslKeyStoreFile;
         
     private Cluster cluster;
-    
+        
     public CassandraSessionFactory() {
     	System.out.println("CassandraSessionFactory constructor loaded");
     }
@@ -58,6 +61,9 @@ public class CassandraSessionFactory {
     public void init() {
     	System.out.println("CassandraSessionFactory configuration loaded");
     	loadConfiguration();
+    	Session session = getCassandraSession();
+    	createKeyspace(session);
+    	createAppTable("app", session);
     }
     
     
@@ -85,7 +91,7 @@ public class CassandraSessionFactory {
             }
 
         	ssl_keystore_password = (ssl_keystore_password != null && !ssl_keystore_password.isEmpty()) ?
-                    "" : ssl_keystore_password;
+        			ssl_keystore_password : "changeit";
 
             sslKeyStoreFile = new File(ssl_keystore_file_path);
 
@@ -131,6 +137,41 @@ public class CassandraSessionFactory {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    	
         return null;
+    }
+
+    
+    /**
+     * Create keyspace in cassandra DB
+     */
+    private void createKeyspace(Session session) {
+        final String query = "CREATE KEYSPACE IF NOT EXISTS " + keyspaceName + " WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : 1 }";
+        session.execute(query);
+        logger.info("Created keyspace: " + "'" + keyspaceName + "'");
+    }
+    
+    /**
+     * Create app table in cassandra DB
+     */
+    private void createAppTable(String talbeName, Session session) {
+        final String query = "CREATE TABLE IF NOT EXISTS "+ keyspaceName + "." + talbeName + " ("
+        		+ "id int PRIMARY KEY,"
+        		+ "profile_picture text,"
+        		+ "title text,"
+        		+ "description text,"
+        		+ "content text,"
+        		+ "author text,"
+        		+ "division text,"
+        		+ "downloads int,"
+        		+ "rate int,"
+        		+ "creation_time timestamp,"
+        		+ "lastUpdate_time timestamp,"
+        		+ "purposes text,"
+        		+ "languages list<text>,"
+        		+ "source_file_types list<text>,"
+        		+ "app_types list<text>)";
+        session.execute(query);
+        logger.info("Created table: " + "'" + keyspaceName + "." + talbeName + "'");
     }
 }

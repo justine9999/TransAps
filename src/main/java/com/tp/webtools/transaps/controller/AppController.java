@@ -1,7 +1,6 @@
 package com.tp.webtools.transaps.controller;
 
-import java.io.File;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tp.webtools.transaps.service.AppService;
-import com.tp.webtools.transaps.dao.CassandraSessionFactory;
 import com.tp.webtools.transaps.exception.CustomError;
 import com.tp.webtools.transaps.model.App;
 
@@ -30,8 +28,6 @@ public class AppController {
 	 
 	    @Autowired
 	    AppService appService;
-	    @Autowired
-	    CassandraSessionFactory cosmosDbFactory;
 	 
 	    //Retrieve all Apps
 		@RequestMapping(value = "/app/", method = RequestMethod.GET)
@@ -40,6 +36,10 @@ public class AppController {
 			try {				
 				System.out.println("all apps");
 		        List<App> apps = appService.findAllApps();
+		        for(int i = 0; i < 20; i++){
+		        	App app = new App("title"+i,"description"+i,"author"+i);
+		        	apps.add(app);
+		        }
 		        if (apps.isEmpty()) {
 		            return new ResponseEntity(HttpStatus.NO_CONTENT);
 		        }

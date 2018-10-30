@@ -18,22 +18,14 @@ public class AppServiceImpl implements AppService{
 	
 	@Autowired
     private AppRepository appRepository;
- 
-	public void createKeyspace(String keyspaceName) {
-		appRepository.createKeyspace(keyspaceName);
+	
+	public void deleteTable() {
+		appRepository.deleteTable();
 	}
 	
-	public void createTable(String keyspaceName, String talbeName) {
-		appRepository.createTable(keyspaceName, talbeName);
-	}
-	
-	public void deleteTable(String keyspaceName, String talbeName) {
-		appRepository.deleteTable(keyspaceName, talbeName);
-	}
-	
-    public List<App> findAllApps(String keyspaceName, String talbeName){
+    public List<App> findAllApps(){
     	List<App> apps = new ArrayList<App>();
-    	for(App app : appRepository.selectAllApps(keyspaceName, talbeName)) {
+    	for(App app : appRepository.selectAllApps()) {
     		apps.add(app);
     	}
     	for(int i = 0; i < 30; i++){
@@ -43,21 +35,21 @@ public class AppServiceImpl implements AppService{
     	return apps;
     }
     
-    public void saveApp(App app, String keyspaceName, String talbeName) {
-    	PreparedStatement statement = appRepository.prepareInsertStatement(keyspaceName, talbeName);
+    public void saveApp(App app) {
+    	PreparedStatement statement = appRepository.prepareInsertStatement();
         appRepository.insertApp(statement, app);
     }
     
-    public App findById(int id, String keyspaceName, String talbeName) {
-    	return appRepository.selectAppById(id, keyspaceName, talbeName);
+    public App findById(int id) {
+    	return appRepository.selectAppById(id);
     }
     
-    public App findByTitle(String title, String keyspaceName, String talbeName) {
-    	return appRepository.selectAppByTitle(title, keyspaceName, talbeName);
+    public App findByTitle(String title) {
+    	return appRepository.selectAppByTitle(title);
     }
     
-    public boolean isAppExist(App app, String keyspaceName, String talbeName) {
-    	return findByTitle(app.getTitle(), keyspaceName, talbeName) != null;
+    public boolean isAppExist(App app) {
+    	return findByTitle(app.getTitle()) != null;
     }
 
 }
