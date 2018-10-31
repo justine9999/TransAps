@@ -19,7 +19,7 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
         	//initialize myapps status
         	if(Object.keys(self.myappsstatus).length === 0){
         		for (var i = 0; i < self.myapps.length; i++) {
-            		self.myappsstatus[self.myapps[i].creationTime] = 0;
+            		self.myappsstatus[self.myapps[i].creation_time] = 0;
             	}
         	}
         	
@@ -39,8 +39,8 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
         		console.log("submit a new app form");
         		self.insertAppRow(app, 1);
         		AppService.createApp(app).then(
-        	          function(app_creationTime) {
-        	        	 self.myappsstatus[app_creationTime] = 0;
+        	          function(app_creation_time) {
+        	        	 self.myappsstatus[app_creation_time] = 0;
         	        	 self.showActionToast('New App created: [ '+app.title+' ]', 'Undo', 'success');
                    }, function(app_to_delete) {
                 	   	 deleteAppRow(app_to_delete);
@@ -52,16 +52,16 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
         }
         
         function insertAppRow(app, new_status) {
-        	self.myappsstatus[app.creationTime] = new_status;
+        	self.myappsstatus[app.creation_time] = new_status;
         	self.myapps.unshift(app);
         }
         
-        function getAppStatus(app_creationTime) {
-        	return self.myappsstatus[app_creationTime];
+        function getAppStatus(app_creation_time) {
+        	return self.myappsstatus[app_creation_time];
         }
         
         function deleteAppRow(app_to_delete) {
-        	delete self.myappsstatus[app_to_delete.creationTime];
+        	delete self.myappsstatus[app_to_delete.creation_time];
         	var index = self.myapps.indexOf(app_to_delete);
         	self.myapps.splice(index, 1);
         }

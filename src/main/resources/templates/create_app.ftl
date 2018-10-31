@@ -67,7 +67,7 @@
 	    <br/>
 	    <md-input-container class="md-block" flex-gt-sm="">
 	    	<label>Application Type</label>
-	        <md-select multiple ng-model="appinfo.appTypes" required="" name="appTypes">
+	        <md-select multiple ng-model="appinfo.app_types" required="" name="appTypes">
 	          <md-option ng-repeat="apptype in apptypes" value="{{apptype}}">
 	            {{apptype}}
 	          </md-option>
@@ -79,7 +79,7 @@
 	    <br/>
 	    <md-input-container class="md-block" flex-gt-sm="">
 	    	<label>Support File Types</label>
-	        <md-select multiple ng-model="appinfo.sourceFileTypes" required="" name="sourceFileTypes">
+	        <md-select multiple ng-model="appinfo.source_file_types" required="" name="sourceFileTypes">
 	          <md-option ng-repeat="filetype in filetypes" value="{{filetype}}">
 	            {{filetype}}
 	          </md-option>

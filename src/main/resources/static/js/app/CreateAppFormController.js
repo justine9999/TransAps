@@ -4,21 +4,21 @@
 app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
  
 		$scope.appinfo = {
-			profilePicture: '',
-			appSourceFile: '',
+			id: '1',
+			profile_picture: '',
 			title: 'test_title',
 			description: 'test_description',
 			author: 'test_user',
 			division: 'TPT',
 			downloads: '0',
 			rate: '0',
-			creationTime: Date.now(),
-			lastUpdateTime: Date.now(),
+			creation_time: Date.now(),
+			last_update_time: Date.now(),
 			content: 'some html content',
 			languages: ['English','Spanish'],
 		    purposes: ['Preflight'],		    
-		    appTypes: ['VBA Add-In'],
-		    sourceFileTypes: ['MS Word']
+		    app_types: ['VBA Add-In'],
+		    source_file_types: ['MS Word']
 		};
 		
 		$scope.divisions = ['TPT','TDC','TDCEU','TDCNY','TDCSF','TPTBCN','AD-COM','ARCHITEXT','CRIMSON','ISP','IVERSON','OVERTAAL','ADAMS','TDCAPAC','TDC CORVALLIS','TP-TOKYO','WORLDLINGO','TDC TOKYO','OTHERS'];

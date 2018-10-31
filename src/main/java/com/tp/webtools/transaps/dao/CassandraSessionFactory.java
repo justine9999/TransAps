@@ -166,7 +166,7 @@ public class CassandraSessionFactory {
         		+ "downloads int,"
         		+ "rate int,"
         		+ "creation_time timestamp,"
-        		+ "lastUpdate_time timestamp,"
+        		+ "last_update_time timestamp,"
         		+ "purposes text,"
         		+ "languages list<text>,"
         		+ "source_file_types list<text>,"

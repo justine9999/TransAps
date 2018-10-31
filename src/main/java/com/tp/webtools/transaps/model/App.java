@@ -44,7 +44,7 @@ public class App implements Serializable{
 	
 	private long creation_time;
 	
-	private long lastUpdate_time;
+	private long last_update_time;
 	
 	private List<String> purposes;
 	
@@ -68,7 +68,7 @@ public class App implements Serializable{
 		return "App [id=" + id + ", profile_picture=" + profile_picture + ", title=" + title + ", description="
 				+ description + ", content=" + content + ", author=" + author + ", division=" + division
 				+ ", downloads=" + downloads + ", rate=" + rate + ", creation_time=" + creation_time
-				+ ", lastUpdate_time=" + lastUpdate_time + ", purposes=" + purposes + ", languages=" + languages
+				+ ", last_update_time=" + last_update_time + ", purposes=" + purposes + ", languages=" + languages
 				+ ", source_file_types=" + source_file_types + ", app_types=" + app_types + "]";
 	}
 	

@@ -66,7 +66,7 @@ public class AppRepository {
             		row.getInt("downloads"),
             		row.getInt("date"),
             		row.getTimestamp("creation_time"),
-            		row.getTimestamp("lastUpdate_time"),
+            		row.getTimestamp("last_update_time"),
             		row.getString("purposes"),
             		row.getList("languages", String.class),
             		row.getList("source_file_types", String.class),
@@ -98,7 +98,7 @@ public class AppRepository {
         		row.getInt("downloads"),
         		row.getInt("date"),
         		row.getTimestamp("creation_time"),
-        		row.getTimestamp("lastUpdate_time"),
+        		row.getTimestamp("last_update_time"),
         		row.getString("purposes"),
         		row.getList("languages", String.class),
         		row.getList("source_file_types", String.class),
@@ -129,7 +129,7 @@ public class AppRepository {
         		row.getInt("downloads"),
         		row.getInt("date"),
         		row.getTimestamp("creation_time"),
-        		row.getTimestamp("lastUpdate_time"),
+        		row.getTimestamp("last_update_time"),
         		row.getString("purposes"),
         		row.getList("languages", String.class),
         		row.getList("source_file_types", String.class),
@@ -164,7 +164,7 @@ public class AppRepository {
         		app.getDownloads(),
         		app.getRate(),
         		app.getCreation_time(),
-        		app.getLastUpdate_time(),
+        		app.getLast_update_time(),
         		app.getPurposes(),
         		app.getLanguages(),
         		app.getSource_file_types(),
@@ -191,7 +191,7 @@ public class AppRepository {
         		+ "downloads,"
         		+ "rate,"
         		+ "creation_time,"
-        		+ "lastUpdate_time,"
+        		+ "last_update_time,"
         		+ "purposes,"
         		+ "languages,"
         		+ "source_file_types,"
