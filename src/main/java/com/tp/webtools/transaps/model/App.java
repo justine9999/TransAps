@@ -3,23 +3,11 @@ package com.tp.webtools.transaps.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.datastax.driver.mapping.annotations.*;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Table(keyspace = "transaps", name = "app")
 public class App implements Serializable{
 
 	private static final long serialVersionUID = 1L;

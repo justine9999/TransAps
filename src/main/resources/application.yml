@@ -19,14 +19,11 @@ datasource:
       dialect: org.hibernate.dialect.H2Dialect
     azure:
       cosmosdb:
-        cassandra:
-          host: transaps.cassandra.cosmosdb.azure.com
-          port: 10350
-          username: transaps
-          password: zOc7WOkbSsz4rLxUneQZPqfQzugroV7G8z31L4dfe1IjaK4u1HEJYVjoVj1Uf6kQ4LvbEFo7LG3IiwJ4vx6Mww==
-          keyspace_name: transaps
-          ssl_keystore_file_path: 
-          ssl_keystore_password: 
+        sql:
+          host: https://transaps.documents.azure.com:443/
+          key: nVXgoAVn6oURiLTZpOUawsbFzijq3TtFY3YEYWRoaifZzysPHJ1sUKO4OQZ11bTZeZqKnYTbI4f08EHIdyMsoA==
+          appDB: APP_DB
+          appCollection: APP_COLLECTION
 ---
 spring:
   profiles: prod

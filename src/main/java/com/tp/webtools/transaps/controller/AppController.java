@@ -33,13 +33,11 @@ public class AppController {
 		@RequestMapping(value = "/app/", method = RequestMethod.GET)
 	    public ResponseEntity<List<App>> listAllApps() {
 			
+			System.out.println("all apps");
+			logger.info("Retrieve all apps");
+			
 			try {				
-				System.out.println("all apps");
 		        List<App> apps = appService.findAllApps();
-		        for(int i = 0; i < 20; i++){
-		        	App app = new App("title"+i,"description"+i,"author"+i);
-		        	apps.add(app);
-		        }
 		        if (apps.isEmpty()) {
 		            return new ResponseEntity(HttpStatus.NO_CONTENT);
 		        }
@@ -53,31 +51,40 @@ public class AppController {
 		//Retrieve all user Apps
 		@RequestMapping(value = "/app/myapps", method = RequestMethod.GET)
 	    public ResponseEntity<List<App>> listMyApps() {
+			
 			System.out.println("my apps");
-	        List<App> myapps = appService.findAllApps();
-	        if (myapps.isEmpty()) {
-	            return new ResponseEntity(HttpStatus.NO_CONTENT);
-	        }
-	        return new ResponseEntity<List<App>>(myapps, HttpStatus.OK);
+			logger.info("Retrieve all user apps");
+			
+			try {
+				List<App> myapps = appService.findAllApps();
+		        if (myapps.isEmpty()) {
+		            return new ResponseEntity(HttpStatus.NO_CONTENT);
+		        }
+		        return new ResponseEntity<List<App>>(myapps, HttpStatus.OK);
+			}catch(Exception ex) {
+				logger.error("Unable to retrieve user Apps. Internal Server Error:", ex);
+	        	return new ResponseEntity(new CustomError("Unable to retrieve user Apps. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+			}   
 	    }
 		
 		//Create an App
 	    @RequestMapping(value = "/app/", method = RequestMethod.POST)
 	    public ResponseEntity<?> createApp(@RequestBody App app, UriComponentsBuilder ucBuilder) {
+	    	
+	    	System.out.println("create app");
 	        logger.info("Creating App : {}", app);
 	        
 	        try {
 	        	Thread.sleep(5000);
 		        if (appService.isAppExist(app)) {
 		            logger.error("Unable to create. An App with title {} already exist", app.getTitle());
-		            return new ResponseEntity(new CustomError("Unable to create. An App with title " + 
-		            app.getTitle() + " already exist."), HttpStatus.CONFLICT);
+		            return new ResponseEntity(new CustomError("Unable to create. An App with title " + app.getTitle() + " already exist."), HttpStatus.CONFLICT);
 		        }
 		        
-		        appService.saveApp(app);
+		        App created_app = appService.createApp(app);
 		        
 		        HttpHeaders headers = new HttpHeaders();
-		        headers.setLocation(ucBuilder.path("/api/app/{id}").buildAndExpand(app.getId()).toUri());
+		        headers.setLocation(ucBuilder.path("/api/app/{id}").buildAndExpand(created_app.getId()).toUri());
 		        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	        }catch(Exception ex) {
 	        	logger.error("Unable to create. Internal Server Error:", ex);
