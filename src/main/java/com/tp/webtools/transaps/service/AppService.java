@@ -10,7 +10,7 @@ public interface AppService {
 		
 	App findByTitle(String title);
 	
-	App createApp(App app);
+	String createApp(App app);
 
 	boolean isAppExist(App app);
 }

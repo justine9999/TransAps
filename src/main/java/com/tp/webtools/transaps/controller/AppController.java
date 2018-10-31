@@ -81,10 +81,10 @@ public class AppController {
 		            return new ResponseEntity(new CustomError("Unable to create. An App with title " + app.getTitle() + " already exist."), HttpStatus.CONFLICT);
 		        }
 		        
-		        App created_app = appService.createApp(app);
+		        String created_app_id = appService.createApp(app);
 		        
 		        HttpHeaders headers = new HttpHeaders();
-		        headers.setLocation(ucBuilder.path("/api/app/{id}").buildAndExpand(created_app.getId()).toUri());
+		        headers.setLocation(ucBuilder.path("/api/app/{id}").buildAndExpand(created_app_id).toUri());
 		        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	        }catch(Exception ex) {
 	        	logger.error("Unable to create. Internal Server Error:", ex);

@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.LongSerializationPolicy;
 import com.microsoft.azure.documentdb.Document;
 import com.microsoft.azure.documentdb.DocumentClient;
 import com.microsoft.azure.documentdb.DocumentClientException;
@@ -23,7 +25,8 @@ public class AppRepository {
  
 	public static final Logger logger = LoggerFactory.getLogger(AppRepository.class);
 	
-	private static Gson gson = new Gson();
+	//we convert long to string during serialization because it seems documentClient.createDocument doesn't support types other than string
+	private static Gson gson = new GsonBuilder().setLongSerializationPolicy(LongSerializationPolicy.STRING).create();
 	
 	@Autowired
 	private DocumentClientFactory documentClientFactory;
@@ -65,6 +68,8 @@ public class AppRepository {
         List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
         if (documentList.size() > 0) {
             app = gson.fromJson(documentList.get(0).toString(), App.class);
+        }else{
+        	return null;
         }
         
         logger.info("found App: " + app.toString());
@@ -75,7 +80,7 @@ public class AppRepository {
     /**
      * Create an app
      */
-    public App createApp(App app) {
+    public String createApp(App app) {
 
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	Document appDocument = new Document(gson.toJson(app));
@@ -92,7 +97,7 @@ public class AppRepository {
     	
     	logger.info("created App: " + created_app.toString());
     	
-        return created_app;
+        return appDocument.getId();
     }
     
 }

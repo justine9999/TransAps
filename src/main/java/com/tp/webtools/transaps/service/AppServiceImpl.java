@@ -31,7 +31,7 @@ public class AppServiceImpl implements AppService{
     	return appRepository.findAppByTitle(title);
     }
     
-    public App createApp(App app) {
+    public String createApp(App app) {
         return appRepository.createApp(app);
     }
 

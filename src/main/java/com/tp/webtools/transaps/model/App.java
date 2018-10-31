@@ -12,7 +12,6 @@ public class App implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-    protected Long id;
 	
 	private String profile_picture;
     	
@@ -53,7 +52,7 @@ public class App implements Serializable{
 
 	@Override
 	public String toString() {
-		return "App [id=" + id + ", profile_picture=" + profile_picture + ", title=" + title + ", description="
+		return "App [profile_picture=" + profile_picture + ", title=" + title + ", description="
 				+ description + ", content=" + content + ", author=" + author + ", division=" + division
 				+ ", downloads=" + downloads + ", rate=" + rate + ", creation_time=" + creation_time
 				+ ", last_update_time=" + last_update_time + ", purposes=" + purposes + ", languages=" + languages

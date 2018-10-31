@@ -4,7 +4,6 @@
 app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
  
 		$scope.appinfo = {
-			id: '1',
 			profile_picture: '',
 			title: 'test_title',
 			description: 'test_description',
