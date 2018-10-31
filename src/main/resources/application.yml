@@ -14,9 +14,19 @@ datasource:
     maxPoolSize: 10
     hibernate:
       hbm2ddl.method: create-drop
-      show_sql: true
+      show_sql: false
       format_sql: true
       dialect: org.hibernate.dialect.H2Dialect
+    azure:
+      cosmosdb:
+        cassandra:
+          host: transaps.cassandra.cosmosdb.azure.com
+          port: 10350
+          username: transaps
+          password: zOc7WOkbSsz4rLxUneQZPqfQzugroV7G8z31L4dfe1IjaK4u1HEJYVjoVj1Uf6kQ4LvbEFo7LG3IiwJ4vx6Mww==
+          keyspace_name: transaps
+          ssl_keystore_file_path: 
+          ssl_keystore_password: 
 ---
 spring:
   profiles: prod
@@ -30,6 +40,6 @@ datasource:
     maxPoolSize: 20
     hibernate:
       hbm2ddl.method: update
-      show_sql: true
+      show_sql: false
       format_sql: true
       dialect: org.hibernate.dialect.MySQLDialect

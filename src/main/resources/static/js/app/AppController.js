@@ -1,15 +1,19 @@
 
 'use strict';
  
-angular.module('mainApp').controller('AppController',
-    ['AppService', '$scope',  function( AppService, $scope) {
+app.controller('AppController', ['AppService', '$scope',  function( AppService, $scope) {
  
         var self = this;
         self.getAllApps = getAllApps;
+        $scope.apps_per_row = 4;
+        self.appcnt = 30;
         $scope.scrollTo = function (target){};
+        $scope.appcardwidth = $('#apps-container').css("width");
+        
  
         function getAllApps(){
-            return AppService.getAllApps();
+        	var obj = AppService.getAllApps();
+        	return obj;
         }
     }
-  ]);
+]);

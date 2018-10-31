@@ -30,7 +30,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.to.webtools.transaps.repository",
+@EnableJpaRepositories(basePackages = "com.tp.webtools.transaps.repository",
         entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "transactionManager")
 @EnableTransactionManagement

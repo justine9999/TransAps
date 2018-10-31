@@ -2,10 +2,11 @@
  
 <html lang="en" ng-app="mainApp">
     <head>
-        <title>${title}</title>
+        <title>TransAps</title>
         <link href="css/app.css" rel="stylesheet"/>
         <link rel="stylesheet" href="css/material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
         <base href="/TransAps/">
     </head>
     <body>
@@ -14,11 +15,28 @@
 			<div id="main-nav" stick-top="fix-to-top"">
 		      <header class="mdl-layout__header">
 		        <div class="mdl-layout__header-row">
-		          <span class="mdl-layout-title">Transperfect AppStore</span>
+		          <span id="app-title" class="mdl-layout-title">
+		          	<i id="app-title-icon" class="material-icons">widgets</i>
+		          	<a id="app-title-text">
+		          		<span id="app-title-company-name">Transperfect </span>
+		          		<span id="app-title-tool-name">AppStore</span>
+		          	</a>
+		          </span>
 		          <div class="mdl-layout-spacer"></div>
 		          <nav class="mdl-navigation mdl-layout--large-screen-only">
-		            <a class="mdl-navigation__link" href="">Search</a>
-		            <a class="mdl-navigation__link" href="">Account Sign in</a>
+		            <button  class="mdl-button mdl-js-button mdl-js-ripple-effect">
+						<i class="material-icons">account_box</i>
+						<span>Account Sign in ▾</span>
+					</button>
+					<div id="global-search-icon-container" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+			            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+			              <i id="global-search-icon" class="material-icons">search</i>
+			            </label>
+			            <div class="mdl-textfield__expandable-holder">
+			              <input class="mdl-textfield__input" type="text" id="search">
+			              <label class="mdl-textfield__label" for="search">Enter keywords to search...</label>
+			            </div>
+			        </div>
 		          </nav>
 		        </div>
 		      </header>
@@ -28,17 +46,20 @@
     				<div class="mdl-grid">
 					  	<div class="mdl-cell mdl-cell--3-col">
 					  		<div id="main-body-left-container">
-					  			<div id="find-app">
+					  			<div id="find-app" class="mdl-shadow--2dp">
 					  				<table class="mdl-data-table mdl-js-data-table">
 									  <thead>
 									    <tr>
-									      <th class="mdl-data-table__cell--non-numeric">FIND APPS</th>
+									      <th class="mdl-data-table__cell--non-numeric">
+									      	<i class="material-icons module-header1-icon">add_box</i>
+									      	<span class="module-header1-text">FIND APPS</span>
+									      </th>
 									      <th></th>
 									    </tr>
 									  </thead>
 									  <tbody>
 									    <tr>
-									      <td class="mdl-data-table__cell--non-numeric">All Apps</td>
+									      <td class="mdl-data-table__cell--non-numeric"><a ui-sref="home">All Apps</a></td>
 									      <td>
 									      	<span class="mdl-list__item-secondary-action fright">
 										      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
@@ -70,17 +91,20 @@
 									  </tbody>
 									</table>
 					  			</div>
-					  			<div id="manage-app">
+					  			<div id="manage-app" class="mdl-shadow--2dp">
 					  				<table class="mdl-data-table mdl-js-data-table">
 									  <thead>
 									    <tr>
-									      <th class="mdl-data-table__cell--non-numeric">MANAGE MY APPS</th>
+									      <th class="mdl-data-table__cell--non-numeric">
+									      	<i class="material-icons module-header1-icon">add_box</i>
+									      	<span class="module-header1-text">MANAGE MY APPS</span>
+									      </th>
 									      <th></th>
 									    </tr>
 									  </thead>
 									  <tbody>
 									    <tr>
-									      <td class="mdl-data-table__cell--non-numeric">My Apps</td>
+									      <td class="mdl-data-table__cell--non-numeric"><a ui-sref="my-apps">My Apps</a></td>
 									      <td>
 									      	<span class="mdl-list__item-secondary-action fright">
 										      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-4">
@@ -116,52 +140,7 @@
 					  	</div>
 					  	<div class="mdl-cell mdl-cell--9-col">
 					  		<div id="main-body-right-container">
-					  			<table id="filter-container" class="mdl-data-table mdl-js-data-table">
-					  				<tbody>
-					  					<tr id="filter-current">
-					  						<td id="filter-current-tags" class="mdl-data-table__cell--non-numeric">some tag</td>
-					  						<td id="filter-current-save">
-										      	<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
-													  <i class="material-icons">save</i>
-												</button>
-										    </td>
-					  					</tr>
-					  					<tr id="filter-keywords">
-					  						<td id="filter-keywords-input" class="mdl-data-table__cell--non-numeric">
-												<div class="mdl-textfield mdl-js-textfield">
-													<input class="mdl-textfield__input" type="text" id="input-keywords">
-													<label class="mdl-textfield__label" for="input-keywords">Type in keyword...</label>
-												</div>
-											</td>
-					  						<td id="filter-keywords-add">
-										      	<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
-													  <i class="material-icons">add</i>
-												</button>
-										    </td>
-					  					</tr>
-					  					<tr id="filter-options">
-					  						<td id="filter-set-options" class="mdl-data-table__cell--non-numeric">
-												<button  id="filter-language" class="filter-dropdown mdl-button mdl-js-button">Language ▾</button >
-												<button  id="filter-app-type" class="filter-dropdown mdl-button mdl-js-button">App Type ▾</button >
-												<button  id="filter-purpose" class="filter-dropdown mdl-button mdl-js-button">Purpose ▾</button >
-												<button  id="filter-division" class="filter-dropdown mdl-button mdl-js-button">Division ▾</button >
-												<button  id="filter-language" class="filter-dropdown mdl-button mdl-js-button">Source File Type ▾</button >
-											</td>
-					  						<td id="filter-saved">
-										      	<span>Saved Filters ▾</span>
-										    </td>
-					  					</tr>
-					  				</tbody>
-					  			</table>
-					  			<div id="app-cnt-container">
-					  				<span class="mdl-chip mdl-chip--contact">
-									    <span id="app-cnt-number" class="mdl-chip__contact mdl-color--teal mdl-color-text--white" ng-model="app_cnt">498</span>
-									    <span class="mdl-chip__text">Amazing Apps</span>
-									</span>
-					  			</div>
-					  			<div id="apps-container">
-					  				<div ui-view></div>
-					  			</div>
+					  			<div ui-view></div>
 		    				</div>
 					  	</div>
 					</div>
@@ -180,15 +159,22 @@
 		      </footer>
 			</div> 
     	</div>
+    	<div id="toaster-container"><div>
     	
     	<script src="js/lib/jquery-3.3.1.js"></script>
     	<script src="js/lib/angular.min.js" ></script>
+    	<script src="js/lib/angular-animation.min.js" ></script>
+    	<script src="js/lib/angular-aria.min.js" ></script>
+    	<script src="js/lib/angular-messages.min.js" ></script>
         <script src="js/lib/angular-ui-router.min.js" ></script>
+        <script src="js/lib/angular-material.min.js" ></script>
         <script src="js/lib/localforage.min.js" ></script>
         <script src="js/lib/ngStorage.min.js"></script>
         <script src="js/lib/material.min.js"></script>
         <script src="js/app/app.js"></script>
         <script src="js/app/AppService.js"></script>
-        <script src="js/app/AppController.js"></script>   
+        <script src="js/app/AppController.js"></script>
+        <script src="js/app/MyAppController.js"></script>  
+        <script src="js/app/CreateAppFormController.js"></script>  
     </body>
 </html>
