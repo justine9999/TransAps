@@ -3,7 +3,11 @@
  
 app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
  
-		$scope.appinfo = {
+		$scope.Model = $scope.Model || {myImage : "", myCroppedImage : "", appinfo : {}};
+	
+		//app basic information
+		
+		$scope.Model.appinfo = {
 			profile_picture: '',
 			title: 'test_title',
 			description: 'test_description',
@@ -35,7 +39,55 @@ app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scop
 	    };
 
 	    $scope.submit = function() {
-	    	$mdDialog.hide($scope.appinfo);
+	    	$mdDialog.hide($scope.Model.appinfo);
 	    };
+	    
+	    
+	    
+
+	    
+	    //app icon upload
+	    
+	    $scope.Model.inicropinfo = {
+			x: -1,
+	    	y: -1,
+	    	s: -1
+		};
+	    
+	    
+		$scope.selectPic = function() {
+	    	document.querySelector('#imageInput').click();
+	    };
+		
+		$scope.iconPreview = function(event) {
+		    $mdDialog.show({
+		    	locals:{croppedImage: $scope.Model.myCroppedImage},
+		        template: '<md-dialog aria-label="icon-preview-dialog" id="cropped_image_container"><img id="cropped_image" class="mdl-shadow--2dp" ng-src="{{croppedImage}}" /></md-dialog>',
+		        controller: iconPreviewCtrl,
+		        controllerAs: 'ipctrl',  
+		        targetEvent: event,
+	            multiple: true,
+		        clickOutsideToClose:true
+		    });
+		};
+		    
+		    
+		var iconPreviewCtrl = function ($scope, croppedImage) { 
+		    $scope.croppedImage = croppedImage;  
+		}
+	    
+	    function handleFileSelect(evt) {
+	    	var file=evt.currentTarget.files[0];
+	    	var reader = new FileReader();
+	    	reader.onload = function (evt) {
+	    		$scope.$apply(function($scope){
+	    			$scope.Model.myImage=evt.target.result;
+	    		});
+	    	};
+	    	
+	    	reader.readAsDataURL(file);
+	    };
+	    
+	    angular.element(document.querySelector('#imageInput')).on('change', handleFileSelect);
     }
 ]);

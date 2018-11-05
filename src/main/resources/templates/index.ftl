@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="css/material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ng-img-crop.css">
         <base href="/TransAps/">
     </head>
     <body>
@@ -140,7 +141,7 @@
 					  	</div>
 					  	<div class="mdl-cell mdl-cell--9-col">
 					  		<div id="main-body-right-container">
-					  			<div ui-view></div>
+					  			<div ui-view="view_app_list"></div>
 		    				</div>
 					  	</div>
 					</div>
@@ -168,6 +169,7 @@
     	<script src="js/lib/angular-messages.min.js" ></script>
         <script src="js/lib/angular-ui-router.min.js" ></script>
         <script src="js/lib/angular-material.min.js" ></script>
+        <script src="js/lib/ng-img-crop.js"></script>
         <script src="js/lib/localforage.min.js" ></script>
         <script src="js/lib/ngStorage.min.js"></script>
         <script src="js/lib/material.min.js"></script>
@@ -175,6 +177,6 @@
         <script src="js/app/AppService.js"></script>
         <script src="js/app/AppController.js"></script>
         <script src="js/app/MyAppController.js"></script>  
-        <script src="js/app/CreateAppFormController.js"></script>  
+        <script src="js/app/CreateAppFormController.js"></script>
     </body>
 </html>

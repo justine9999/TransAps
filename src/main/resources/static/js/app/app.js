@@ -1,4 +1,4 @@
-var app = angular.module('mainApp',['ui.router','ngStorage','ngMaterial','ngMessages']);
+var app = angular.module('mainApp',['ui.router','ngStorage','ngMaterial','ngMessages','ngImgCrop']);
 
 app.run(function ($rootScope,$timeout) {
     $rootScope.$on('$viewContentLoaded', function() {
@@ -21,33 +21,76 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$mdThe
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'partials/app_list',
-                controller:'AppController',
-                controllerAs:'appctrl',
-                resolve: {
-                    apps: function ($q, AppService) {
-                        console.log('Load all apps');
-                        var deferred = $q.defer();
-                        AppService.loadAllApps().then(deferred.resolve, deferred.resolve);
-                        return deferred.promise;
-                    }
-                }
+                views: {
+	                'view_app_list': {
+	                	templateUrl: 'partials/app_list',
+	                    controller:'AppController',
+	                    controllerAs:'appctrl',
+	                    resolve: {
+	                        apps: function ($q, AppService) {
+	                            console.log('Load all apps');
+	                            var deferred = $q.defer();
+	                            AppService.loadAllApps().then(deferred.resolve, deferred.resolve);
+	                            return deferred.promise;
+	                        }
+	                    }
+	                }
+	            }
             })
         
 	        .state('my-apps', {
 	            url: '/myapps',
-	            templateUrl: 'partials/my_app_list',
-	            controller:'MyAppController',
-	            controllerAs:'myappctrl',
-	            resolve: {
-	                myapps: function ($q, AppService) {
-	                    console.log('Load my apps');
-	                    var deferred = $q.defer();
-	                    AppService.loadMyApps().then(deferred.resolve, deferred.resolve);
-	                    return deferred.promise;
+	            views: {
+	                'view_app_list': {
+	                	templateUrl: 'partials/my_app_list',
+	    	            controller:'MyAppController',
+	    	            controllerAs:'myappctrl',
+	    	            resolve: {
+	    	                myapps: function ($q, AppService) {
+	    	                    console.log('Load my apps');
+	    	                    var deferred = $q.defer();
+	    	                    AppService.loadMyApps().then(deferred.resolve, deferred.resolve);
+	    	                    return deferred.promise;
+	    	                }
+	    	            }
+	                },
+
+	                'view_app_creation_form': {
+	                	abstract: true,
+	                    template: '<div id="view_app_creation_form_body" ui-view="view_app_creation_form_body"></div>'
 	                }
 	            }
 	        })
+	        
+	        .state('my-apps.basic', {
+		        url: '',
+		        views: {
+		            'view_app_creation_form_body': {
+		                templateUrl: 'partials/create_app_basic',
+		                controller:'CreateAppFormController',
+		            }
+		        }
+		    })
+		    
+		    .state('my-apps.advanced', {
+		        url: '',
+		        views: {
+		            'view_app_creation_form_body': {
+		            	templateUrl: 'partials/create_app_advanced',
+		            	controller:'CreateAppFormController',
+		            },
+		            
+		            'view_profile_image@my-apps.advanced': {
+		                templateUrl: 'partials/create_app_advanced_profile_image',
+		                controller:'CreateAppFormController',
+		            },
+		            
+		            'view_content_editor@my-apps.advanced': {
+		                templateUrl: 'partials/create_app_advanced_content_editor',
+		                controller:'CreateAppFormController',
+		            },
+		        }
+		    })
 	        
         $urlRouterProvider.otherwise('/');
     }]);

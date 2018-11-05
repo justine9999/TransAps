@@ -73,7 +73,7 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
               .highlightAction(true)
               .parent(document.querySelectorAll('#toaster-container'))
               .position('bottom left')
-              .hideDelay(3000)
+              .hideDelay(300000)
               .theme(type+'-toast');
 
             $mdToast.show(toast).then(function(response) {
