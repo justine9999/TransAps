@@ -3,26 +3,30 @@
  
 app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
  
-		$scope.Model = $scope.Model || {myImage : "", myCroppedImage : "", appinfo : {}};
+		$scope.Model = $scope.Model || {myImage : "", myCroppedImage : "", 
+			appinfo : {
+				profile_picture: '',
+				title: 'test_title',
+				description: 'test_description',
+				author: 'test_user',
+				division: 'TPT',
+				downloads: '0',
+				rate: '0',
+				creation_time: Date.now(),
+				last_update_time: Date.now(),
+				content: 'some html content',
+				languages: ['English','Spanish'],
+			    purposes: ['Preflight'],		    
+			    app_types: ['VBA Add-In'],
+			    source_file_types: ['MS Word']
+			}, inicropinfo : {
+				x : 0,
+				y : 0,
+				s : 0
+			}};
 	
 		//app basic information
-		
-		$scope.Model.appinfo = {
-			profile_picture: '',
-			title: 'test_title',
-			description: 'test_description',
-			author: 'test_user',
-			division: 'TPT',
-			downloads: '0',
-			rate: '0',
-			creation_time: Date.now(),
-			last_update_time: Date.now(),
-			content: 'some html content',
-			languages: ['English','Spanish'],
-		    purposes: ['Preflight'],		    
-		    app_types: ['VBA Add-In'],
-		    source_file_types: ['MS Word']
-		};
+
 		
 		$scope.divisions = ['TPT','TDC','TDCEU','TDCNY','TDCSF','TPTBCN','AD-COM','ARCHITEXT','CRIMSON','ISP','IVERSON','OVERTAAL','ADAMS','TDCAPAC','TDC CORVALLIS','TP-TOKYO','WORLDLINGO','TDC TOKYO','OTHERS'];
 		
@@ -41,20 +45,11 @@ app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scop
 	    $scope.submit = function() {
 	    	$mdDialog.hide($scope.Model.appinfo);
 	    };
-	    
-	    
-	    
+	     
 
 	    
 	    //app icon upload
-	    
-	    $scope.Model.inicropinfo = {
-			x: -1,
-	    	y: -1,
-	    	s: -1
-		};
-	    
-	    
+   
 		$scope.selectPic = function() {
 	    	document.querySelector('#imageInput').click();
 	    };

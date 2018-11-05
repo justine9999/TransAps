@@ -796,12 +796,11 @@
                             "margin-top": -i[1] / 2 + "px"
                         });
                         
-                        inix = inix >= 0?inix:(c.canvas.width / 2);
-                    	iniy = iniy >= 0?iniy:(c.canvas.height / 2);
-                    	inis = inis >= 0?inis:(Math.min(200, c.canvas.width / 2, c.canvas.height / 2));
+                        inix = inix > 0?inix:(c.canvas.width / 2);
+                    	iniy = iniy > 0?iniy:(c.canvas.height / 2);
+                    	inis = inis > 0?inis:(Math.min(200, c.canvas.width / 2, c.canvas.height / 2));
                     	
                         u.setX(inix), u.setY(iniy), u.setSize(inis);
-                        console.log("getting ini data: " + u.getX() + " " + u.getY() + " " + u.getSize());
                     } else o.prop("width", 0).prop("height", 0).css({
                         "margin-top": 0
                     });
@@ -829,12 +828,10 @@
                     }
                 };
             this.setCropAreaPos = function(xx, yy, ss) {
-            	console.log("here we set!");
             	inix = xx;
             	iniy = yy;
             	inis = ss;
             }, this.getCropAreaPos = function() {
-            	console.log("here we get!");
             	return {lastx:u.getX(),lasty:u.getY(),lasts:u.getSize()};
             }, this.getResultImageDataURI = function() {
                 var e, t;
@@ -962,12 +959,10 @@
                             })
                         }
                     };
-                a.setCropAreaPos(i.inipos.x, i.inipos.y, i.inipos.s);
-                console.log("test: " + i.inipos.x + " " + i.inipos.y + " " + i.inipos.s);
                 o.on("load-start", h(function(e) {
                     e.onLoadBegin({})
                 })).on("load-done", h(function(e) {
-                    e.onLoadDone({})
+                    e.onLoadDone({});
                 })).on("load-error", h(function(e) {
                     e.onLoadError({})
                 })).on("area-move area-resize", h(function(e) {
@@ -977,12 +972,15 @@
                 	i.inipos.x = lastPos.lastx;
                 	i.inipos.y = lastPos.lasty;
                 	i.inipos.s = lastPos.lasts;
-                	console.log("last: " + lastPos.lastx + " " + lastPos.lasty + " " + lastPos.lasts);
                     n(e)
-                })), i.$watch("image", function() {
-                	a.setCropAreaPos(-1, -1, -1);
+                })), i.$watch("image", function(newValue, oldValue) {
+                	//add one layer logic due to a $watch bug
+                	if(!angular.equals(newValue, oldValue)){
+                		a.setCropAreaPos(0, 0, 0);
+                    }else{
+                    	a.setCropAreaPos(i.inipos.x, i.inipos.y, i.inipos.s);
+                    }
                     a.setNewImageSource(i.image)
-                    console.log("set new image source");
                 }), i.$watch("areaType", function() {
                     a.setAreaType(i.areaType), n(i)
                 }), i.$watch("areaMinSize", function() {

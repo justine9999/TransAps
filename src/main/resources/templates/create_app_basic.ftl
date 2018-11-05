@@ -1,9 +1,6 @@
 <div class="md-dialog-content">
 	<div layout-gt-sm="row">
 		<md-input-container class="md-block" flex-gt-sm="">
-			<div>{{Model.inicropinfo.x}}</div>
-			<div>{{Model.inicropinfo.y}}</div>
-			<div>{{Model.inicropinfo.s}}</div>
 			<label>Title</label>
 			<input md-maxlength="30" required="" ng-model="Model.appinfo.title" name="title">
 				<div ng-messages="appinfoform.title.$error">
