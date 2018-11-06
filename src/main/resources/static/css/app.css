@@ -245,22 +245,39 @@ th > i {
 }
 
 .app-card-square > .mdl-card__title {
-  color: #fff;
-  background-repeat: no-repeat !important;
-  background-size: contain !important;
-  background-color: #46B6AC !important;
-  background-position: center !important; 
-  background: url('../image/default_profile_pic.png');
+  background-color: #86e0f3 !important;
+  height: 100px;
 }
 
-.mdl-card__actions > a {
+#app-card-title {
+  height: 50px;
+}
+
+#app-card-icon {
+	border-radius: 50%;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#app-card-author {
+  height: 50px;
+}
+
+#app-card-description {
+  height: 150px;
+}
+
+#app-card-detail {
+	text-align: center;
+}
+
+#app-card-detail > a {
 	font-weight: bold;
 }
 
 app-card {
 	margin-right:30px;
 	margin-bottom:30px;
-	height: 300px;
 	display: inline-block;
 }
 

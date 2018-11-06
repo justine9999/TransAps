@@ -10,7 +10,7 @@ public interface AppService {
 		
 	App findByTitle(String title);
 	
-	String createApp(App app);
+	String createApp(App app, String croppedImage);
 
 	boolean isAppExist(App app);
 }

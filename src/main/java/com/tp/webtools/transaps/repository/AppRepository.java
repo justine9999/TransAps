@@ -1,9 +1,16 @@
 package com.tp.webtools.transaps.repository;
 
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.channels.AsynchronousFileChannel;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +23,11 @@ import com.google.gson.LongSerializationPolicy;
 import com.microsoft.azure.documentdb.Document;
 import com.microsoft.azure.documentdb.DocumentClient;
 import com.microsoft.azure.documentdb.DocumentClientException;
+import com.microsoft.azure.storage.blob.BlockBlobURL;
+import com.microsoft.azure.storage.blob.ContainerURL;
+import com.microsoft.azure.storage.blob.TransferManager;
 import com.tp.webtools.transaps.dao.AppDao;
+import com.tp.webtools.transaps.dao.AppIconStorageDao;
 import com.tp.webtools.transaps.dao.DocumentClientFactory;
 import com.tp.webtools.transaps.model.App;
 
@@ -33,6 +44,9 @@ public class AppRepository {
 	
 	@Autowired
     private AppDao appDao;
+	
+	@Autowired
+    private AppIconStorageDao appIconStorageDao;
     
 
     /**
@@ -42,9 +56,10 @@ public class AppRepository {
 
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	List<App> apps = new ArrayList<App>();
-        final String query = "SELECT * FROM root r WHERE r.entityType = 'App'";
+        final String query = "SELECT * FROM root r";
 
         List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
+        System.out.println("real documents: " + documentList.size());
         for (Document appDocument : documentList) {
         	apps.add(gson.fromJson(appDocument.toString(), App.class));
         }
@@ -80,8 +95,14 @@ public class AppRepository {
     /**
      * Create an app
      */
-    public String createApp(App app) {
+    public String createApp(App app, String croppedImage) {
+    	
+    	String[] imageDatas = croppedImage.split(",");
+    	String fromat = imageDatas[0].split("/")[1].split(";")[0];
+    	String base64Data = imageDatas[1];
 
+    	upuloadAppIcon(base64Data, fromat, app);
+    	
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	Document appDocument = new Document(gson.toJson(app));
     	appDocument.set("entityType", "app");
@@ -100,4 +121,32 @@ public class AppRepository {
         return appDocument.getId();
     }
     
+    private void upuloadAppIcon(String base64Data, String format, App app){
+    	
+    	byte[] decodedBytes = Base64.getDecoder().decode(base64Data);
+    	ByteArrayInputStream bis = new ByteArrayInputStream(decodedBytes);
+    	BufferedImage image;
+    	File outputFile;
+    	String fileName = app.getTitle() + "_icon." + format;
+		try {
+			
+			image = ImageIO.read(bis);
+	    	outputFile = new File(fileName);
+	    	ImageIO.write(image, format, outputFile);
+	    	
+	    	ContainerURL containerURL = appIconStorageDao.getContainerURL();
+	    	BlockBlobURL blobURL = containerURL.createBlockBlobURL(fileName);
+	    	app.setProfile_picture(blobURL.toString());
+	    	AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(outputFile.toPath());
+
+	        TransferManager.uploadFileToBlockBlob(fileChannel, blobURL, 8*1024*1024, null)
+	        .subscribe(response-> {
+	            System.out.println("Completed upload image: " + outputFile.getName());
+	            System.out.println(response.response().statusCode());
+	        });
+	    	
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+    }
 }

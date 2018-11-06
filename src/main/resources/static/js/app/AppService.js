@@ -59,10 +59,11 @@ angular.module('mainApp').factory('AppService',
                 return $localStorage.myapps;
             }
             
-            function createApp(app) {
+            function createApp(app, croppedImage) {
                 console.log('Creating App: ' + app.title);
+                var appdata = {app : app, croppedImage : croppedImage};
                 var deferred = $q.defer();
-                $http.post(urls.APP_SERVICE_API, app)
+                $http.post(urls.APP_SERVICE_API, appdata)
                     .then(
                         function (response) {
                         	console.log('App created: ' + app.title);

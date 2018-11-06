@@ -24,6 +24,10 @@ datasource:
           key: nVXgoAVn6oURiLTZpOUawsbFzijq3TtFY3YEYWRoaifZzysPHJ1sUKO4OQZ11bTZeZqKnYTbI4f08EHIdyMsoA==
           appDB: APP_DB
           appCollection: APP_COLLECTION
+      storage:
+        account: transaps
+        key: XMTFJWiL7icOBkWpD0JlkqrSJDRCF866weQGqiN1wjQRlg/s3BAQzYdWEcd4wMWxy6vTy7PUS4MuCMC5/ng4IA==
+        appIconContainer: app-icon-container
 ---
 spring:
   profiles: prod

@@ -2,6 +2,7 @@ package com.tp.webtools.transaps.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tp.webtools.transaps.service.AppService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.tp.webtools.transaps.exception.CustomError;
 import com.tp.webtools.transaps.model.App;
 
@@ -69,19 +74,30 @@ public class AppController {
 		
 		//Create an App
 	    @RequestMapping(value = "/app/", method = RequestMethod.POST)
-	    public ResponseEntity<?> createApp(@RequestBody App app, UriComponentsBuilder ucBuilder) {
+	    public ResponseEntity<?> createApp(@RequestBody String appdata, UriComponentsBuilder ucBuilder) {
 	    	
 	    	System.out.println("create app");
-	        logger.info("Creating App : {}", app);
+	    	
+	        logger.info("Parsing App Data");
 	        
 	        try {
 	        	Thread.sleep(5000);
+	        	
+		    	Gson gson = new GsonBuilder().create();
+		    	JsonParser parser = new JsonParser();
+		    	JsonObject o = parser.parse(appdata).getAsJsonObject();
+		    	App app = gson.fromJson(o.get("app"),  App.class);
+		    	String croppedImage = gson.fromJson(o.get("croppedImage"),  String.class);
+		    	System.out.println("image blob: " + croppedImage);
+		    	
+		    	logger.info("Creating App : {}", app.getTitle());
+		    	
 		        if (appService.isAppExist(app)) {
 		            logger.error("Unable to create. An App with title {} already exist", app.getTitle());
 		            return new ResponseEntity(new CustomError("Unable to create. An App with title " + app.getTitle() + " already exist."), HttpStatus.CONFLICT);
 		        }
 		        
-		        String created_app_id = appService.createApp(app);
+		        String created_app_id = appService.createApp(app, croppedImage);
 		        
 		        HttpHeaders headers = new HttpHeaders();
 		        headers.setLocation(ucBuilder.path("/api/app/{id}").buildAndExpand(created_app_id).toUri());

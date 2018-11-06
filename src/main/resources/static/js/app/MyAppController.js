@@ -35,10 +35,12 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
         	    clickOutsideToClose: false,
         	    fullscreen: $scope.customFullscreen
         	})
-        	.then(function(app) {
+        	.then(function(result) {
         		console.log("submit a new app form");
+        		var app = result.app;
+        		var croppedImage = result.croppedImage;
         		self.insertAppRow(app, 1);
-        		AppService.createApp(app).then(
+        		AppService.createApp(app, croppedImage).then(
         	          function(app_creation_time) {
         	        	 self.myappsstatus[app_creation_time] = 0;
         	        	 self.showActionToast('New App created: [ '+app.title+' ]', 'Undo', 'success');

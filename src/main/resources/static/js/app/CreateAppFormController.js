@@ -43,7 +43,8 @@ app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scop
 	    };
 
 	    $scope.submit = function() {
-	    	$mdDialog.hide($scope.Model.appinfo);
+	    	var result = {app : $scope.Model.appinfo, croppedImage : $scope.Model.myCroppedImage};
+	    	$mdDialog.hide(result);
 	    };
 	     
 
