@@ -267,10 +267,6 @@ th > i {
   height: 150px;
 }
 
-#app-card-detail {
-	text-align: center;
-}
-
 #app-card-detail > a {
 	font-weight: bold;
 }
