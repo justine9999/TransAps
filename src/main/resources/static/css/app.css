@@ -255,7 +255,17 @@ th > i {
 }
 
 #app-card-title {
-  	display: block;
+  	font-size: 14px;
+  	font-weight: 600;
+  	font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  	color: #00bcd4;
+}
+
+#app-card-author {
+  	font-size: 11px;
+  	font-style: italic;
+  	font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+  	color: #888;
 }
 
 #app-card-icon {
@@ -265,20 +275,44 @@ th > i {
 	border-style: solid;
 	border-width: 1px;
 	border-color: #bbb;
+	margin: auto;
 }
 
-#app-card-author {
-  	display: block;
+#app-card-icon-container {
+	display: inline-flex;
+	width: 30%;
+	height: 100%;
+}
+
+#my-app-icon-container {
+	display: flex;
+	flex-direction: column;
+	height: 48px;
+}
+
+#app-card-basic-info {
+	display: flex;
+	width: 70%;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;	
 }
 
 #app-card-description {
 	display: block;
   	height: 150px;
+  	color: #686868;
 }
 
 #app-card-detail {
 	text-align: center;
 	background-color: #fafafa;
+	color: #686868;'
+}
+
+#app-card-detail > a {
+	font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
 }
 
 #app-card-detail > a {
@@ -510,4 +544,50 @@ tr:hover #app_deleting_icon {
 	padding-top: 30px;
 	padding-bottom: 30px;
 	background-color: #ddf7f3;
+}
+
+span.stars, span.stars span {
+    display: block;
+    background: url('../image/stars.png') 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
+#download_icon {
+	width:16px;
+	height:16px;
+}
+
+#app-card-recommendation-info {
+	display: flex;
+}
+
+#rating {
+	width: 50%;
+	margin-top: 2px;
+	text-align: left;
+}
+
+#downloads {
+	display: flex;
+	justify-content: flex-end;
+	width: 50%;
+}
+
+#downloads-cnt {
+	font-weight: 600;
+	margin-left: 6px;
+	margin-top: 2px;
+}
+
+#app-card-header {
+	padding-right: 2px;
+}
+
+.my-app-icon-cell{
+	width:10%;
 }

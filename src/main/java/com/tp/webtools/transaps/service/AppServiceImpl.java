@@ -19,7 +19,6 @@ public class AppServiceImpl implements AppService{
 	
     public List<App> findAllApps(){
     	List<App> apps = appRepository.readAllApps();
-    	System.out.println("real apps: " + apps.size());
     	for(int i = 0; i < 30; i++){
     		apps.add(new App("titile"+i,"desc"+i,"author"+i));
     	}
@@ -32,7 +31,7 @@ public class AppServiceImpl implements AppService{
     	return appRepository.findAppByTitle(title);
     }
     
-    public String createApp(App app, String croppedImage) {
+    public App createApp(App app, String croppedImage) {
         return appRepository.createApp(app, croppedImage);
     }
 

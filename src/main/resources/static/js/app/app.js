@@ -138,3 +138,18 @@ app.directive("appCard", function($window) {
           }
     };
 });
+
+app.directive("ratingStar", function($window) {
+    return {
+        templateUrl : 'partials/rating_star',
+        scope: false,
+        link: function(scope, element, attrs) {
+        	
+        	scope.getStars = function(rating) {
+        	    var val = parseFloat(rating);
+        	    var size = val/5*100;
+        	    return size + '%';
+        	  }
+          }
+    };
+});

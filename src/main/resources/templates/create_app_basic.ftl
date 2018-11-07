@@ -2,7 +2,7 @@
 	<div layout-gt-sm="row">
 		<md-input-container class="md-block" flex-gt-sm="">
 			<label>Title</label>
-			<input md-maxlength="30" required="" ng-model="Model.appinfo.title" name="title">
+			<input md-maxlength="25" required="" ng-model="Model.appinfo.title" name="title">
 				<div ng-messages="appinfoform.title.$error">
 				<div ng-message="required">This is required.</div>
 				<div ng-message="md-maxlength">The title must be less than 30 characters long.</div>

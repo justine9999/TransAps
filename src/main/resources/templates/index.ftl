@@ -11,7 +11,7 @@
         <base href="/TransAps/">
     </head>
     <body>
-    	<div id="main-outter-container">
+    	<div id="main-outter-container" ng-cloak>
     		<div class="top-image-placeholder"></div>
 			<div id="main-nav" stick-top="fix-to-top"">
 		      <header class="mdl-layout__header">

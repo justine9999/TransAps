@@ -15,16 +15,22 @@
 <table id="my-apps-container" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 	<thead>
     	<tr>
+    		<th class="mdl-data-table__cell--non-numeric"></th>
       		<th class="mdl-data-table__cell--non-numeric">Name</th>
     	</tr>
   	</thead>
 	<tbody>
 		<tr ng-repeat="myapp in myappctrl.getMyApps()">
+			<td class="mdl-data-table__cell--non-numeric my-app-icon-cell">
+				<div id="my-app-icon-container">
+			  		<img id="app-card-icon" class="mdl-shadow--2dp" ng-src="{{myapp.profile_picture || './image/default_profile_pic.png'}}" />
+			  	</div>
+			</td>
 			<td class="mdl-data-table__cell--non-numeric">{{myapp.title}}</td>
 			<td class="mdl-data-table__cell--non-numeric">
 				<span class="fright vcenter" ng-show="myappctrl.myappsstatus[myapp.creation_time] === 0">
 					<md-tooltip md-direction="right">View App details</md-tooltip>
-					<i id="app_view_details_icon" class="material-icons">inbox</i>
+					<i id="app_view_details_icon" class="material-icons">line_style</i>
 				</span>
 				<span class="fright vcenter" ng-show="myappctrl.myappsstatus[myapp.creation_time] === 1">
 					<md-tooltip md-direction="right">Creating App...</md-tooltip>

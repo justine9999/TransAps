@@ -88,7 +88,6 @@ public class AppController {
 		    	JsonObject o = parser.parse(appdata).getAsJsonObject();
 		    	App app = gson.fromJson(o.get("app"),  App.class);
 		    	String croppedImage = gson.fromJson(o.get("croppedImage"),  String.class);
-		    	System.out.println("image blob: " + croppedImage);
 		    	
 		    	logger.info("Creating App : {}", app.getTitle());
 		    	
@@ -97,10 +96,10 @@ public class AppController {
 		            return new ResponseEntity(new CustomError("Unable to create. An App with title " + app.getTitle() + " already exist."), HttpStatus.CONFLICT);
 		        }
 		        
-		        String created_app_id = appService.createApp(app, croppedImage);
+		        App created_app = appService.createApp(app, croppedImage);
 		        
 		        HttpHeaders headers = new HttpHeaders();
-		        headers.setLocation(ucBuilder.path("/api/app/{id}").buildAndExpand(created_app_id).toUri());
+		        headers.set("iconurl", created_app.getProfile_picture());
 		        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	        }catch(Exception ex) {
 	        	logger.error("Unable to create. Internal Server Error:", ex);

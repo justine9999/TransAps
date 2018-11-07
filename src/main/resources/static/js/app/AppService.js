@@ -67,7 +67,8 @@ angular.module('mainApp').factory('AppService',
                     .then(
                         function (response) {
                         	console.log('App created: ' + app.title);
-                            deferred.resolve(app.creation_time);
+                        	var result = {creation_time : app.creation_time, iconurl : response.headers('iconurl')};
+                            deferred.resolve(result);
                         },
                         function (errResponse) {
                         	console.error('Error while creating App: ' + errResponse.data.errorMessage);

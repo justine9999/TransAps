@@ -41,8 +41,11 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
         		var croppedImage = result.croppedImage;
         		self.insertAppRow(app, 1);
         		AppService.createApp(app, croppedImage).then(
-        	          function(app_creation_time) {
+        	          function(create_app_result) {
+        	        	 var app_creation_time = create_app_result.creation_time;
+        	        	 var iconurl = create_app_result.iconurl;
         	        	 self.myappsstatus[app_creation_time] = 0;
+        	        	 app.profile_picture = iconurl;
         	        	 self.showActionToast('New App created: [ '+app.title+' ]', 'Undo', 'success');
                    }, function(app_to_delete) {
                 	   	 deleteAppRow(app_to_delete);

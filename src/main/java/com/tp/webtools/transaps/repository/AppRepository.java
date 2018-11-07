@@ -59,7 +59,6 @@ public class AppRepository {
         final String query = "SELECT * FROM root r";
 
         List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
-        System.out.println("real documents: " + documentList.size());
         for (Document appDocument : documentList) {
         	apps.add(gson.fromJson(appDocument.toString(), App.class));
         }
@@ -95,7 +94,7 @@ public class AppRepository {
     /**
      * Create an app
      */
-    public String createApp(App app, String croppedImage) {
+    public App createApp(App app, String croppedImage) {
     	
     	String[] imageDatas = croppedImage.split(",");
     	String fromat = imageDatas[0].split("/")[1].split(";")[0];
@@ -118,7 +117,7 @@ public class AppRepository {
     	
     	logger.info("created App: " + created_app.toString());
     	
-        return appDocument.getId();
+        return created_app;
     }
     
     private void upuloadAppIcon(String base64Data, String format, App app){
@@ -126,7 +125,7 @@ public class AppRepository {
     	byte[] decodedBytes = Base64.getDecoder().decode(base64Data);
     	ByteArrayInputStream bis = new ByteArrayInputStream(decodedBytes);
     	BufferedImage image;
-    	File outputFile;
+    	File outputFile = null;
     	String fileName = app.getTitle() + "_icon." + format;
 		try {
 			
@@ -141,12 +140,14 @@ public class AppRepository {
 
 	        TransferManager.uploadFileToBlockBlob(fileChannel, blobURL, 8*1024*1024, null)
 	        .subscribe(response-> {
-	            System.out.println("Completed upload image: " + outputFile.getName());
+	            System.out.println("Completed upload image: " + fileName);
 	            System.out.println(response.response().statusCode());
 	        });
 	    	
 		} catch (IOException ex) {
 			ex.printStackTrace();
+		}finally{
+			outputFile.delete();
 		}
     }
 }
