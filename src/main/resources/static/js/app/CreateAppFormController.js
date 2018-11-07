@@ -26,7 +26,6 @@ app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scop
 			}};
 	
 		//app basic information
-
 		
 		$scope.divisions = ['TPT','TDC','TDCEU','TDCNY','TDCSF','TPTBCN','AD-COM','ARCHITEXT','CRIMSON','ISP','IVERSON','OVERTAAL','ADAMS','TDCAPAC','TDC CORVALLIS','TP-TOKYO','WORLDLINGO','TDC TOKYO','OTHERS'];
 		

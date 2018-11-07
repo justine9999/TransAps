@@ -232,6 +232,11 @@ th > i {
 #app-cnt-number {
 	padding-left: 6px;
 	padding-right:6px;
+	border-radius: 2px;
+}
+
+#app-cnt-number-wrapper {
+	border-radius: 2px;
 }
 
 #table {
@@ -245,12 +250,12 @@ th > i {
 }
 
 .app-card-square > .mdl-card__title {
-  background-color: #86e0f3 !important;
+  background-color: #fafafa !important;
   height: 100px;
 }
 
 #app-card-title {
-  height: 50px;
+  	display: block;
 }
 
 #app-card-icon {
@@ -260,11 +265,17 @@ th > i {
 }
 
 #app-card-author {
-  height: 50px;
+  	display: block;
 }
 
 #app-card-description {
-  height: 150px;
+	display: block;
+  	height: 150px;
+}
+
+#app-card-detail {
+	text-align: center;
+	background-color: #fafafa;
 }
 
 #app-card-detail > a {

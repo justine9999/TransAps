@@ -98,7 +98,7 @@
 									    <tr>
 									      <th class="mdl-data-table__cell--non-numeric">
 									      	<i class="material-icons module-header1-icon">add_box</i>
-									      	<span class="module-header1-text">MANAGE MY APPS</span>
+									      	<span class="module-header1-text">MANAGE APPS</span>
 									      </th>
 									      <th></th>
 									    </tr>

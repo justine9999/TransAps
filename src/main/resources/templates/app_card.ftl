@@ -1,6 +1,6 @@
 <div class="app-card-square mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title mdl-card--expand">
-  	<img id="app-card-icon" src="{{app.profile_picture}}" />
+  	<img id="app-card-icon" ng-src="{{app.profile_picture || './image/default_profile_pic.png'}}" />
   </div>
   <table class="mdl-data-table mdl-js-data-table">
 	<tbody>
