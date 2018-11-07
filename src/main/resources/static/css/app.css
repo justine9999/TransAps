@@ -262,6 +262,9 @@ th > i {
 	border-radius: 50%;
 	max-width: 100%;
 	max-height: 100%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #bbb;
 }
 
 #app-card-author {
