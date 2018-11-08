@@ -25,9 +25,9 @@ public class App implements Serializable{
 	
 	private String division;
 	
-	private int downloads;
+	private String downloads;
 	
-	private int rate;
+	private String rate;
 	
 	private long creation_time;
 	

@@ -14,9 +14,10 @@
 </div>
 <table id="my-apps-container" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 	<thead>
-    	<tr>
+    	<tr id="my-app-header-row">
     		<th class="mdl-data-table__cell--non-numeric"></th>
       		<th class="mdl-data-table__cell--non-numeric">Name</th>
+      		<th class="mdl-data-table__cell--non-numeric"></th>
     	</tr>
   	</thead>
 	<tbody>
@@ -34,11 +35,11 @@
 				</span>
 				<span class="fright vcenter" ng-show="myappctrl.myappsstatus[myapp.creation_time] === 1">
 					<md-tooltip md-direction="right">Creating App...</md-tooltip>
-					<i id="app_creating_icon" class="material-icons">add_circle</i>		
+					<md-progress-circular md-mode="indeterminate" md-diameter="30"></md-progress-circular>	
 				</span>
 				<span class="fright vcenter" ng-show="myappctrl.myappsstatus[myapp.creation_time] === 2">
 					<md-tooltip md-direction="right">Deleting App...</md-tooltip>
-					<i id="app_deleting_icon" class="material-icons">remove_circle</i>	
+					<md-progress-circular md-mode="indeterminate" md-diameter="30"></md-progress-circular>
 				</span>
 			</td>
 		</tr>

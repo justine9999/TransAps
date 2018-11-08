@@ -1,3 +1,4 @@
 <span class="stars">
-	<span ng-style="{ 'width': getStars(3.7) }"></span>
+	<md-tooltip md-direction="left">★ {{rate}}</md-tooltip>
+	<span ng-style="{ 'width': getStars() }"></span>
 </span>

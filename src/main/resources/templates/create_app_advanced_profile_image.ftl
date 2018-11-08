@@ -10,7 +10,7 @@
 			<md-tooltip>Preview app icon</md-tooltip>
 		  	<i class="material-icons">visibility</i>
 		</button>
-		<button id="upload_profile_photo_button" type="button" class="mdl-button mdl-js-button mdl-button--icon" ng-disabled="Model.myCroppedImage==''">
+		<button id="upload_profile_photo_button" type="button" class="mdl-button mdl-js-button mdl-button--icon" ng-disabled="Model.myImage==''">
 			<md-tooltip>Upload app icon</md-tooltip>
 		  	<i class="material-icons">cloud_upload</i>
 		</button>

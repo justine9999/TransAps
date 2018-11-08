@@ -19,7 +19,7 @@
 		<tr>
 			<td id="app-card-recommendation-info" class="mdl-data-table__cell--non-numeric">
 				<div id="rating">
-					<rating-star></rating-star>
+					<rating-star rate="{{app.rate}}"></rating-star>
 				</div>
 				<div id="downloads">
 				  	<div>

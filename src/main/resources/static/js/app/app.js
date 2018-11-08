@@ -106,7 +106,7 @@ app.directive('stickTop', function ($window) {
 
             $win.on('scroll', function (e) {
                 if ($win.scrollTop() >= offsetTop) {
-                    element.addClass(topClass);
+                    element.addClass(topClass); 
                 } else {
                     element.removeClass(topClass);
                 }
@@ -142,14 +142,15 @@ app.directive("appCard", function($window) {
 app.directive("ratingStar", function($window) {
     return {
         templateUrl : 'partials/rating_star',
-        scope: false,
+        scope: {
+        	rate: "@"
+        },
         link: function(scope, element, attrs) {
-        	
-        	scope.getStars = function(rating) {
-        	    var val = parseFloat(rating);
+        	scope.getStars = function() {
+        	    var val = parseFloat(scope.rate);
         	    var size = val/5*100;
         	    return size + '%';
-        	  }
-          }
+        	}
+        }
     };
 });
