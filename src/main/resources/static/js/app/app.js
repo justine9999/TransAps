@@ -154,3 +154,34 @@ app.directive("ratingStar", function($window) {
         }
     };
 });
+
+app.directive('addTagEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.addTagEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
+app.directive('stateChangeStyler', ['$state', '$rootScope', function($state, $rootScope) {
+    return function (scope, element, attrs) {
+    	var sname = attrs.uiSref;
+    	var ckbox = $(element).find('label')[0];
+    	console.log('len: ' + ckbox.length);
+        $rootScope.$on('$stateChangeSuccess', function() {
+            if(sname === $state.current.name){
+            	element.addClass('state-select-tr');
+            	ckbox.MaterialCheckbox.check();
+            }else{
+            	element.removeClass('state-select-tr');
+            	ckbox.MaterialCheckbox.uncheck();
+            }
+        });
+    };
+}]);

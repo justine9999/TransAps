@@ -59,8 +59,8 @@
 									    </tr>
 									  </thead>
 									  <tbody>
-									    <tr>
-									      <td class="mdl-data-table__cell--non-numeric"><a ui-sref="home">All Apps</a></td>
+									    <tr state-change-styler ui-sref="home">
+									      <td class="mdl-data-table__cell--non-numeric">All Apps</td>
 									      <td>
 									      	<span class="mdl-list__item-secondary-action fright">
 										      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
@@ -104,8 +104,8 @@
 									    </tr>
 									  </thead>
 									  <tbody>
-									    <tr>
-									      <td class="mdl-data-table__cell--non-numeric"><a ui-sref="my-apps">My Apps</a></td>
+									    <tr state-change-styler ui-sref="my-apps">
+									      <td class="mdl-data-table__cell--non-numeric">My Apps</td>
 									      <td>
 									      	<span class="mdl-list__item-secondary-action fright">
 										      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-4">

@@ -1,7 +1,12 @@
 <table id="filter-container" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 	<tbody>
 		<tr id="filter-current">
-			<td id="filter-current-tags" class="mdl-data-table__cell--non-numeric">some tag</td>
+			<td id="filter-current-tags" class="mdl-data-table__cell--non-numeric">
+				<span id="tps-tag" class="mdl-chip mdl-chip--deletable" ng-repeat="tag in appctrl.selectedTags">
+				    <span id="tps-tag-text" class="mdl-chip__text">{{tag.text}}</span>
+				    <button ng-click="appctrl.removeTag($index)" type="button" class="mdl-chip__action"><i class="material-icons">close</i></button>
+				</span>
+			</td>
 			<td id="filter-current-save">
 				<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
 					<i class="material-icons">save</i>
@@ -10,13 +15,12 @@
 		</tr>
 		<tr id="filter-keywords">
 			<td id="filter-keywords-input" class="mdl-data-table__cell--non-numeric">
-				<div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-textfield__input" type="text" id="input-keywords">
-					<label class="mdl-textfield__label" for="input-keywords">Type in keyword...</label>
-				</div>
+				<md-autocomplete md-search-text="appctrl.searchText" md-items="item in appctrl.querySearch(appctrl.searchText)" md-item-text="item.text" placeholder="Type in keyword..." add-tag-enter="appctrl.addTag(appctrl.searchText)">
+					<span md-highlight-text="appctrl.searchText">{{item.text}}</span>
+				</md-autocomplete>
 			</td>
 			<td id="filter-keywords-add">
-				<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
+				<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect" ng-click="appctrl.addTag(appctrl.searchText)">
 					<i class="material-icons">add</i>
 				</button>
 			</td>

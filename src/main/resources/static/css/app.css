@@ -517,3 +517,22 @@ span.stars span {
 .my-app-icon-cell{
 	width:10%;
 }
+
+#tps-tag {
+	margin-right: 10px;
+	border-radius: 2px;
+	background-color: #e0edf5;
+}
+
+#tps-tag-text {
+	margin-top: 1px;
+}
+
+#tps-tag > button > i {
+	margin-top: 1px;
+	font-size: 13px;
+}
+
+.state-select-tr {
+	background-color: #ededed !important;
+}
