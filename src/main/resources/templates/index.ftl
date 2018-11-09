@@ -141,6 +141,20 @@
 					  	</div>
 					  	<div class="mdl-cell mdl-cell--9-col">
 					  		<div id="main-body-right-container">
+					  			<div id="skeleton" ng-show="preloader">
+					  				<md-progress-linear md-mode="query"></md-progress-linear>
+									<div class="mdl-grid skeleton-row-1">
+										<div class="mdl-cell mdl-cell--9-col skeleton-cell"></div>
+										<div class="mdl-cell mdl-cell--3-col skeleton-cell"></div>
+									</div>
+									<div class="mdl-grid skeleton-row-1">
+										<div class="mdl-cell mdl-cell--10-col skeleton-cell"></div>
+										<div class="mdl-cell mdl-cell--2-col skeleton-cell"></div>
+									</div>
+									<div class="mdl-grid skeleton-row-2" ng-repeat="x in [].constructor(10) track by $index">
+										<div class="mdl-cell mdl-cell--12-col skeleton-cell"></div>
+									</div>									
+								</div>
 					  			<div ui-view="view_app_list"></div>
 		    				</div>
 					  	</div>

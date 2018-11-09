@@ -1,3 +1,6 @@
+* {
+	font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+}
 
 #toaster-container {
 	position: fixed;
@@ -6,13 +9,13 @@
 }
 
 md-toast.md-success-toast-theme .md-toast-content {
-	background-color: #fff !important;
+	background-color: #bcffe9 !important;
 	color: #176def !important;
 	opacity: 0.8;
 }
 
 md-toast.md-success-toast-theme .md-toast-content .md-button.md-highlight {
-	color: #70e69f !important;
+	color: #ff4081 !important;
 }
 
 md-toast.md-error-toast-theme .md-toast-content {
@@ -150,11 +153,6 @@ a {
 	margin-bottom: 15px;
 	width: 80%;
 	padding: 15px;
-}
-
-#filter-keywords-input {
-	padding-top: 0px;
-	padding-bottom: 0px;
 }
 
 #global-search-icon {
@@ -525,6 +523,7 @@ span.stars span {
 }
 
 #tps-tag-text {
+	color: #002d6a;
 	margin-top: 1px;
 }
 
@@ -536,3 +535,37 @@ span.stars span {
 .state-select-tr {
 	background-color: #ededed !important;
 }
+
+#skeleton {
+	width: 100%;
+	background-color: #ffffff;
+}
+
+.skeleton-row-1 {
+	height: 100px;
+}
+
+.skeleton-row-2 {
+	height: 60px;
+}
+
+ .skeleton-cell {
+ 	background-color: #eeeeee;
+ }
+ 
+ #filter-options > td {
+ 	padding-right: 0px;
+ }
+ 
+ .tps-border-right{
+ 	border-right-style: solid;
+ 	border-right-width: 1px;
+ 	border-right-color: #ddd;
+ }
+ 
+ .tps-v-center-child {
+ 	display: flex;
+ 	flex-direction: column;
+ 	align-items: center;
+ 	justify-content: center;
+ }

@@ -80,9 +80,7 @@ public class AppController {
 	    	
 	        logger.info("Parsing App Data");
 	        
-	        try {
-	        	Thread.sleep(5000);
-	        	
+	        try {	        	
 		    	Gson gson = new GsonBuilder().create();
 		    	JsonParser parser = new JsonParser();
 		    	JsonObject o = parser.parse(appdata).getAsJsonObject();

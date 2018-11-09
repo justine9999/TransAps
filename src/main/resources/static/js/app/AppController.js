@@ -10,6 +10,7 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         self.appcnt = 30;
         $scope.scrollTo = function (target){};
         $scope.appcardwidth = $('#apps-container').css("width");
+        $scope.preloader = false;
         
         function getAllApps(){
         	var obj = AppService.getAllApps();
@@ -20,7 +21,7 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         self.searchText = null;
         self.querySearch = querySearch;
         self.tags = loadTags();
-        self.selectedTags = [{'text':'TPT','type':'keyword'}];
+        self.selectedTags = [{'text':'TPT','type':'keyword'},{'text':'TDC','type':'keyword'}];
         self.addTag = addTag;
         self.removeTag = removeTag;
         self.transformChip = transformChip;
@@ -48,6 +49,9 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         }
         
         function addTag(text) {
+        	if(!text) {
+        		return;
+        	}
             var newtag = {'text':text,'type':'keyword'};
             self.selectedTags.push(newtag);
             clearInputText();

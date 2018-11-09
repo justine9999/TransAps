@@ -5,7 +5,7 @@ app.run(function ($rootScope,$timeout) {
         $timeout(function() {
           componentHandler.upgradeAllRegistered();
         })
-    })
+    });
 });
 
 app.constant('urls', {
@@ -173,8 +173,12 @@ app.directive('stateChangeStyler', ['$state', '$rootScope', function($state, $ro
     return function (scope, element, attrs) {
     	var sname = attrs.uiSref;
     	var ckbox = $(element).find('label')[0];
-    	console.log('len: ' + ckbox.length);
+        $rootScope.$on('$stateChangeStart', function() {
+        	$rootScope.preloader = true;
+        });
+        
         $rootScope.$on('$stateChangeSuccess', function() {
+        	$rootScope.preloader = false;
             if(sname === $state.current.name){
             	element.addClass('state-select-tr');
             	ckbox.MaterialCheckbox.check();
