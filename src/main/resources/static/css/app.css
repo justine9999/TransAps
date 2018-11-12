@@ -377,8 +377,8 @@ md-pagination-wrapper {
 }
 
 md-tab-item {
-	max-width: 50% !important;
-	width: 50%;
+	max-width: 33.3% !important;
+	width: 33.3%;
 }
 
 .md-tab.md-active {
@@ -435,26 +435,28 @@ md-button {
 }
 
 #profile_image_upload_menu {
-	background-color: #fff;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #fff;
 	margin-bottom: 10px;
 	width: 100%;
+}
+
+#profile_image_upload_content {
+	width:100%;
+	background-color:#f2f2f2;
+	display:flex;
+	align-items:center;
+	border-top-style:dashed;
+	border-top-color:#ddd;
+	border-top-width:2px;
+	border-bottom-style:dashed;
+	border-bottom-color:#ddd;
+	border-bottom-width:2px;
 }
 
 #profile_image_upload_menu > button {
 	margin-left: 10px;
 	margin-bottom: 2px;
 	margin-top: 2px;
-	color: #0ab0e2;
-}
-
-.tps_label {
-	color: #aaa;
-	font-weight: 600;
-	margin-bottom: 8px;
-	padding-left: 10px;
+	color: #9c9296;
 }
 
 #cropped_image {
@@ -569,3 +571,26 @@ span.stars span {
  	align-items: center;
  	justify-content: center;
  }
+ 
+ #profile_image_upload_container{
+ 	padding-top: 20px;
+ }
+ 
+ #app_content_editor_container {
+ 	padding: 50px 10px 50px 10px;
+ }
+ 
+ #editor {
+  	height: 430px;
+}
+
+.ql-toolbar {
+	background-color: #eee;
+}
+
+.ql-snow .ql-tooltip {
+	position: fixed !important;
+	bottom: 65px;
+	left: auto !important;
+	top: auto !important;
+}

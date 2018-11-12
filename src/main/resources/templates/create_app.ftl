@@ -10,8 +10,9 @@
 
     <md-dialog-content>
       <md-tabs>
-      	<md-tab label="Basic" ui-sref="my-apps.basic" md-active="true"></md-tab>
-      	<md-tab label="Advanced" ui-sref="my-apps.advanced"></md-tab>
+      	<md-tab label="Basic Info" ui-sref="my-apps.basicinfo" md-active="true"></md-tab>
+      	<md-tab label="App Icon" ui-sref="my-apps.appicon"></md-tab>
+      	<md-tab label="App Details" ui-sref="my-apps.appdetails" md-on-deselect="deselect()"></md-tab>
       </md-tabs> 
       
       <div id="view_app_creation_form" ui-view="view_app_creation_form"></div>

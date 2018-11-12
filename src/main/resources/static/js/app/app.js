@@ -1,4 +1,4 @@
-var app = angular.module('mainApp',['ui.router','ngStorage','ngMaterial','ngMessages','ngImgCrop']);
+var app = angular.module('mainApp',['ui.router','ngStorage','ngMaterial','ngMessages','ngImgCrop','ngSanitize']);
 
 app.run(function ($rootScope,$timeout) {
     $rootScope.$on('$viewContentLoaded', function() {
@@ -62,33 +62,33 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$mdThe
 	            }
 	        })
 	        
-	        .state('my-apps.basic', {
+	        .state('my-apps.basicinfo', {
 		        url: '',
 		        views: {
 		            'view_app_creation_form_body': {
-		                templateUrl: 'partials/create_app_basic',
+		                templateUrl: 'partials/create_app_basicinfo',
 		                controller:'CreateAppFormController',
 		            }
 		        }
 		    })
 		    
-		    .state('my-apps.advanced', {
+		    .state('my-apps.appicon', {
 		        url: '',
 		        views: {
 		            'view_app_creation_form_body': {
-		            	templateUrl: 'partials/create_app_advanced',
-		            	controller:'CreateAppFormController',
-		            },
-		            
-		            'view_profile_image@my-apps.advanced': {
-		                templateUrl: 'partials/create_app_advanced_profile_image',
+		                templateUrl: 'partials/create_app_appicon',
 		                controller:'CreateAppFormController',
-		            },
-		            
-		            'view_content_editor@my-apps.advanced': {
-		                templateUrl: 'partials/create_app_advanced_content_editor',
+		            }
+		        }
+		    })
+		    
+		    .state('my-apps.appdetails', {
+		        url: '',
+		        views: {
+		            'view_app_creation_form_body': {
+		                templateUrl: 'partials/create_app_appdetails',
 		                controller:'CreateAppFormController',
-		            },
+		            }
 		        }
 		    })
 	        
@@ -179,7 +179,7 @@ app.directive('stateChangeStyler', ['$state', '$rootScope', function($state, $ro
         
         $rootScope.$on('$stateChangeSuccess', function() {
         	$rootScope.preloader = false;
-            if(sname === $state.current.name){
+            if(sname === $state.current.name || sname === $state.$current.parent.name){
             	element.addClass('state-select-tr');
             	ckbox.MaterialCheckbox.check();
             }else{
@@ -189,3 +189,51 @@ app.directive('stateChangeStyler', ['$state', '$rootScope', function($state, $ro
         });
     };
 }]);
+
+
+app.directive('quillEditor', function($compile) {
+    return {
+      restrict: 'E',
+      link: function($scope, $element) {
+          var template= '<div id="editor"></div>';
+          var linkFunc = $compile(template);
+          var content = linkFunc($scope);
+          $element.append(content);
+        
+          //a work around for when you cancel md-dialog with the 'editor' tab active
+          if(document.querySelector('#editor')){
+        	  var quill = new Quill('#editor', {
+                  modules: {
+                	imageResize: {},
+                	VideoResize: {},
+                    toolbar: [
+                      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                      [{ 'size': ['small', false, 'large', 'huge'] }],
+                      ['bold', 'italic', 'underline', 'strike', 'link'],
+                      [{ 'color': [] }, { 'background': [] }],
+                      [{ 'font': [] }],
+                      [{ 'align': [] }],
+                      ['clean'],
+                      ['blockquote', 'code-block'],
+                      ['video', 'image'],
+                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                      [{ 'script': 'sub'}, { 'script': 'super' }],
+                      [{ 'indent': '-1'}, { 'indent': '+1' }],
+                    ]
+                  },
+                  placeholder: 'There is not yet any detailed information for the app...',
+                  theme: 'snow'
+                });
+              
+                quill.on('text-change', function() {
+                  var justHtml = quill.root.innerHTML;
+                              
+                  $scope.$apply(function() {
+                    $scope.quillDataHTML = justHtml;
+                  });
+              });
+          }
+          
+      },
+    };
+  });

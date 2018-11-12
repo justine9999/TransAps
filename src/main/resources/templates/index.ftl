@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
         <link rel="stylesheet" type="text/css" href="css/ng-img-crop.css">
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         <base href="/TransAps/">
     </head>
     <body>
@@ -192,5 +193,8 @@
         <script src="js/app/AppController.js"></script>
         <script src="js/app/MyAppController.js"></script>  
         <script src="js/app/CreateAppFormController.js"></script>
+        <script src="js/lib/angular-sanitize.js"></script>
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <script src="js/lib/image-resize.min.js"></script>
     </body>
 </html>

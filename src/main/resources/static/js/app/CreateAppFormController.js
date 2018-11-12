@@ -84,5 +84,10 @@ app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scop
 	    };
 	    
 	    angular.element(document.querySelector('#imageInput')).on('change', handleFileSelect);
+	    
+	    
+	    
+	    //app content
+	    $scope.quillDataHTML = "";
     }
 ]);
