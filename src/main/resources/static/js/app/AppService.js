@@ -59,14 +59,16 @@ angular.module('mainApp').factory('AppService',
                 return $localStorage.myapps;
             }
             
-            function createApp(app) {
+            function createApp(app, croppedImage) {
                 console.log('Creating App: ' + app.title);
+                var appdata = {app : app, croppedImage : croppedImage};
                 var deferred = $q.defer();
-                $http.post(urls.APP_SERVICE_API, app)
+                $http.post(urls.APP_SERVICE_API, appdata)
                     .then(
                         function (response) {
                         	console.log('App created: ' + app.title);
-                            deferred.resolve(app.creationTime);
+                        	var result = {creation_time : app.creation_time, iconurl : response.headers('iconurl')};
+                            deferred.resolve(result);
                         },
                         function (errResponse) {
                         	console.error('Error while creating App: ' + errResponse.data.errorMessage);

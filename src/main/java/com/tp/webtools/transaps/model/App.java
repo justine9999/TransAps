@@ -3,28 +3,15 @@ package com.tp.webtools.transaps.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.datastax.driver.mapping.annotations.*;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Table(keyspace = "transaps", name = "app")
 public class App implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-    protected Long id;
 	
 	private String profile_picture;
     	
@@ -38,9 +25,9 @@ public class App implements Serializable{
 	
 	private String division;
 	
-	private int downloads;
+	private String downloads;
 	
-	private int rate;
+	private String rate;
 	
 	private long creation_time;
 	
@@ -65,7 +52,7 @@ public class App implements Serializable{
 
 	@Override
 	public String toString() {
-		return "App [id=" + id + ", profile_picture=" + profile_picture + ", title=" + title + ", description="
+		return "App [profile_picture=" + profile_picture + ", title=" + title + ", description="
 				+ description + ", content=" + content + ", author=" + author + ", division=" + division
 				+ ", downloads=" + downloads + ", rate=" + rate + ", creation_time=" + creation_time
 				+ ", last_update_time=" + last_update_time + ", purposes=" + purposes + ", languages=" + languages

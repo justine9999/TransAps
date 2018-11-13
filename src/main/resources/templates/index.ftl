@@ -7,12 +7,14 @@
         <link rel="stylesheet" href="css/material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ng-img-crop.css">
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         <base href="/TransAps/">
     </head>
     <body>
     	<div id="main-outter-container">
     		<div class="top-image-placeholder"></div>
-			<div id="main-nav" stick-top="fix-to-top"">
+			<div id="main-nav" stick-top="fix-to-top">
 		      <header class="mdl-layout__header">
 		        <div class="mdl-layout__header-row">
 		          <span id="app-title" class="mdl-layout-title">
@@ -58,8 +60,8 @@
 									    </tr>
 									  </thead>
 									  <tbody>
-									    <tr>
-									      <td class="mdl-data-table__cell--non-numeric"><a ui-sref="home">All Apps</a></td>
+									    <tr state-change-styler ui-sref="home">
+									      <td class="mdl-data-table__cell--non-numeric">All Apps</td>
 									      <td>
 									      	<span class="mdl-list__item-secondary-action fright">
 										      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
@@ -97,14 +99,14 @@
 									    <tr>
 									      <th class="mdl-data-table__cell--non-numeric">
 									      	<i class="material-icons module-header1-icon">add_box</i>
-									      	<span class="module-header1-text">MANAGE MY APPS</span>
+									      	<span class="module-header1-text">MANAGE APPS</span>
 									      </th>
 									      <th></th>
 									    </tr>
 									  </thead>
 									  <tbody>
-									    <tr>
-									      <td class="mdl-data-table__cell--non-numeric"><a ui-sref="my-apps">My Apps</a></td>
+									    <tr state-change-styler ui-sref="my-apps">
+									      <td class="mdl-data-table__cell--non-numeric">My Apps</td>
 									      <td>
 									      	<span class="mdl-list__item-secondary-action fright">
 										      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-4">
@@ -140,7 +142,21 @@
 					  	</div>
 					  	<div class="mdl-cell mdl-cell--9-col">
 					  		<div id="main-body-right-container">
-					  			<div ui-view></div>
+					  			<div id="skeleton" ng-show="preloader">
+					  				<md-progress-linear md-mode="query"></md-progress-linear>
+									<div class="mdl-grid skeleton-row-1">
+										<div class="mdl-cell mdl-cell--9-col skeleton-cell"></div>
+										<div class="mdl-cell mdl-cell--3-col skeleton-cell"></div>
+									</div>
+									<div class="mdl-grid skeleton-row-1">
+										<div class="mdl-cell mdl-cell--10-col skeleton-cell"></div>
+										<div class="mdl-cell mdl-cell--2-col skeleton-cell"></div>
+									</div>
+									<div class="mdl-grid skeleton-row-2" ng-repeat="x in [].constructor(10) track by $index">
+										<div class="mdl-cell mdl-cell--12-col skeleton-cell"></div>
+									</div>									
+								</div>
+					  			<div ui-view="view_app_list"></div>
 		    				</div>
 					  	</div>
 					</div>
@@ -168,6 +184,7 @@
     	<script src="js/lib/angular-messages.min.js" ></script>
         <script src="js/lib/angular-ui-router.min.js" ></script>
         <script src="js/lib/angular-material.min.js" ></script>
+        <script src="js/lib/ng-img-crop.js"></script>
         <script src="js/lib/localforage.min.js" ></script>
         <script src="js/lib/ngStorage.min.js"></script>
         <script src="js/lib/material.min.js"></script>
@@ -175,6 +192,10 @@
         <script src="js/app/AppService.js"></script>
         <script src="js/app/AppController.js"></script>
         <script src="js/app/MyAppController.js"></script>  
-        <script src="js/app/CreateAppFormController.js"></script>  
+        <script src="js/app/CreateAppFormController.js"></script>
+        <script src="js/lib/angular-sanitize.js"></script>
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <script src="js/lib/image-resize.min.js"></script>
+        <script src="js/lib/video-resize.min.js"></script>
     </body>
 </html>

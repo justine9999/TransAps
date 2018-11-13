@@ -35,12 +35,17 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
         	    clickOutsideToClose: false,
         	    fullscreen: $scope.customFullscreen
         	})
-        	.then(function(app) {
+        	.then(function(result) {
         		console.log("submit a new app form");
+        		var app = result.app;
+        		var croppedImage = result.croppedImage;
         		self.insertAppRow(app, 1);
-        		AppService.createApp(app).then(
-        	          function(app_creation_time) {
+        		AppService.createApp(app, croppedImage).then(
+        	          function(create_app_result) {
+        	        	 var app_creation_time = create_app_result.creation_time;
+        	        	 var iconurl = create_app_result.iconurl;
         	        	 self.myappsstatus[app_creation_time] = 0;
+        	        	 app.profile_picture = iconurl;
         	        	 self.showActionToast('New App created: [ '+app.title+' ]', 'Undo', 'success');
                    }, function(app_to_delete) {
                 	   	 deleteAppRow(app_to_delete);
@@ -73,7 +78,7 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
               .highlightAction(true)
               .parent(document.querySelectorAll('#toaster-container'))
               .position('bottom left')
-              .hideDelay(300000)
+              .hideDelay(3000)
               .theme(type+'-toast');
 
             $mdToast.show(toast).then(function(response) {

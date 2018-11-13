@@ -3,23 +3,29 @@
  
 app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
  
-		$scope.appinfo = {
-			id: '1',
-			profile_picture: '',
-			title: 'test_title',
-			description: 'test_description',
-			author: 'test_user',
-			division: 'TPT',
-			downloads: '0',
-			rate: '0',
-			creation_time: Date.now(),
-			last_update_time: Date.now(),
-			content: 'some html content',
-			languages: ['English','Spanish'],
-		    purposes: ['Preflight'],		    
-		    app_types: ['VBA Add-In'],
-		    source_file_types: ['MS Word']
-		};
+		$scope.Model = $scope.Model || {myImage : "", myCroppedImage : "",
+			appinfo : {
+				profile_picture: '',
+				title: 'test_title',
+				description: 'test_description',
+				author: 'test_user',
+				division: 'TPT',
+				downloads: '0',
+				rate: '0',
+				creation_time: Date.now(),
+				last_update_time: Date.now(),
+				content: '',
+				languages: ['English','Spanish'],
+			    purposes: ['Preflight'],		    
+			    app_types: ['VBA Add-In'],
+			    source_file_types: ['MS Word']
+			}, inicropinfo : {
+				x : 0,
+				y : 0,
+				s : 0
+			}};
+	
+		//app basic information
 		
 		$scope.divisions = ['TPT','TDC','TDCEU','TDCNY','TDCSF','TPTBCN','AD-COM','ARCHITEXT','CRIMSON','ISP','IVERSON','OVERTAAL','ADAMS','TDCAPAC','TDC CORVALLIS','TP-TOKYO','WORLDLINGO','TDC TOKYO','OTHERS'];
 		
@@ -36,7 +42,48 @@ app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scop
 	    };
 
 	    $scope.submit = function() {
-	    	$mdDialog.hide($scope.appinfo);
+	    	var result = {app : $scope.Model.appinfo, croppedImage : $scope.Model.myCroppedImage};
+	    	$mdDialog.hide(result);
 	    };
+	     
+
+	    
+	    //app icon upload
+   
+		$scope.selectPic = function() {
+	    	document.querySelector('#imageInput').click();
+	    };
+		
+		$scope.iconPreview = function(event) {
+		    $mdDialog.show({
+		    	locals:{croppedImage: $scope.Model.myCroppedImage},
+		        template: '<md-dialog aria-label="icon-preview-dialog" id="cropped_image_container"><img id="cropped_image" class="mdl-shadow--2dp" ng-src="{{croppedImage}}" /></md-dialog>',
+		        controller: iconPreviewCtrl,
+		        controllerAs: 'ipctrl',  
+		        targetEvent: event,
+	            multiple: true,
+		        clickOutsideToClose:true
+		    });
+		};
+		    
+		    
+		var iconPreviewCtrl = function ($scope, croppedImage) { 
+		    $scope.croppedImage = croppedImage;  
+		}
+	    
+	    function handleFileSelect(evt) {
+	    	var file=evt.currentTarget.files[0];
+	    	var reader = new FileReader();
+	    	reader.onload = function (evt) {
+	    		$scope.$apply(function($scope){
+	    			$scope.Model.myImage=evt.target.result;
+	    		});
+	    	};
+	    	
+	    	reader.readAsDataURL(file);
+	    };
+	    
+	    angular.element(document.querySelector('#imageInput')).on('change', handleFileSelect);
+
     }
 ]);

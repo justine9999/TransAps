@@ -1,3 +1,6 @@
+* {
+	font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+}
 
 #toaster-container {
 	position: fixed;
@@ -6,13 +9,13 @@
 }
 
 md-toast.md-success-toast-theme .md-toast-content {
-	background-color: #fff !important;
+	background-color: #bcffe9 !important;
 	color: #176def !important;
 	opacity: 0.8;
 }
 
 md-toast.md-success-toast-theme .md-toast-content .md-button.md-highlight {
-	color: #70e69f !important;
+	color: #ff4081 !important;
 }
 
 md-toast.md-error-toast-theme .md-toast-content {
@@ -152,11 +155,6 @@ a {
 	padding: 15px;
 }
 
-#filter-keywords-input {
-	padding-top: 0px;
-	padding-bottom: 0px;
-}
-
 #global-search-icon {
 	color: #888;
 }
@@ -182,6 +180,10 @@ a {
 	background-color: #fff;
 	width: 100%;
 	margin-top: 20px;
+}
+
+th > i {
+	margin-bottom: 2px;
 }
 
 #apps-container {
@@ -228,6 +230,11 @@ a {
 #app-cnt-number {
 	padding-left: 6px;
 	padding-right:6px;
+	border-radius: 2px;
+}
+
+#app-cnt-number-wrapper {
+	border-radius: 2px;
 }
 
 #table {
@@ -241,22 +248,79 @@ a {
 }
 
 .app-card-square > .mdl-card__title {
-  color: #fff;
-  background-repeat: no-repeat !important;
-  background-size: contain !important;
-  background-color: #46B6AC !important;
-  background-position: center !important; 
-  background: url('../image/default_profile_pic.png');
+  background-color: #fafafa !important;
+  height: 100px;
 }
 
-.mdl-card__actions > a {
+#app-card-title {
+  	font-size: 14px;
+  	font-weight: 600;
+  	font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  	color: #00bcd4;
+}
+
+#app-card-author {
+  	font-size: 11px;
+  	font-style: italic;
+  	font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+  	color: #888;
+}
+
+#app-card-icon {
+	border-radius: 50%;
+	max-width: 100%;
+	max-height: 100%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #bbb;
+	margin: auto;
+}
+
+#app-card-icon-container {
+	display: inline-flex;
+	width: 30%;
+	height: 100%;
+}
+
+#my-app-icon-container {
+	display: flex;
+	flex-direction: column;
+	width: 48px;
+	height: 48px;
+}
+
+#app-card-basic-info {
+	display: flex;
+	width: 70%;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;	
+}
+
+#app-card-description {
+	display: block;
+  	height: 150px;
+  	color: #686868;
+}
+
+#app-card-detail {
+	text-align: center;
+	background-color: #fafafa;
+	color: #686868;'
+}
+
+#app-card-detail > a {
+	font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+}
+
+#app-card-detail > a {
 	font-weight: bold;
 }
 
 app-card {
 	margin-right:30px;
 	margin-bottom:30px;
-	height: 300px;
 	display: inline-block;
 }
 
@@ -294,11 +358,43 @@ md-dialog {
 	width: 50%;
 }
 
+md-dialog-content {
+	overflow: hidden !important;
+}
+
+.md-dialog-content {
+	overflow: auto !important;
+}
+
+#view_app_creation_form {
+	height: 600px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+md-pagination-wrapper {
+	width: 100%;
+}
+
+md-tab-item {
+	max-width: 33.3% !important;
+	width: 33.3%;
+}
+
+.md-tab.md-active {
+	color: #81b6f7 !important;
+}
+
+md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+	color: #08f3f3;
+	background-color: #88b9f5;
+}
+
 .tps-modal-headline {
 	font-size: 14px;
 	font-weight: bold;
 	color: #fff;
-	padding: 3px 10px;
+	padding: 0px 10px;
 	background-color: #81a7da;
 	font-family: Verdana, Geneva, sans-serif;
 	display: flex;
@@ -309,84 +405,9 @@ md-button {
 	font-family: Verdana, Geneva, sans-serif;
 }
 
-
-#app_creating_icon:after {
-		content: "";
-		width: 100%;
-		height: 100%;
-		border: solid 2px;
-		transform: scale(0.8);
-		position: absolute;
-		top: -2px;
-		left: -2px;
-		border-radius: 50%;
-		transition: all 0.3s ease;
-		border-color: #6caedf;
+#my-app-header-row {
+	background-color: #fafafa;
 }
-
-tr:hover:after #app_creating_icon {
-		transform: scale(1);
-}
-
-tr:hover #app_creating_icon {
-		background-color: transparent;
-		cursor: pointer;
-		box-shadow: none;
-		color: #6caedf;
-}
-
-#app_creating_icon {
-		font-size: 1.5rem;
-		color: white;
-		border-radius: 50%;
-		padding: 5px;
-		transition: color 0.2s ease, background-color 0.2s ease, transform 0.3s ease;
-	    -webkit-animation:spin 2s linear infinite;
-	    -moz-animation:spin 2s linear infinite;
-	    animation:spin 2s linear infinite;
-		background-color: #6caedf;
-}
-
-
-#app_deleting_icon:after {
-		content: "";
-		width: 100%;
-		height: 100%;
-		border: solid 2px;
-		transform: scale(0.8);
-		position: absolute;
-		top: -2px;
-		left: -2px;
-		border-radius: 50%;
-		transition: all 0.3s ease;
-		border-color: #cd8484;
-}
-
-tr:hover:after #app_deleting_icon {
-		transform: scale(1);
-}
-
-tr:hover #app_deleting_icon {
-		background-color: transparent;
-		cursor: pointer;
-		box-shadow: none;
-		color: #cd8484;
-}
-
-#app_deleting_icon {
-		font-size: 1.5rem;
-		color: white;
-		border-radius: 50%;
-		padding: 5px;
-		transition: color 0.2s ease, background-color 0.2s ease, transform 0.3s ease;
-	    -webkit-animation:spin 2s linear infinite;
-	    -moz-animation:spin 2s linear infinite;
-	    animation:spin 2s linear infinite;
-		background-color: #cd8484;
-}
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 #app_view_details_icon {
 	font-size: 34px;
@@ -405,3 +426,175 @@ tr:hover #app_deleting_icon {
 	cursor: pointer;
 }
 
+.cropArea {
+  	background: #f2f2f2;
+  	overflow: hidden;
+  	width:100%;
+  	height:350px;
+  	margin:30px auto 30px auto;
+}
+
+#profile_image_upload_menu {
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+#profile_image_upload_content {
+	width:100%;
+	background-color:#f2f2f2;
+	display:flex;
+	align-items:center;
+	border-top-style:dashed;
+	border-top-color:#ddd;
+	border-top-width:2px;
+	border-bottom-style:dashed;
+	border-bottom-color:#ddd;
+	border-bottom-width:2px;
+}
+
+#profile_image_upload_menu > button {
+	margin-left: 10px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	color: #9c9296;
+}
+
+#cropped_image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 50%;
+}
+
+#cropped_image_container{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: #ddf7f3;
+}
+
+span.stars, span.stars span {
+    display: block;
+    background: url('../image/stars.png') 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
+#download_icon {
+	width:16px;
+	height:16px;
+}
+
+#app-card-recommendation-info {
+	display: flex;
+}
+
+#rating {
+	width: 50%;
+	margin-top: 2px;
+	text-align: left;
+}
+
+#downloads {
+	display: flex;
+	justify-content: flex-end;
+	width: 50%;
+}
+
+#downloads-cnt {
+	font-weight: 600;
+	margin-left: 6px;
+	margin-top: 2px;
+}
+
+#app-card-header {
+	padding-right: 2px;
+}
+
+.my-app-icon-cell{
+	width:10%;
+}
+
+#tps-tag {
+	margin-right: 10px;
+	border-radius: 2px;
+	background-color: #e0edf5;
+}
+
+#tps-tag-text {
+	color: #002d6a;
+	margin-top: 1px;
+}
+
+#tps-tag > button > i {
+	margin-top: 1px;
+	font-size: 13px;
+}
+
+.state-select-tr {
+	background-color: #ededed !important;
+}
+
+#skeleton {
+	width: 100%;
+	background-color: #ffffff;
+}
+
+.skeleton-row-1 {
+	height: 100px;
+}
+
+.skeleton-row-2 {
+	height: 60px;
+}
+
+ .skeleton-cell {
+ 	background-color: #eeeeee;
+ }
+ 
+ #filter-options > td {
+ 	padding-right: 0px;
+ }
+ 
+ .tps-border-right{
+ 	border-right-style: solid;
+ 	border-right-width: 1px;
+ 	border-right-color: #ddd;
+ }
+ 
+ .tps-v-center-child {
+ 	display: flex;
+ 	flex-direction: column;
+ 	align-items: center;
+ 	justify-content: center;
+ }
+ 
+ #profile_image_upload_container{
+ 	padding-top: 20px;
+ }
+ 
+ #app_content_editor_container {
+ 	padding: 50px 10px 50px 10px;
+ }
+ 
+ #editor {
+  	height: 430px;
+}
+
+.ql-toolbar {
+	background-color: #eee;
+}
+
+.ql-snow .ql-tooltip {
+	position: fixed !important;
+	bottom: 65px;
+	left: auto !important;
+	top: auto !important;
+}
+
+#editor iframe {
+    pointer-events: none;
+}
