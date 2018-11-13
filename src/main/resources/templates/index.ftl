@@ -196,5 +196,6 @@
         <script src="js/lib/angular-sanitize.js"></script>
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
         <script src="js/lib/image-resize.min.js"></script>
+        <script src="js/lib/video-resize.min.js"></script>
     </body>
 </html>

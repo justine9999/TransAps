@@ -1,3 +1,3 @@
 <div id="app_content_editor_container">
-	<quill-editor></quill-editor>
+	<quill-editor contentdata="Model.appinfo.content"></quill-editor>
 </div>

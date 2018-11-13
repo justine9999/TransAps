@@ -594,3 +594,7 @@ span.stars span {
 	left: auto !important;
 	top: auto !important;
 }
+
+#editor iframe {
+    pointer-events: none;
+}

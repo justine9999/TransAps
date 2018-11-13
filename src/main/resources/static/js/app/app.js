@@ -194,8 +194,11 @@ app.directive('stateChangeStyler', ['$state', '$rootScope', function($state, $ro
 app.directive('quillEditor', function($compile) {
     return {
       restrict: 'E',
+      scope: {
+      		contentdata: "="
+      },
       link: function($scope, $element) {
-          var template= '<div id="editor"></div>';
+          var template= '<div id="editor">'+$scope.contentdata+'</div>';
           var linkFunc = $compile(template);
           var content = linkFunc($scope);
           $element.append(content);
@@ -205,7 +208,7 @@ app.directive('quillEditor', function($compile) {
         	  var quill = new Quill('#editor', {
                   modules: {
                 	imageResize: {},
-                	VideoResize: {},
+                	videoResize: {},
                     toolbar: [
                       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
                       [{ 'size': ['small', false, 'large', 'huge'] }],
@@ -229,7 +232,7 @@ app.directive('quillEditor', function($compile) {
                   var justHtml = quill.root.innerHTML;
                               
                   $scope.$apply(function() {
-                    $scope.quillDataHTML = justHtml;
+                    $scope.contentdata = justHtml;
                   });
               });
           }

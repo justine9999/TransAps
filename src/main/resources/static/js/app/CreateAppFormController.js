@@ -3,7 +3,7 @@
  
 app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
  
-		$scope.Model = $scope.Model || {myImage : "", myCroppedImage : "", 
+		$scope.Model = $scope.Model || {myImage : "", myCroppedImage : "",
 			appinfo : {
 				profile_picture: '',
 				title: 'test_title',
@@ -14,7 +14,7 @@ app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scop
 				rate: '0',
 				creation_time: Date.now(),
 				last_update_time: Date.now(),
-				content: 'some html content',
+				content: '',
 				languages: ['English','Spanish'],
 			    purposes: ['Preflight'],		    
 			    app_types: ['VBA Add-In'],
@@ -84,10 +84,6 @@ app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scop
 	    };
 	    
 	    angular.element(document.querySelector('#imageInput')).on('change', handleFileSelect);
-	    
-	    
-	    
-	    //app content
-	    $scope.quillDataHTML = "";
+
     }
 ]);
