@@ -203,7 +203,7 @@ app.directive('quillEditor', function($compile) {
           var content = linkFunc($scope);
           $element.append(content);
         
-          //a work around for when you cancel md-dialog with the 'editor' tab active
+          //a workaround for when you cancel md-dialog with the 'editor' tab active
           if(document.querySelector('#editor')){
         	  var quill = new Quill('#editor', {
                   modules: {
