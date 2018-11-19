@@ -60,7 +60,7 @@
 									    </tr>
 									  </thead>
 									  <tbody>
-									    <tr state-change-styler ui-sref="home">
+									    <tr viewchange state-change-styler ui-sref="home">
 									      <td class="mdl-data-table__cell--non-numeric">All Apps</td>
 									      <td>
 									      	<span class="mdl-list__item-secondary-action fright">
@@ -105,7 +105,7 @@
 									    </tr>
 									  </thead>
 									  <tbody>
-									    <tr state-change-styler ui-sref="my-apps">
+									    <tr viewchange state-change-styler ui-sref="my-apps">
 									      <td class="mdl-data-table__cell--non-numeric">My Apps</td>
 									      <td>
 									      	<span class="mdl-list__item-secondary-action fright">
@@ -156,6 +156,7 @@
 										<div class="mdl-cell mdl-cell--12-col skeleton-cell"></div>
 									</div>									
 								</div>
+								<div ui-view="view_app_filter"></div>
 					  			<div ui-view="view_app_list"></div>
 		    				</div>
 					  	</div>

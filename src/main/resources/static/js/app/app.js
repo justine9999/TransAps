@@ -20,17 +20,44 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$mdThe
 		$mdThemingProvider.theme('error-toast');
         $stateProvider
             .state('home', {
-                url: '/',
+            	url: '/',
                 views: {
-	                'view_app_list': {
+	                'view_app_filter@': {
+	                	templateUrl: 'partials/app_filter',
+	                    controller:'AppController',
+	                    controllerAs:'appctrl',
+	                },
+	                'view_app_list@': {
 	                	templateUrl: 'partials/app_list',
 	                    controller:'AppController',
 	                    controllerAs:'appctrl',
 	                    resolve: {
-	                        apps: function ($q, AppService) {
+	                        apps: function ($q, $stateParams, AppService) {
 	                            console.log('Load all apps');
 	                            var deferred = $q.defer();
-	                            AppService.loadAllApps().then(deferred.resolve, deferred.resolve);
+	                            AppService.loadAllApps($stateParams.tags, $stateParams.sort).then(deferred.resolve, deferred.resolve);
+	                            return deferred.promise;
+	                        }
+	                    }
+	                }
+	            }
+            })
+            
+            .state('home.view_app_list', {
+                params: {
+                    tags: [],
+                    sort: 1
+                },
+                views: {
+	                'view_app_list@': {
+	                	templateUrl: 'partials/app_list',
+	                    controller:'AppController',
+	                    controllerAs:'appctrl',
+	                    resolve: {
+	                        apps: function ($q, $stateParams, AppService) {
+	                            console.log('Load all apps');
+	                            var deferred = $q.defer();
+	                            AppService.loadAllApps($stateParams.tags, $stateParams.sort).then(deferred.resolve, deferred.resolve);
 	                            return deferred.promise;
 	                        }
 	                    }
@@ -173,8 +200,10 @@ app.directive('stateChangeStyler', ['$state', '$rootScope', function($state, $ro
     return function (scope, element, attrs) {
     	var sname = attrs.uiSref;
     	var ckbox = $(element).find('label')[0];
-        $rootScope.$on('$stateChangeStart', function() {
-        	$rootScope.preloader = true;
+        $rootScope.$on('$stateChangeStart', function(event, toState) {
+        	if(toState.name === 'home' || toState.name === 'my-apps'){
+        		$rootScope.preloader = true;
+        	}
         });
         
         $rootScope.$on('$stateChangeSuccess', function() {
@@ -187,6 +216,28 @@ app.directive('stateChangeStyler', ['$state', '$rootScope', function($state, $ro
             	ckbox.MaterialCheckbox.uncheck();
             }
         });
+    };
+}]);
+
+app.directive('filterChangeStyler', ['$state', '$q', 'AppService', function($state, $q, AppService) {
+	return {
+        scope: {
+        	tags: "@",
+        	sort: "@"
+        },
+        link: function(scope, element, attrs) {
+        	var ckbox = $(element).find('label')[0];
+        	element.bind("click", function(e){
+        		var filter_buttons = document.querySelectorAll("md-fab-actions .md-button");
+        		filter_buttons.forEach(function(filter_button) {
+        			$(filter_button).find('label')[0].MaterialCheckbox.uncheck();
+        		});
+        		ckbox.MaterialCheckbox.check();
+        		
+        		console.log('Re-load all apps');
+        		$state.go('home.view_app_list', {tags:scope.tags, sort:scope.sort}, {reload: false, inherit: false, notify: true});
+        	});
+        }
     };
 }]);
 

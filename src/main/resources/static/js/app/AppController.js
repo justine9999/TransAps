@@ -21,10 +21,15 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         self.searchText = null;
         self.querySearch = querySearch;
         self.tags = loadTags();
-        self.selectedTags = [{'text':'TPT','type':'keyword'},{'text':'TDC','type':'keyword'}];
+        self.selectedTags = [];
         self.addTag = addTag;
         self.removeTag = removeTag;
         self.transformChip = transformChip;
+        self.isFilterOpen = false;
+        self.fostyle = {'opacity':'0.5'};
+        
+        //0: most recent; 1: most downloads; 2: top rated
+        self.selectedFilter = 2;
   
         function transformChip(chip) {
             if (angular.isObject(chip)) {

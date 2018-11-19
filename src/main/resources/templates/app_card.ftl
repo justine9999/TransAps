@@ -30,7 +30,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td id="app-card-description" class="mdl-data-table__cell--non-numeric">{{app.description}}</td>
+			<td id="app-card-description" class="mdl-data-table__cell--non-numeric"><div>{{app.description}}</div></td>
 		</tr>
 		<tr>
 			<td id="app-card-detail" class="mdl-data-table__cell--non-numeric">
