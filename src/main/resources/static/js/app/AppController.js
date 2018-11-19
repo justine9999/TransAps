@@ -10,7 +10,8 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         self.appcnt = 30;
         $scope.scrollTo = function (target){};
         $scope.appcardwidth = $('#apps-container').css("width");
-        $scope.preloader = false;
+        //$scope.preloader = false;
+        //$scope.applistpreloader = false;
         
         function getAllApps(){
         	var obj = AppService.getAllApps();
@@ -29,7 +30,7 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         self.fostyle = {'opacity':'0.5'};
         
         //0: most recent; 1: most downloads; 2: top rated
-        self.selectedFilter = 2;
+        self.selectedFilter = 1;
   
         function transformChip(chip) {
             if (angular.isObject(chip)) {
@@ -57,6 +58,11 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         	if(!text) {
         		return;
         	}
+        	self.selectedTags.forEach(function(selectedTag) {
+    			if(text === selectedTag.text && selectedTag.type === 'keyword'){
+    				return;
+    			}
+    		});
             var newtag = {'text':text,'type':'keyword'};
             self.selectedTags.push(newtag);
             clearInputText();

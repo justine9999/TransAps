@@ -203,11 +203,14 @@ app.directive('stateChangeStyler', ['$state', '$rootScope', function($state, $ro
         $rootScope.$on('$stateChangeStart', function(event, toState) {
         	if(toState.name === 'home' || toState.name === 'my-apps'){
         		$rootScope.preloader = true;
+        	}else if(toState.name === 'home.view_app_list'){
+        		$rootScope.applistpreloader = true;
         	}
         });
         
         $rootScope.$on('$stateChangeSuccess', function() {
         	$rootScope.preloader = false;
+        	$rootScope.applistpreloader = false;
             if(sname === $state.current.name || sname === $state.$current.parent.name){
             	element.addClass('state-select-tr');
             	ckbox.MaterialCheckbox.check();
@@ -223,7 +226,7 @@ app.directive('filterChangeStyler', ['$state', '$q', 'AppService', function($sta
 	return {
         scope: {
         	tags: "@",
-        	sort: "@"
+        	sort: "="
         },
         link: function(scope, element, attrs) {
         	var ckbox = $(element).find('label')[0];
@@ -233,8 +236,8 @@ app.directive('filterChangeStyler', ['$state', '$q', 'AppService', function($sta
         			$(filter_button).find('label')[0].MaterialCheckbox.uncheck();
         		});
         		ckbox.MaterialCheckbox.check();
+        		scope.sort = attrs.sorttype;
         		
-        		console.log('Re-load all apps');
         		$state.go('home.view_app_list', {tags:scope.tags, sort:scope.sort}, {reload: false, inherit: false, notify: true});
         	});
         }

@@ -142,7 +142,7 @@
 					  	</div>
 					  	<div class="mdl-cell mdl-cell--9-col">
 					  		<div id="main-body-right-container">
-					  			<div id="skeleton" ng-show="preloader">
+					  			<div id="skeleton" ng-show="$root.preloader">
 					  				<md-progress-linear md-mode="query"></md-progress-linear>
 									<div class="mdl-grid skeleton-row-1">
 										<div class="mdl-cell mdl-cell--9-col skeleton-cell"></div>

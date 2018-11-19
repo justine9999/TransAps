@@ -564,9 +564,13 @@ span.stars span {
 	height: 60px;
 }
 
- .skeleton-cell {
+.skeleton-cell {
  	background-color: #eeeeee;
  }
+ 
+.skeleton-row-3 {
+	height: 300px;
+}
  
  #filter-options > td {
  	padding-right: 0px;

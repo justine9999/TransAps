@@ -65,7 +65,7 @@
 	          	</md-button>
 	        </md-fab-trigger>
 	        <md-fab-actions>
-	          	<md-button tags="{{appctrl.selectedTags}}" sort="{{appctrl.selectedFilter}}" filter-change-styler class="md-raised">
+	          	<md-button sorttype="0" tags="{{appctrl.selectedTags}}" sort="appctrl.selectedFilter" filter-change-styler class="md-raised">
 	          		<span class="mdl-list__item-secondary-action flight">
 						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="filter-option-1">
 							<input type="checkbox" id="filter-option-1" class="mdl-checkbox__input" />
@@ -73,7 +73,7 @@
 					</span>
 	          		Top Rated
 	          	</md-button>
-	          	<md-button tags="{{appctrl.selectedTags}}" sort="{{appctrl.selectedFilter}}" filter-change-styler class="md-raised">
+	          	<md-button sorttype="1" tags="{{appctrl.selectedTags}}" sort="appctrl.selectedFilter" filter-change-styler class="md-raised">
 	          		<span class="mdl-list__item-secondary-action flight">
 						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="filter-option-2">
 							<input type="checkbox" id="filter-option-2" class="mdl-checkbox__input" />
@@ -81,7 +81,7 @@
 					</span>
 	          		Most Downloads
 	          	</md-button>
-	          	<md-button tags="{{appctrl.selectedTags}}" sort="{{appctrl.selectedFilter}}" filter-change-styler class="md-raised">
+	          	<md-button sorttype="2" tags="{{appctrl.selectedTags}}" sort="appctrl.selectedFilter" filter-change-styler class="md-raised">
 	          		<span class="mdl-list__item-secondary-action flight">
 						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="filter-option-3">
 							<input type="checkbox" id="filter-option-3" class="mdl-checkbox__input" />

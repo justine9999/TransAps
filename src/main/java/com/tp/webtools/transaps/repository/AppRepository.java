@@ -96,11 +96,14 @@ public class AppRepository {
      */
     public App createApp(App app, String croppedImage) {
     	
-    	String[] imageDatas = croppedImage.split(",");
-    	String fromat = imageDatas[0].split("/")[1].split(";")[0];
-    	String base64Data = imageDatas[1];
+    	if(croppedImage.length() != 0){
+    		String[] imageDatas = croppedImage.split(",");
+        	String fromat = imageDatas[0].split("/")[1].split(";")[0];
+        	String base64Data = imageDatas[1];
 
-    	upuloadAppIcon(base64Data, fromat, app);
+        	upuloadAppIcon(base64Data, fromat, app);
+    	}
+    	
     	
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	Document appDocument = new Document(gson.toJson(app));
