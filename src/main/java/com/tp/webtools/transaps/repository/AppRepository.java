@@ -30,6 +30,7 @@ import com.tp.webtools.transaps.dao.AppDao;
 import com.tp.webtools.transaps.dao.AppIconStorageDao;
 import com.tp.webtools.transaps.dao.DocumentClientFactory;
 import com.tp.webtools.transaps.model.App;
+import com.tp.webtools.transaps.model.Tag;
 
 @Repository
 public class AppRepository {
@@ -47,16 +48,19 @@ public class AppRepository {
 	
 	@Autowired
     private AppIconStorageDao appIconStorageDao;
+	
+	private final static String[] sorter = new String[]{"rate","downloads","creation_time"};
     
 
     /**
      * Read all app documents
      */
-    public List<App> readAllApps() {
+    public List<App> readAllApps(Tag[] tags, int sort) {
 
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	List<App> apps = new ArrayList<App>();
-        final String query = "SELECT * FROM root r";
+    	
+        final String query = "SELECT * FROM root r ORDER BY r." + sorter[sort] + " DESC";
 
         List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
         for (Document appDocument : documentList) {

@@ -3,10 +3,11 @@ package com.tp.webtools.transaps.service;
 import java.util.List;
 
 import com.tp.webtools.transaps.model.App;
+import com.tp.webtools.transaps.model.Tag;
 
 public interface AppService {
 			
-	List<App> findAllApps();
+	List<App> findAllApps(Tag[] tags, int sort);
 		
 	App findByTitle(String title);
 	

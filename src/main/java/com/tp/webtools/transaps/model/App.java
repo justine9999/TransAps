@@ -25,9 +25,9 @@ public class App implements Serializable{
 	
 	private String division;
 	
-	private String downloads;
+	private int downloads;
 	
-	private String rate;
+	private double rate;
 	
 	private long creation_time;
 	
@@ -42,13 +42,7 @@ public class App implements Serializable{
 	private List<String> app_types;
 	
 	public App() {}
-	
-	public App(String title, String description, String author){
-		
-		this.title = title;
-		this.description = description;
-		this.author = author;
-	}
+
 
 	@Override
 	public String toString() {
@@ -58,22 +52,5 @@ public class App implements Serializable{
 				+ ", last_update_time=" + last_update_time + ", purposes=" + purposes + ", languages=" + languages
 				+ ", source_file_types=" + source_file_types + ", app_types=" + app_types + "]";
 	}
-	
-	/*public App(String title, String description, String author, int downloads, int rate, String division, List<String> purpose,
-			List<String> languages, List<String> sourceFileTypes, List<String> appTypes	){
-		
-		this.title = title;
-		this.description = description;
-		this.author = author;
-		this.downloads = downloads;
-		this.rate = rate;
-		this.division = division;
-		this.purpose = purpose;
-		this.languages = languages;
-		this.sourceFileTypes = sourceFileTypes;
-		this.appTypes = appTypes;
-		this.creationTime = new Date().getTime();
-		this.lastUpdateTime = new Date().getTime();
-	}*/
 
 }

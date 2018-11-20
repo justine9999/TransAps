@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tp.webtools.transaps.model.App;
+import com.tp.webtools.transaps.model.Tag;
 import com.tp.webtools.transaps.repository.AppRepository;
 
 @Service("appService")
@@ -17,11 +18,8 @@ public class AppServiceImpl implements AppService{
 	@Autowired
     private AppRepository appRepository;
 	
-    public List<App> findAllApps(){
-    	List<App> apps = appRepository.readAllApps();
-    	for(int i = 0; i < 30; i++){
-    		apps.add(new App("titile"+i,"desc"+i,"author"+i));
-    	}
+    public List<App> findAllApps(Tag[] tags, int sort){
+    	List<App> apps = appRepository.readAllApps(tags, sort);
     	
     	return apps;
     }

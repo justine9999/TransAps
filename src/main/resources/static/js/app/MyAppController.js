@@ -15,6 +15,9 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
  
         function getMyApps(){
         	self.myapps = AppService.getMyApps();
+        	if(self.myapps.length === 0){
+        		self.myapps = [];
+        	}
         	
         	//initialize myapps status
         	if(Object.keys(self.myappsstatus).length === 0){

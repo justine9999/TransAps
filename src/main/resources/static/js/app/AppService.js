@@ -16,11 +16,11 @@ angular.module('mainApp').factory('AppService',
             return factory;
  
             function loadAllApps(tags, sort) {
-            	console.log("parameters tags: " + tags);
-            	console.log("parameters sort: " + sort);
                 console.log('Fetching all apps');
+                var _tags = tags === undefined?'[]':tags.toString();
+                var _sort = sort === undefined?1:sort;
                 var deferred = $q.defer();
-                $http.get(urls.APP_SERVICE_API)
+                $http.get(urls.APP_SERVICE_API, {params: { tags: _tags, sort: _sort }})
                     .then(
                         function (response) {
                             console.log('Fetched successfully all apps');

@@ -29,7 +29,7 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         self.isFilterOpen = false;
         self.fostyle = {'opacity':'0.5'};
         
-        //0: most recent; 1: most downloads; 2: top rated
+        //0: top rated; 1: most downloads; 2: most recent
         self.selectedFilter = 1;
   
         function transformChip(chip) {
@@ -58,13 +58,18 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         	if(!text) {
         		return;
         	}
+        	var tag_already_exist = false;
         	self.selectedTags.forEach(function(selectedTag) {
     			if(text === selectedTag.text && selectedTag.type === 'keyword'){
+    				tag_already_exist = true;
     				return;
     			}
     		});
-            var newtag = {'text':text,'type':'keyword'};
-            self.selectedTags.push(newtag);
+        	if(!tag_already_exist){
+        		var newtag = {'text':text,'type':'keyword'};
+                self.selectedTags.push(newtag);
+        	}
+            
             clearInputText();
         }
         

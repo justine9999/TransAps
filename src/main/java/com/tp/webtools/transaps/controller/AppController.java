@@ -2,7 +2,6 @@ package com.tp.webtools.transaps.controller;
 
 
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -23,6 +23,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.tp.webtools.transaps.exception.CustomError;
 import com.tp.webtools.transaps.model.App;
+import com.tp.webtools.transaps.model.Tag;
 
 
 @RestController
@@ -36,13 +37,18 @@ public class AppController {
 	 
 	    //Retrieve all Apps
 		@RequestMapping(value = "/app/", method = RequestMethod.GET)
-	    public ResponseEntity<List<App>> listAllApps() {
+	    public ResponseEntity<List<App>> listAllApps(@RequestParam("tags") String _tags, @RequestParam("sort") String _sort) {
 			
 			System.out.println("all apps");
-			logger.info("Retrieve all apps");
 			
-			try {				
-		        List<App> apps = appService.findAllApps();
+			logger.info("Retrieve all apps");
+			logger.info("Filter info: " + "tags: "  + _tags + " sort: " + _sort);
+			
+			try {		
+				Gson gson = new GsonBuilder().create();
+				Tag[] tags = gson.fromJson(_tags, Tag[].class);
+				int sort = Integer.parseInt(_sort);
+		        List<App> apps = appService.findAllApps(tags, sort);
 		        if (apps.isEmpty()) {
 		            return new ResponseEntity(HttpStatus.NO_CONTENT);
 		        }
@@ -61,7 +67,7 @@ public class AppController {
 			logger.info("Retrieve all user apps");
 			
 			try {
-				List<App> myapps = appService.findAllApps();
+				List<App> myapps = appService.findAllApps(new Tag[]{}, 2);
 		        if (myapps.isEmpty()) {
 		            return new ResponseEntity(HttpStatus.NO_CONTENT);
 		        }
