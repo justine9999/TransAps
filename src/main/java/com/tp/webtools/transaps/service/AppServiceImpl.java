@@ -33,9 +33,12 @@ public class AppServiceImpl implements AppService{
         return appRepository.createApp(app, croppedImage);
     }
 
+    public App deleteApp(String title) {
+    	return appRepository.deleteApp(title);
+    }
     
-    public boolean isAppExist(App app) {
-    	return findByTitle(app.getTitle()) != null;
+    public boolean isAppExist(String title) {
+    	return findByTitle(title) != null;
     }
 
 }

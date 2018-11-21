@@ -97,7 +97,7 @@ public class AppController {
 		    	
 		    	logger.info("Creating App : {}", app.getTitle());
 		    	
-		        if (appService.isAppExist(app)) {
+		        if (appService.isAppExist(app.getTitle())) {
 		            logger.error("Unable to create. An App with title {} already exist", app.getTitle());
 		            return new ResponseEntity(new CustomError("Unable to create. An App with title " + app.getTitle() + " already exist."), HttpStatus.CONFLICT);
 		        }
@@ -110,6 +110,31 @@ public class AppController {
 	        }catch(Exception ex) {
 	        	logger.error("Unable to create. Internal Server Error:", ex);
 	        	return new ResponseEntity(new CustomError("Unable to create. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+	        }  
+	    }
+	    
+	    //Delete an App
+	    @RequestMapping(value = "/app/{title}", method = RequestMethod.DELETE)
+	    public ResponseEntity<App> deleteApp(@RequestParam("title") String title) {
+	    	
+	    	System.out.println("delete app");
+	    		        
+	        try {	      
+	        	Thread.sleep(2000);
+
+		    	logger.info("Deleting App : {}", title);
+		    	
+		        if (!appService.isAppExist(title)) {
+		            logger.error("Unable to delete. The App with title {} does not exist", title);
+		            return new ResponseEntity(new CustomError("Unable to delete. The App with title " + title + " does not exist."), HttpStatus.NOT_FOUND);
+		        }
+		        
+		        App deleted_app = appService.deleteApp(title);
+		        
+		        return new ResponseEntity<App>(deleted_app, HttpStatus.OK);
+	        }catch(Exception ex) {
+	        	logger.error("Unable to create. Internal Server Error:", ex);
+	        	return new ResponseEntity(new CustomError("Unable to delete. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
 	        }  
 	    }
 }

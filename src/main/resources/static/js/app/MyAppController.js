@@ -4,14 +4,30 @@
 app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$element', '$mdToast', function( AppService, $scope, $mdDialog, $element, $mdToast) {
  
         var self = this;
-        self.getMyApps = getMyApps;        
         self.showCreateAppModal = showCreateAppModal;
+        self.deleteApp = deleteApp;
         self.insertAppRow = insertAppRow;
         self.getAppStatus = getAppStatus;
         self.showActionToast = showActionToast;
         self.myapps = [];
         //0-normal, 1-creating, 2-deleting
         self.myappsstatus = {};
+        
+        //initilize controller data
+        var init = function getMyApps(){
+        	self.myapps = AppService.getMyApps();
+        	if(self.myapps.length === 0){
+        		self.myapps = [];
+        	}
+        	
+        	//initialize myapps status
+        	if(Object.keys(self.myappsstatus).length === 0){
+        		for (var i = 0; i < self.myapps.length; i++) {
+            		self.myappsstatus[self.myapps[i].creation_time] = 0;
+            	}
+        	}
+        };
+        init();
  
         function getMyApps(){
         	self.myapps = AppService.getMyApps();
@@ -25,8 +41,6 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
             		self.myappsstatus[self.myapps[i].creation_time] = 0;
             	}
         	}
-        	
-        	return self.myapps;
         }
         
         function showCreateAppModal(event) {
@@ -66,6 +80,19 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
         
         function getAppStatus(app_creation_time) {
         	return self.myappsstatus[app_creation_time];
+        }
+        
+        function deleteApp(index) {
+        	var app_to_delete = self.myapps[index];
+        	self.myappsstatus[app_to_delete.creation_time] = 2;
+        	
+        	AppService.deleteApp(app_to_delete.title).then(
+      	          function() {
+      	        	deleteAppRow(app_to_delete);
+      	        	self.showActionToast('App deleted: [ '+app_to_delete.title+' ]', 'Undo', 'success');
+                 }, function() {
+                	self.showActionToast('Unable to delete App: [ '+app_to_delete.title+' ]', 'Detail', 'error');
+            });
         }
         
         function deleteAppRow(app_to_delete) {

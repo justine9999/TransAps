@@ -12,6 +12,8 @@ public interface AppService {
 	App findByTitle(String title);
 	
 	App createApp(App app, String croppedImage);
+	
+	App deleteApp(String title);
 
-	boolean isAppExist(App app);
+	boolean isAppExist(String title);
 }

@@ -127,6 +127,29 @@ public class AppRepository {
         return created_app;
     }
     
+    /**
+     * Delete an app
+     */
+    public App deleteApp(String title) {
+
+    	DocumentClient documentClient = documentClientFactory.getDocumentClient();
+    	App app = null;
+        final String query = "SELECT * FROM root r WHERE r.title='" + title + "'";
+
+        try {
+        	List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
+            app = gson.fromJson(documentList.get(0).toString(), App.class);
+        	documentClient.deleteDocument(documentList.get(0).getSelfLink(), null);
+        }catch(Exception ex) {
+        	ex.printStackTrace();
+        	return null;
+        }
+
+    	logger.info("Deleted App: " + app.toString());
+    	
+    	return app;
+    }
+    
     private void upuloadAppIcon(String base64Data, String format, App app){
     	
     	byte[] decodedBytes = Base64.getDecoder().decode(base64Data);

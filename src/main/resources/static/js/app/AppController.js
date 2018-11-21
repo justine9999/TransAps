@@ -10,8 +10,6 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         self.appcnt = 30;
         $scope.scrollTo = function (target){};
         $scope.appcardwidth = $('#apps-container').css("width");
-        //$scope.preloader = false;
-        //$scope.applistpreloader = false;
         
         function getAllApps(){
         	var obj = AppService.getAllApps();

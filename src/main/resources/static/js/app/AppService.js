@@ -10,7 +10,8 @@ angular.module('mainApp').factory('AppService',
                 getAllApps: getAllApps,
                 loadMyApps: loadMyApps,
                 getMyApps: getMyApps,
-                createApp: createApp
+                createApp: createApp,
+                deleteApp: deleteApp
             };
  
             return factory;
@@ -75,6 +76,23 @@ angular.module('mainApp').factory('AppService',
                         function (errResponse) {
                         	console.error('Error while creating App: ' + errResponse.data.errorMessage);
                         	deferred.reject(app);
+                        }
+                    );
+                return deferred.promise;
+           }
+            
+           function deleteApp(app_title) {
+                console.log('Deleting App: ' + app_title);
+                var deferred = $q.defer();
+                $http.delete(urls.APP_SERVICE_API + app_title)
+                    .then(
+                        function (response) {
+                        	console.log('App deleted: ' + app_title);
+                            deferred.resolve();
+                        },
+                        function (errResponse) {
+                        	console.error('Error while deleting App: ' + errResponse.data.errorMessage);
+                        	deferred.reject();
                         }
                     );
                 return deferred.promise;

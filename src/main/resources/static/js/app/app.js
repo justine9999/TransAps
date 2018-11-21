@@ -1,4 +1,4 @@
-var app = angular.module('mainApp',['ui.router','ngStorage','ngMaterial','ngMessages','ngImgCrop','ngSanitize']);
+var app = angular.module('mainApp',['ui.router','ngStorage','ngMaterial','ngMessages','ngImgCrop','ngSanitize','ngAnimate']);
 
 app.run(function ($rootScope,$timeout) {
     $rootScope.$on('$viewContentLoaded', function() {

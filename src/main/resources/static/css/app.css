@@ -422,10 +422,6 @@ md-button {
 	background-color: #fafafa;
 }
 
-#app_view_details_icon {
-	font-size: 34px;
-}
-
 .md-tooltip {
     border-radius: 2px !important;
 }
@@ -433,6 +429,11 @@ md-button {
 .vcenter {
 	display:flex;
 	align-items: center;
+}
+
+.hrspace20 {
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #my-apps-container > tbody {
@@ -624,6 +625,10 @@ md-fab-speed-dial {
 	background-color: #fff;
 }
 
+#filter-menu-button > i{
+	padding-bottom: 3px;
+}
+
 #app-filter-wrapper .md-button {
 	text-transform: none;
 	font-size: 12px;
@@ -640,4 +645,16 @@ md-fab-trigger > .md-button {
 md-fab-actions .md-button {
 	padding-left: 15px;
 	padding-right: 15px;
+}
+
+.tpsfade.ng-hide {
+  opacity: 0;
+}
+
+.tpsfade.ng-hide-remove {
+  transition: all linear 300ms;
+}
+
+.tpsfade.ng-hide-add {
+  transition: all linear 300ms;
 }
