@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ErrorCoded;
 import org.springframework.stereotype.Repository;
 
 import com.google.gson.Gson;
@@ -60,7 +61,17 @@ public class AppRepository {
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	List<App> apps = new ArrayList<App>();
     	
-        final String query = "SELECT * FROM root r ORDER BY r." + sorter[sort] + " DESC";
+    	String[] array_to_search = new String[]{"purposes","languages","source_file_types","app_types"};
+    	
+    	String[] field_to_search = new String[]{"title","description","content","author","division"};
+    	
+    	String search_condition_clause = buildArrayFuzzySearchConditionClauseString(array_to_search, field_to_search, tags);
+	
+        final String query = "SELECT * FROM root r"
+        		+ search_condition_clause
+        		+ " ORDER BY r." + sorter[sort] + " DESC";
+        
+        System.out.println("query string: " + query);
 
         List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
         for (Document appDocument : documentList) {
@@ -70,6 +81,24 @@ public class AppRepository {
         logger.info(apps.size() + " App(s) read");
         
         return apps;
+    }
+    
+    private String buildArrayFuzzySearchConditionClauseString(String[] array_to_search, String[] field_to_search, Tag[] tags){
+    	StringBuilder sb = new StringBuilder();
+    	for(Tag tag : tags){
+    		if(sb.length()!=0) sb.append(" AND ");
+    		for(int i = 0; i < array_to_search.length; i++){
+    			String array = array_to_search[i];
+    			sb.append((i == 0?"":" OR") + " ARRAY_CONTAINS(r." + array + ", '" + tag.getText() + "', true)");
+    		}
+    		
+    		for(int i = 0; i < field_to_search.length; i++){
+    			String field = field_to_search[i];
+    			sb.append((i == 0&&array_to_search.length==0?"":" OR") + " CONTAINS(r." + field + ", '" + tag.getText() + "')");
+    		}
+    	}
+    	
+    	return sb.length()==0?"":" WHERE"+sb.toString();
     }
 
     /**
@@ -129,8 +158,9 @@ public class AppRepository {
     
     /**
      * Delete an app
+     * @throws DocumentClientException 
      */
-    public App deleteApp(String title) {
+    public App deleteApp(String title) throws DocumentClientException {
 
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	App app = null;
@@ -138,8 +168,13 @@ public class AppRepository {
 
         try {
         	List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
-            app = gson.fromJson(documentList.get(0).toString(), App.class);
+            if(documentList.size() == 0){
+            	throw new DocumentClientException(404);
+            }
+        	app = gson.fromJson(documentList.get(0).toString(), App.class);
         	documentClient.deleteDocument(documentList.get(0).getSelfLink(), null);
+        }catch(DocumentClientException ex) {
+        	throw ex;
         }catch(Exception ex) {
         	ex.printStackTrace();
         	return null;

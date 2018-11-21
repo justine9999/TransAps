@@ -91,6 +91,7 @@ app.controller('MyAppController', ['AppService', '$scope', '$mdDialog', '$elemen
       	        	deleteAppRow(app_to_delete);
       	        	self.showActionToast('App deleted: [ '+app_to_delete.title+' ]', 'Undo', 'success');
                  }, function() {
+                	self.myappsstatus[app_to_delete.creation_time] = 0;
                 	self.showActionToast('Unable to delete App: [ '+app_to_delete.title+' ]', 'Detail', 'error');
             });
         }

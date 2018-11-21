@@ -5,16 +5,19 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
  
 		$scope.state = $state;
         var self = this;
-        self.getAllApps = getAllApps;
+        var apps = [];
         $scope.apps_per_row = 4;
-        self.appcnt = 30;
         $scope.scrollTo = function (target){};
         $scope.appcardwidth = $('#apps-container').css("width");
         
-        function getAllApps(){
-        	var obj = AppService.getAllApps();
-        	return obj;
-        }
+        //initilize controller data
+        var init = function getAllApps(){
+        	self.apps = AppService.getAllApps();
+        	if(self.apps.length === 0){
+        		self.apps = [];
+        	}
+        };
+        init();
         
         // filter
         self.searchText = null;

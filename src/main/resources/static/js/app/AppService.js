@@ -84,7 +84,8 @@ angular.module('mainApp').factory('AppService',
            function deleteApp(app_title) {
                 console.log('Deleting App: ' + app_title);
                 var deferred = $q.defer();
-                $http.delete(urls.APP_SERVICE_API + app_title)
+                //use ['delete'] instead of .delete because delete is a js keyword and IE8 does not parse it correctly
+                $http['delete'](urls.APP_SERVICE_API + app_title)
                     .then(
                         function (response) {
                         	console.log('App deleted: ' + app_title);

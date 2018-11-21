@@ -2,6 +2,7 @@ package com.tp.webtools.transaps.service;
 
 import java.util.List;
 
+import com.microsoft.azure.documentdb.DocumentClientException;
 import com.tp.webtools.transaps.model.App;
 import com.tp.webtools.transaps.model.Tag;
 
@@ -13,7 +14,7 @@ public interface AppService {
 	
 	App createApp(App app, String croppedImage);
 	
-	App deleteApp(String title);
+	App deleteApp(String title) throws DocumentClientException;
 
 	boolean isAppExist(String title);
 }

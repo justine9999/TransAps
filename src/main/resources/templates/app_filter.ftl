@@ -53,7 +53,7 @@
 </table>
 <div id="app-cnt-filter-container">
 	<span id="app-cnt-number-wrapper" class="mdl-chip mdl-chip--contact">
-		<span id="app-cnt-number" class="mdl-chip__contact mdl-color--cyan mdl-color-text--white">{{appctrl.appcnt}}</span>
+		<span id="app-cnt-number" class="mdl-chip__contact mdl-color--cyan mdl-color-text--white">{{appctrl.apps.length}}</span>
 		<span class="mdl-chip__text"><strong>Amazing Apps</strong></span>
 	</span>
 	<span id="app-filter-wrapper" class="fright">

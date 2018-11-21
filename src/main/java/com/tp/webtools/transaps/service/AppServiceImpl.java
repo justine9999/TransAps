@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.microsoft.azure.documentdb.DocumentClientException;
 import com.tp.webtools.transaps.model.App;
 import com.tp.webtools.transaps.model.Tag;
 import com.tp.webtools.transaps.repository.AppRepository;
@@ -33,7 +34,7 @@ public class AppServiceImpl implements AppService{
         return appRepository.createApp(app, croppedImage);
     }
 
-    public App deleteApp(String title) {
+    public App deleteApp(String title) throws DocumentClientException{
     	return appRepository.deleteApp(title);
     }
     

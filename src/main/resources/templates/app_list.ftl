@@ -8,5 +8,5 @@
 			<div class="mdl-cell mdl-cell--3-col skeleton-cell"></div>
 		</div>									
 	</div>
-	<app-card ng-repeat="app in appctrl.getAllApps()"></app-card>
+	<app-card ng-repeat="app in appctrl.apps"></app-card>
 </div>

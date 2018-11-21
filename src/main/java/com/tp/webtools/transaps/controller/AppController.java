@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.microsoft.azure.documentdb.DocumentClientException;
 import com.tp.webtools.transaps.exception.CustomError;
 import com.tp.webtools.transaps.model.App;
 import com.tp.webtools.transaps.model.Tag;
@@ -98,8 +100,8 @@ public class AppController {
 		    	logger.info("Creating App : {}", app.getTitle());
 		    	
 		        if (appService.isAppExist(app.getTitle())) {
-		            logger.error("Unable to create. An App with title {} already exist", app.getTitle());
-		            return new ResponseEntity(new CustomError("Unable to create. An App with title " + app.getTitle() + " already exist."), HttpStatus.CONFLICT);
+		            logger.error("Unable to create. An App with title '{}' already exist", app.getTitle());
+		            return new ResponseEntity(new CustomError("Unable to create. An App with title '" + app.getTitle() + "' already exist."), HttpStatus.CONFLICT);
 		        }
 		        
 		        App created_app = appService.createApp(app, croppedImage);
@@ -115,7 +117,7 @@ public class AppController {
 	    
 	    //Delete an App
 	    @RequestMapping(value = "/app/{title}", method = RequestMethod.DELETE)
-	    public ResponseEntity<App> deleteApp(@RequestParam("title") String title) {
+	    public ResponseEntity<App> deleteApp(@PathVariable("title") String title) {
 	    	
 	    	System.out.println("delete app");
 	    		        
@@ -124,14 +126,17 @@ public class AppController {
 
 		    	logger.info("Deleting App : {}", title);
 		    	
-		        if (!appService.isAppExist(title)) {
-		            logger.error("Unable to delete. The App with title {} does not exist", title);
-		            return new ResponseEntity(new CustomError("Unable to delete. The App with title " + title + " does not exist."), HttpStatus.NOT_FOUND);
-		        }
-		        
 		        App deleted_app = appService.deleteApp(title);
 		        
 		        return new ResponseEntity<App>(deleted_app, HttpStatus.OK);
+	        }catch(DocumentClientException ex){
+	        	if(ex.getStatusCode() == 404){
+	        		logger.error("Unable to delete. The App with title '{}' does not exist", title);
+		            return new ResponseEntity(new CustomError("Unable to delete. The App with title '" + title + "' does not exist."), HttpStatus.NOT_FOUND);
+	        	}else{
+	        		logger.error("Unable to create. Internal Server Error:", ex);
+		        	return new ResponseEntity(new CustomError("Unable to delete. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+	        	} 	
 	        }catch(Exception ex) {
 	        	logger.error("Unable to create. Internal Server Error:", ex);
 	        	return new ResponseEntity(new CustomError("Unable to delete. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
