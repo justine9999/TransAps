@@ -1,11 +1,11 @@
 
 'use strict';
  
-app.controller('AppController', ['AppService', '$scope', '$state',  function( AppService, $scope, $state) {
+app.controller('AppController', ['AppService', '$scope', '$state', '$timeout', function( AppService, $scope, $state, $timeout) {
  
 		$scope.state = $state;
         var self = this;
-        var apps = [];
+        self.apps = [];
         $scope.apps_per_row = 4;
         $scope.scrollTo = function (target){};
         $scope.appcardwidth = $('#apps-container').css("width");
@@ -13,9 +13,6 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         //initilize controller data
         var init = function getAllApps(){
         	self.apps = AppService.getAllApps();
-        	if(self.apps.length === 0){
-        		self.apps = [];
-        	}
         };
         init();
         
@@ -32,6 +29,21 @@ app.controller('AppController', ['AppService', '$scope', '$state',  function( Ap
         
         //0: top rated; 1: most downloads; 2: most recent
         self.selectedFilter = 1;
+        
+        //to fix the bug that when app load watcher triggered twice even values are not changed
+        var initializing = true;
+
+        
+        $scope.$watch(angular.bind(self, function() {
+        	  return {tags:self.selectedTags,sort:self.selectedFilter};
+        }), function(newVal) {
+        	if (initializing) {
+        		$timeout(function() { initializing = false; });
+        	} else {
+        		newVal.tags = JSON.stringify(newVal.tags);
+        		$state.go('home.view_app_list', newVal, {reload: false, inherit: false, notify: true});
+        	}
+        }, true);
   
         function transformChip(chip) {
             if (angular.isObject(chip)) {

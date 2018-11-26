@@ -87,6 +87,7 @@ public class AppRepository {
     	StringBuilder sb = new StringBuilder();
     	for(Tag tag : tags){
     		if(sb.length()!=0) sb.append(" AND ");
+    		sb.append(" (");
     		for(int i = 0; i < array_to_search.length; i++){
     			String array = array_to_search[i];
     			sb.append((i == 0?"":" OR") + " ARRAY_CONTAINS(r." + array + ", '" + tag.getText() + "', true)");
@@ -96,6 +97,7 @@ public class AppRepository {
     			String field = field_to_search[i];
     			sb.append((i == 0&&array_to_search.length==0?"":" OR") + " CONTAINS(r." + field + ", '" + tag.getText() + "')");
     		}
+    		sb.append(" )");
     	}
     	
     	return sb.length()==0?"":" WHERE"+sb.toString();

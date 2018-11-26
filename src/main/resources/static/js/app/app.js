@@ -225,20 +225,18 @@ app.directive('stateChangeStyler', ['$state', '$rootScope', function($state, $ro
 app.directive('filterChangeStyler', ['$state', '$q', 'AppService', function($state, $q, AppService) {
 	return {
         scope: {
-        	tags: "@",
         	sort: "="
         },
         link: function(scope, element, attrs) {
         	var ckbox = $(element).find('label')[0];
-        	element.bind("click", function(e){
-        		var filter_buttons = document.querySelectorAll("md-fab-actions .md-button");
+        	var filter_buttons = document.querySelectorAll("md-fab-actions .md-button");
+        	
+        	element.bind("click", function(e){       		
         		filter_buttons.forEach(function(filter_button) {
         			$(filter_button).find('label')[0].MaterialCheckbox.uncheck();
         		});
         		ckbox.MaterialCheckbox.check();
         		scope.sort = attrs.sorttype;
-        		
-        		$state.go('home.view_app_list', {tags:scope.tags, sort:scope.sort}, {reload: false, inherit: false, notify: true});
         	});
         }
     };

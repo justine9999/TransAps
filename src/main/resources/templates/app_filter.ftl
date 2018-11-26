@@ -44,7 +44,7 @@
 						<button  id="filter-language" class="filter-dropdown mdl-button mdl-js-button">Source File Type ▾</button >
 					</div>
 					<div class="mdl-cell mdl-cell--2-col tps-v-center-child">
-						<button  id="filter-saved-button" class="filter-dropdown mdl-button mdl-js-button">Saved Filters ▾</button >
+						<butto id="filter-saved-button" class="filter-dropdown mdl-button mdl-js-button">Saved Filters ▾</button >
 					</div>
 				</div>
 			</td>
@@ -68,7 +68,7 @@
 	          	<md-button sorttype="0" tags="{{appctrl.selectedTags}}" sort="appctrl.selectedFilter" filter-change-styler class="md-raised">
 	          		<span class="mdl-list__item-secondary-action flight">
 						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="filter-option-1">
-							<input type="checkbox" id="filter-option-1" class="mdl-checkbox__input" />
+							<input type="checkbox" id="filter-option-1" class="mdl-checkbox__input" ng-checked="appctrl.selectedFilter===0" />
 						</label>
 					</span>
 	          		Top Rated
@@ -76,7 +76,7 @@
 	          	<md-button sorttype="1" tags="{{appctrl.selectedTags}}" sort="appctrl.selectedFilter" filter-change-styler class="md-raised">
 	          		<span class="mdl-list__item-secondary-action flight">
 						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="filter-option-2">
-							<input type="checkbox" id="filter-option-2" class="mdl-checkbox__input" />
+							<input type="checkbox" id="filter-option-2" class="mdl-checkbox__input" ng-checked="appctrl.selectedFilter===1" />
 						</label>
 					</span>
 	          		Most Downloads
@@ -84,7 +84,7 @@
 	          	<md-button sorttype="2" tags="{{appctrl.selectedTags}}" sort="appctrl.selectedFilter" filter-change-styler class="md-raised">
 	          		<span class="mdl-list__item-secondary-action flight">
 						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="filter-option-3">
-							<input type="checkbox" id="filter-option-3" class="mdl-checkbox__input" />
+							<input type="checkbox" id="filter-option-3" class="mdl-checkbox__input" ng-checked="appctrl.selectedFilter===2" />
 						</label>
 					</span>
 	          		Most Recent
