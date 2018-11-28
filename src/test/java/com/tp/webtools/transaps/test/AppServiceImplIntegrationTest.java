@@ -50,6 +50,5 @@ public class AppServiceImplIntegrationTest {
 	  
 	    assertThat(app.getTitle(),equalTo(title));
 	 }
-	
-	
+
 }

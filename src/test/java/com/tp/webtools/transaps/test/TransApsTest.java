@@ -9,5 +9,5 @@ import org.junit.runners.Suite;
 	AppServiceImplIntegrationTest.class
 })
 public class TransApsTest {
-
+	
 }
