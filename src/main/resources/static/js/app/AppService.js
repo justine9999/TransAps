@@ -18,7 +18,7 @@ angular.module('mainApp').factory('AppService',
  
             function loadAllApps(tags, sort) {
                 console.log('Fetching all apps');
-                var _tags = tags === undefined?'[]':tags.toString();
+                var _tags = tags === undefined?'[]':tags;
                 var _sort = sort === undefined?1:sort;
                 var deferred = $q.defer();
                 $http.get(urls.APP_SERVICE_API, {params: { tags: _tags, sort: _sort }})
