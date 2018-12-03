@@ -6,7 +6,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	AppRestControllerIntegrationTest.class,
-	AppServiceImplIntegrationTest.class
+	AppServiceImplIntegrationTest.class,
+	AppSeleniumEndToEndTest.class
 })
 public class TransApsTest {
 	
