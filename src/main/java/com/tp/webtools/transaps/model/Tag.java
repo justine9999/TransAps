@@ -11,4 +11,8 @@ public class Tag {
 	
 	private String type;
 	
+	public Tag(String text, String type){
+		this.text = text;
+		this.type = type;
+	}
 }

@@ -532,6 +532,11 @@ span.stars span {
 	width:10%;
 }
 
+.my-app-name-cell{
+	color: #308fb5;
+	font-weight: 600;
+}
+
 #tps-tag {
 	margin-right: 10px;
 	border-radius: 2px;

@@ -61,11 +61,12 @@ public class AppRepository {
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	List<App> apps = new ArrayList<App>();
     	
-    	String[] array_to_search = new String[]{"purposes","languages","source_file_types","app_types"};
+    	//String[] array_to_search = new String[]{"purposes","languages","source_file_types","app_types"};
     	
-    	String[] field_to_search = new String[]{"title","description","content","author","division"};
+    	//String[] field_to_search = new String[]{"title","description","content","author","division"};
     	
-    	String search_condition_clause = buildArrayFuzzySearchConditionClauseString(array_to_search, field_to_search, tags);
+    	//String search_condition_clause = buildArrayFuzzySearchConditionClauseString(array_to_search, field_to_search, tags);
+    	String search_condition_clause = buildArrayFuzzySearchConditionClauseString(tags);
 	
         final String query = "SELECT * FROM root r"
         		+ search_condition_clause
@@ -75,7 +76,10 @@ public class AppRepository {
 
         List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
         for (Document appDocument : documentList) {
-        	apps.add(gson.fromJson(appDocument.toString(), App.class));
+        	App app = gson.fromJson(appDocument.toString(), App.class);
+        	//the line below is a workaround for a bug of cosmosDB that it automatically replace the space in an url with '+' when user manually update it
+        	app.setProfile_picture(app.getProfile_picture().replace('+', ' '));
+        	apps.add(app);
         }
         
         logger.info(apps.size() + " App(s) read");
@@ -83,7 +87,8 @@ public class AppRepository {
         return apps;
     }
     
-    private String buildArrayFuzzySearchConditionClauseString(String[] array_to_search, String[] field_to_search, Tag[] tags){
+    //build from all fields
+    /*private String buildArrayFuzzySearchConditionClauseString(String[] array_to_search, String[] field_to_search, Tag[] tags){
     	StringBuilder sb = new StringBuilder();
     	for(Tag tag : tags){
     		if(sb.length()!=0) sb.append(" AND ");
@@ -97,6 +102,19 @@ public class AppRepository {
     			String field = field_to_search[i];
     			sb.append((i == 0&&array_to_search.length==0?"":" OR") + " CONTAINS(r." + field + ", '" + tag.getText() + "')");
     		}
+    		sb.append(" )");
+    	}
+    	
+    	return sb.length()==0?"":" WHERE"+sb.toString();
+    }*/
+    
+    //build from tags field only
+    private String buildArrayFuzzySearchConditionClauseString(Tag[] tags){
+    	StringBuilder sb = new StringBuilder();
+    	for(Tag tag : tags){
+    		if(sb.length()!=0) sb.append(" AND ");
+    		sb.append(" (");
+    		sb.append("CONTAINS(r.normalized_info" + ", \"" + tag.getText().toLowerCase() + "\")");
     		sb.append(" )");
     	}
     	
@@ -139,7 +157,8 @@ public class AppRepository {
         	upuloadAppIcon(base64Data, fromat, app);
     	}
     	
-    	
+    	//create all tags for like queruy
+    	app.generateNormalized_info();
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	Document appDocument = new Document(gson.toJson(app));
     	appDocument.set("entityType", "app");

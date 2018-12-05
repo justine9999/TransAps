@@ -1,0 +1,694 @@
+[
+    {
+        "creation_time": "1544022754919",
+        "source_file_types": [
+            "MS Word"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Create a tri-column ORT file for use on the Reconcilliation or Client Review steps of a BackTrans job",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/3-Column+ORT_icon.png",
+        "title": "3-Column ORT",
+        "content": "<h2>3-Column ORT</h2><p>Create a tri-column ORT file for use on the Reconcilliation or Client Review steps of a BackTrans job.</p><p>It also splits the tri-column file back into separate ORT files for conversion back into TXML.</p><h3><span style=\"color: rgb(128, 0, 128);\">THE FILE NAMES OF THE FT AND BT FILES YOU ARE MERGING OR SPLITTING NEED TO MATCH.</span></h3><h1>To Merge</h1><ol><li>Create ORT files from your FrontTrans and BackTrans TXMLs</li><li>Click on the “3-column ORT” button on the “Macros” tab in AP GUI</li><li>The dialog below will pop up</li><li>Enter the path to the FT and BT ORT files in the pop-up</li><li>Click “OK” to receive your merged tri-column file</li></ol><p><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_Macros_3ColumnORT_Merge.png\" height=\"254\" width=\"330\"></p><h1>To Split</h1><ol><li>Click on the “3-column ORT” button on the “Macros” tab in AP GUI</li><li>The dialog below will pop up</li><li>Select “Split” at the bottom of the pop-up window</li><li>Enter the path to the original FT and BT ORT files and tri-column file(s)</li><li>Click “OK” to receive your split FT and BT ORT files, ready for conversion back to TXML</li></ol><p><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_Macros_3ColumnORT_Split.png\" height=\"254\" width=\"330\"></p>",
+        "division": "TPT",
+        "last_update_time": "1544022754919",
+        "downloads": 10,
+        "rate": 1,
+        "purposes": [
+            "Preflight",
+            "Project Automation"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "05e9fdb7-969e-4590-a9fd-b7969ea590d3",
+        "_rid": "qu0aAI2ji6EdAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EdAAAAAAAAAA==/",
+        "_etag": "\"00004d00-0000-0000-0000-5c0844310000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045617
+    },
+    {
+        "creation_time": "1544023227469",
+        "source_file_types": [
+            "MS Word"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Make multiple certs with the click of a button. Full instructions along with the macro are found in the download file.",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Cert+Creator_icon.png",
+        "title": "Cert Creator",
+        "content": "",
+        "division": "TPT",
+        "last_update_time": "1544023227469",
+        "downloads": 13,
+        "rate": 2,
+        "purposes": [
+            "Preflight"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "1e49e272-86be-45d1-89e2-7286be55d187",
+        "_rid": "qu0aAI2ji6EeAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EeAAAAAAAAAA==/",
+        "_etag": "\"00004e00-0000-0000-0000-5c0844410000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045633
+    },
+    {
+        "creation_time": "1544023371926",
+        "source_file_types": [
+            "MS Word"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Convert all linked numerical lists to unlinked (live) text",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Numbers+To+Text_icon.png",
+        "title": "Numbers To Text",
+        "content": "<h2>Convert Numbers To Text</h2><p>Convert all linked numerical lists to unlinked (live) text.</p><p>Please make sure you have the&nbsp;<strong>original files backed up</strong>&nbsp;because they will be overwritten automatically by the process.</p><ol><li>Under the “Macro” tab in AP GUI, click “Numbers to text” button.</li><li>A dialog will pop up</li><li>Enter the folder path</li><li>Click the “OK” button, then the process will start.</li><li>After it finishes, all the numbers of all the Word files you specified will be converted to pure texts.</li></ol><p><br></p>",
+        "division": "TPT",
+        "last_update_time": "1544023371926",
+        "downloads": 55,
+        "rate": 3.1,
+        "purposes": [
+            "Preflight"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "1b2d3eb6-67a2-42f7-ad3e-b667a2c2f766",
+        "_rid": "qu0aAI2ji6EfAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EfAAAAAAAAAA==/",
+        "_etag": "\"00004f00-0000-0000-0000-5c08444a0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045642
+    },
+    {
+        "creation_time": "1544023492145",
+        "source_file_types": [
+            "MS Word"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Create one contact sheet doc from your images for transcription (contains image with room for transcribing the source and providing translation)",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Contact+Sheet_icon.png",
+        "title": "Contact Sheet",
+        "content": "<h2>Contact Sheet</h2><ol><li>Open AP GUI &gt;&nbsp;Macros TDC</li><li>Path to folder containing images for translation</li><li>File is created at the same path with tables containing</li></ol><ul><li class=\"ql-indent-1\">The file name per image image</li><li class=\"ql-indent-1\">The image</li><li class=\"ql-indent-1\">Row for transcribing the source text</li><li class=\"ql-indent-1\">Row for providing a translation</li></ul><p><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_Macros_ContactSheet.PNG\" height=\"497\" width=\"800\"></p><p>&nbsp;</p>",
+        "division": "TDC",
+        "last_update_time": "1544023492145",
+        "downloads": 100,
+        "rate": 1.5,
+        "purposes": [
+            "Preflight"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "b8b22b09-999c-424b-b22b-09999c524b02",
+        "_rid": "qu0aAI2ji6EgAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EgAAAAAAAAAA==/",
+        "_etag": "\"00005000-0000-0000-0000-5c0844550000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045653
+    },
+    {
+        "creation_time": "1544023573580",
+        "source_file_types": [
+            "MS Word"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Use together with the Contact Sheet macro. Macro pastes the transcribed text from the Source into the Translation row and hides all text in preparation for translation.",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Contact+Sheet+Hide_icon.png",
+        "title": "Contact Sheet Hide",
+        "content": "<p><br></p><h2>Contact Sheet Hide</h2><p>Use together with the Contact Sheet macro. Macro pastes the transcribed text from the Source into the Translation row and hides all text in preparation for translation.</p><ol><li>Open AP GUI &gt;&nbsp;Macros TDC</li><li>Path to folder containing the Contact Sheet that has been transcribed</li><li>Click OK and reopen the document once the macro is done</li><li>All text is now hidden</li></ol><p><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_Macros_ContactSheetHidden.PNG\" height=\"513\" width=\"800\"></p><p><br></p><p>Close</p><p><br></p>",
+        "division": "TDC",
+        "last_update_time": "1544023573580",
+        "downloads": 42,
+        "rate": 2.4,
+        "purposes": [
+            "Preflight"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "c39edcb7-847e-4e3d-9edc-b7847e0e3d98",
+        "_rid": "qu0aAI2ji6EhAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EhAAAAAAAAAA==/",
+        "_etag": "\"00005100-0000-0000-0000-5c08445f0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045663
+    },
+    {
+        "creation_time": "1544023658321",
+        "source_file_types": [
+            "MS PowerPoint"
+        ],
+        "languages": [
+            "English",
+            "Spanish"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Run Beyond Compare on character languages in PPT\n",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Batch+Beyond+Compare_icon.png",
+        "title": "Batch Beyond Compare",
+        "content": "<h2>Batch Beyond Compare Formats</h2><ol><li>Download and extract the zip</li><li>Open AP GUI</li><li>Go to Batch Compare</li><li>Click Import BC Settings and load the .bcpkg file.</li></ol><p><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_BatchCompare.png\" height=\"268\" width=\"1202\"></p>",
+        "division": "TPT",
+        "last_update_time": "1544023658321",
+        "downloads": 55,
+        "rate": 3.3,
+        "purposes": [
+            "Project Automation"
+        ],
+        "app_types": [
+            "VBA Add-In"
+        ],
+        "id": "39b15066-50ba-4744-b150-6650ba474466",
+        "_rid": "qu0aAI2ji6EiAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EiAAAAAAAAAA==/",
+        "_etag": "\"00005200-0000-0000-0000-5c0844680000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045672
+    },
+    {
+        "creation_time": "1544023775008",
+        "source_file_types": [
+            "MS PowerPoint"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Convert all PPT files at a specific path to PDF\t",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Convert+PPTs+to+PDFs_icon.png",
+        "title": "Convert PPTs to PDFs",
+        "content": "",
+        "division": "TPT",
+        "last_update_time": "1544023775008",
+        "downloads": 42,
+        "rate": 4.9,
+        "purposes": [
+            "Others",
+            "Project Automation"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "92e25818-3e8f-4958-a258-183e8fc9581e",
+        "_rid": "qu0aAI2ji6EjAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EjAAAAAAAAAA==/",
+        "_etag": "\"00005300-0000-0000-0000-5c0844720000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045682
+    },
+    {
+        "creation_time": "1544023841845",
+        "source_file_types": [
+            "MS PowerPoint"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Export speaker notes & comments from all PPT files at a specific path for translation.",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Export+from+PPT_icon.png",
+        "title": "Export from PPT",
+        "content": "<h2>Export from PPT</h2><p>Export speaker notes &amp; comments from all PPT files at a specific path for translation.&nbsp;You can select whether to extract Comments and/or Notes:</p><p>Note that you can change your settings in Wordfast (or&nbsp;<strong>use the appropriate file format filter in PD</strong>) to determine whether Notes are picked up in the TXML or not.</p><p>However, Comments will never get picked up in Wordfast, so those will need to be extracted using this tool, translated, and then manually re-entered into the translated PPT file.</p><p><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_Macros_ExportPPT.png\" height=\"129\" width=\"342\"></p>",
+        "division": "TPT",
+        "last_update_time": "1544023841845",
+        "downloads": 990,
+        "rate": 2.7,
+        "purposes": [
+            "Preflight"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "911d1283-974c-4927-9d12-83974c292732",
+        "_rid": "qu0aAI2ji6EkAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EkAAAAAAAAAA==/",
+        "_etag": "\"00005400-0000-0000-0000-5c0844800000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045696
+    },
+    {
+        "creation_time": "1544023940458",
+        "source_file_types": [
+            "MS Excel"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Update fields across multiple Tcerts (ex. protocol/job number, billing code, country in the footer, etc.). It also amend the row height so that no text is cut off.",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Append+Certs_icon.png",
+        "title": "Append Certs",
+        "content": "<h2>Append Certs v4.5</h2><p>The macro allows you to&nbsp;<strong style=\"color: rgb(128, 0, 128);\">make content changes across multiple Translation Certificates in one go</strong>, e.g.:</p><ul><li>Source or Target Language</li><li>Linguist codes</li><li>Search replace within the default translation footer (country needs to be changed)</li><li>Files were formatted so .docx needs to be changed to .pdf</li><li>Workflow on client PD was wrong</li></ul><p>It also amend the&nbsp;<strong style=\"color: rgb(128, 0, 128);\">row height</strong>&nbsp;so that no text is cut off.</p><h1>Instructions</h1><p>Ensure MS Excel macros are enabled.</p><ol><li>Make a backup of the TCerts</li><li>Make sure the TCerts are networked separately in one folder</li><li>Open the append certs macro</li><li>Browse to or Paste in the folder path of where you have networked them</li><li>Click on the \"Click Me\" button</li><li>A pop-up will open</li><li>Determine which changes need to be made.</li></ol><ul><li class=\"ql-indent-1\"><strong style=\"color: rgb(128, 0, 128);\">If some TCerts need to be excluded, move them to a different folder</strong></li></ul><ol><li>Tick the tick boxes of what you want to change and fill in the information of what needs to be changed (see some examples on the right)</li><li>Click \"Start\"</li><li>The macro will tell you when it's done</li></ol><p><img src=\"https://launchpad.transperfect.com/sites/default/files/Macros_AppendTCerts.png\" height=\"887\" width=\"468\"></p>",
+        "division": "TPT",
+        "last_update_time": "1544023940458",
+        "downloads": 881,
+        "rate": 2.6,
+        "purposes": [
+            "Project Automation"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "d8986cd8-868c-4cdd-986c-d8868cacdd66",
+        "_rid": "qu0aAI2ji6ElAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6ElAAAAAAAAAA==/",
+        "_etag": "\"00005500-0000-0000-0000-5c08448d0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045709
+    },
+    {
+        "creation_time": "1544024061760",
+        "source_file_types": [
+            "MS Excel"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Split an excel workbook by sheet to create a separate workbook per sheet. After translation, merge the separate sheet workbooks back into one unified workbook\n",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Excel+Split+Merge_icon.png",
+        "title": "Excel Split Merge",
+        "content": "<h2>Excel Split Merge</h2><p>Split an excel workbook by sheet to create a separate workbook per sheet. After translation, merge the separate sheet workbooks back into one unified workbook.</p><h1>Splitting</h1><p>To split your Excel file:</p><ol><li>Enter the path to the file where prompted</li><li>Select&nbsp;<strong>Split</strong></li><li>It will create a new subfolder, containing one Excel per tab from your original file, renamed with&nbsp;<strong>_sheetXX_[sheetname]</strong></li></ol><p><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_Macros_ExcelSplitMerge_Split.png\" height=\"118\" width=\"346\"></p><p><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_Macros_ExcelSplitMerge_SplitFiles.png\" height=\"234\" width=\"732\"></p><h1>Merging</h1><ol><li>Ensure that the files have the same name as your original split files</li><li>Enter the path</li><li>Select&nbsp;<strong>Merge</strong></li><li>It will create a new file for you within that folder, named&nbsp;<strong>merge.xlsx</strong></li></ol><p><strong><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_Macros_ExcelSplitMerge_Merge.png\" height=\"122\" width=\"345\"></strong></p><p><strong><img src=\"https://launchpad.transperfect.com/sites/default/files/APGUI_Macros_ExcelSplitMerge_MergedFiles.png\" height=\"196\" width=\"694\"></strong></p>",
+        "division": "TPT",
+        "last_update_time": "1544024061760",
+        "downloads": 77,
+        "rate": 4.4,
+        "purposes": [
+            "Preflight",
+            "Project Automation",
+            "Backend QA"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "95e9ae44-af6f-4d62-a9ae-44af6f1d625b",
+        "_rid": "qu0aAI2ji6EmAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EmAAAAAAAAAA==/",
+        "_etag": "\"00005600-0000-0000-0000-5c0844960000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045718
+    },
+    {
+        "creation_time": "1544024143794",
+        "source_file_types": [
+            "MS Excel"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Converts any bi- or multilingual Excel file to a WF3 TM.\n",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Excel+to+WF+TM_icon.png",
+        "title": "Excel to WF TM",
+        "content": "<h2>Excel to WF TM</h2><p>Converts any bi- or multilingual Excel file to a WF3 TM.</p><ul><li>Run the script without any command line parameters to output a default ini file.</li><li>Rename the ini file and adapt it to your needs.</li><li>Run the script with two command line parameters (Excel file + ini file) to convert the Excel file to a WF3 TM.</li></ul><h2>Notes</h2><ul><li>Handles any Excel compatible file type: xls, xlsx, xlsm, csv, tab separated txt, Excel xml.</li><li>Supports RTL languages.</li></ul><p><br></p>",
+        "division": "TDCEU",
+        "last_update_time": "1544024143794",
+        "downloads": 60,
+        "rate": 3.4,
+        "purposes": [
+            "TM Manipulation"
+        ],
+        "app_types": [
+            "VBA Macro"
+        ],
+        "id": "a0f1d963-9ba2-42e7-b1d9-639ba272e740",
+        "_rid": "qu0aAI2ji6EnAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EnAAAAAAAAAA==/",
+        "_etag": "\"00005700-0000-0000-0000-5c08449e0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045726
+    },
+    {
+        "creation_time": "1544024249199",
+        "source_file_types": [
+            "Ohter Text-Based File"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Format the WF Analysis log to an easy to read format. Clear word count breakdown for PM use and to send to linguists.\n",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Reformat+Log_icon.png",
+        "title": "Reformat Log",
+        "content": "",
+        "division": "TPT",
+        "last_update_time": "1544024249199",
+        "downloads": 230,
+        "rate": 5,
+        "purposes": [
+            "File Conversion"
+        ],
+        "app_types": [
+            "Java Application"
+        ],
+        "id": "18baecd7-4436-4df7-baec-d744363df775",
+        "_rid": "qu0aAI2ji6EoAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EoAAAAAAAAAA==/",
+        "_etag": "\"00005800-0000-0000-0000-5c0844aa0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045738
+    },
+    {
+        "creation_time": "1544024319896",
+        "source_file_types": [
+            "TXML",
+            "TXLF"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "This tool quotes the target text in the translated TXMLs based on the TM match scores in the original pre-analyzed TXMLs. It outputs an html log with breakdown of TM stats for all the TXMLs.\n",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/TargetWCT_icon.png",
+        "title": "TargetWCT",
+        "content": "",
+        "division": "TPT",
+        "last_update_time": "1544024319896",
+        "downloads": 23,
+        "rate": 1.8,
+        "purposes": [
+            "Backend QA",
+            "Others"
+        ],
+        "app_types": [
+            "Java Application"
+        ],
+        "id": "2e7a4c0d-863c-40d3-ba4c-0d863c70d3b2",
+        "_rid": "qu0aAI2ji6EpAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EpAAAAAAAAAA==/",
+        "_etag": "\"00005900-0000-0000-0000-5c0844b40000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045748
+    },
+    {
+        "creation_time": "1544024453948",
+        "source_file_types": [
+            "TXML"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Removes notes and attributes from TXLFs so that they can be uploaded to a client PD instance and opened without issues in TSR\n",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Delete+Notes+%26+Attr_icon.png",
+        "title": "Delete Notes & Attr",
+        "content": "<h2>TXLF Delete Notes &amp; Attributes</h2><p>This tool (created by Guillem Solans) removes notes and attributes from TXLFs so that they can be uploaded to a client PD instance and opened without issues in TSR (as there is currently compatibility issues with the different versions ofxliffmodules).</p><p>This version deletes unnecessary attributes and&nbsp;fixes notes when they have time stamp formatting problems (it doesn’t delete them).</p>",
+        "division": "TDCEU",
+        "last_update_time": "1544024453948",
+        "downloads": 20,
+        "rate": 4,
+        "purposes": [
+            "Others"
+        ],
+        "app_types": [
+            "AutoIt Script"
+        ],
+        "id": "d3469458-3444-4926-8694-583444f926ec",
+        "_rid": "qu0aAI2ji6EqAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EqAAAAAAAAAA==/",
+        "_etag": "\"00005a00-0000-0000-0000-5c0844be0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045758
+    },
+    {
+        "creation_time": "1544024709404",
+        "source_file_types": [
+            "TXML"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Determine if a source file is the file that a TXML was created from. Allows to modify TXML source/target language codes. Check, if correct version of WordFast is used. See the total WC of your TXML.\n",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/TXML+Info_icon.png",
+        "title": "TXML Info",
+        "content": "",
+        "division": "TPT",
+        "last_update_time": "1544024709404",
+        "downloads": 99,
+        "rate": 3.9,
+        "purposes": [
+            "Preflight"
+        ],
+        "app_types": [
+            "AHK Script"
+        ],
+        "id": "82729a98-05b4-415d-b29a-9805b4915dc0",
+        "_rid": "qu0aAI2ji6ErAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6ErAAAAAAAAAA==/",
+        "_etag": "\"00005b00-0000-0000-0000-5c0844d40000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045780
+    },
+    {
+        "creation_time": "1544024847212",
+        "source_file_types": [
+            "XML"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Validate XML structure",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Validate+Open+XMLs_icon.png",
+        "title": "Validate Open XMLs",
+        "content": "",
+        "division": "TPTBCN",
+        "last_update_time": "1544024847212",
+        "downloads": 455,
+        "rate": 2.2,
+        "purposes": [
+            "Backend QA"
+        ],
+        "app_types": [
+            "Others"
+        ],
+        "id": "736b81db-c257-4a53-ab81-dbc2577a535c",
+        "_rid": "qu0aAI2ji6EsAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EsAAAAAAAAAA==/",
+        "_etag": "\"00005c00-0000-0000-0000-5c0844dc0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045788
+    },
+    {
+        "creation_time": "1544024926545",
+        "source_file_types": [
+            "Others"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "For IQVIA client PD, the PDF preview function on PD is no longer required for review steps. However, PMs still need to upload PDFs in order for the submission to process properly\n",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/PDF+Duplicator_icon.png",
+        "title": "PDF Duplicator",
+        "content": "<h2>pdfDuplicator 1.2</h2><p>The tool installs the latest version of the PDF on your computer:&nbsp;<a href=\"https://collaborate.translations.com/download/attachments/65990455/IQVIA_PDFPreview.pdf?version=2&amp;modificationDate=1521813293000&amp;api=v2\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\">IQVIA_PDFPreview.pdf</a>&nbsp;(updated March 2018).</p><ol><li>Run the&nbsp;<strong>setup.exe</strong>&nbsp;(no helpdesk required!!!)</li><li>Enter license key:&nbsp;<strong>F685EB7C69FD1DBC7B7CF5107213E7798DD08071.</strong>&nbsp;Or&nbsp;download from the&nbsp;<a href=\"https://collaborate.translations.com/download/attachments/65990455/license+key.txt?version=1&amp;modificationDate=1521813179000&amp;api=v2\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\"><strong>license key</strong></a><strong>&nbsp;</strong>file.</li><li>Follow the setup.</li></ol><p>Tool is stored on the network here:&nbsp;\\\\ldnAL2-dept.tpnyc.local\\department\\Production\\ENGINEERING\\personal folders\\ds\\pdfDuplicator</p><h1>Version 1.2</h1><ol><li>Put all of your documents into&nbsp;<strong>one folder</strong>&nbsp;or in&nbsp;<strong>subfolders.&nbsp;</strong>The tool runs on subfolders.</li><li>Drag and drop or paste the&nbsp;<strong>path</strong>&nbsp;to your deliverables</li><li>Click&nbsp;<strong>Duplicate</strong>&nbsp;or&nbsp;</li><li>PDFs with the same names as your deliverables will be created in the folder (or subfolder) with your deliverables</li></ol><p><img src=\"https://launchpad.transperfect.com/sites/default/files/pdfDuplicator1.png\" height=\"175\" width=\"552\"></p><h1>Version 1.1 (Terminal Server)</h1><p>The&nbsp;<a href=\"https://collaborate.translations.com/download/attachments/65990455/IQVIA_PDFPreview.pdf?version=2&amp;modificationDate=1521813293000&amp;api=v2\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\">IQVIA PDF</a>&nbsp;needs to be in another folder than the .exe file. We suggest making a folder where you have the duplicator tool networked and put the PDF in there.</p><ol><li>Open the .exe file</li><li>Put all of your deliverables into&nbsp;<strong>one folder</strong>&nbsp;or in&nbsp;<strong>subfolders.&nbsp;</strong>The tool runs on subfolders.</li><li><strong>Paste the path</strong>&nbsp;to the deliverables. Drag &amp; drop doesn't work.</li><li>Hit Enter or OK</li></ol><p><img src=\"https://launchpad.transperfect.com/sites/default/files/pdfDuplicator2.png\" height=\"133\" width=\"505\"></p>",
+        "division": "AD-COM",
+        "last_update_time": "1544024926545",
+        "downloads": 302,
+        "rate": 1.7,
+        "purposes": [
+            "Project Automation"
+        ],
+        "app_types": [
+            "Python Application"
+        ],
+        "id": "32d663c6-13df-4ea1-9663-c613dfdea187",
+        "_rid": "qu0aAI2ji6EtAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EtAAAAAAAAAA==/",
+        "_etag": "\"00005d00-0000-0000-0000-5c0844e70000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045799
+    },
+    {
+        "creation_time": "1544025083889",
+        "source_file_types": [
+            "TXML",
+            "TXLF"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Bypass some of the limitations of the browser version of AutoAligner",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/AutoAligner_icon.png",
+        "title": "AutoAligner",
+        "content": "<h2>AutoAligner Interface</h2><p>The Barcelona Engineering team has created an interface for the AutoAligner tool that allows you to bypass some of the limitations of the browser version of AutoAligner.</p><ul><li>No language limitations</li><li>No file size limitations</li><li>No limitation on number of files</li></ul><p>This tool is meant to work together with the&nbsp;<a href=\"http://autoaligner/\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\">http://autoaligner/</a>&nbsp;machine (10.2.50.190) in NY dedicated to alignments only. You may need special permissions for that, so you may need to contact IT.</p>",
+        "division": "TDC",
+        "last_update_time": "1544025083889",
+        "downloads": 9999,
+        "rate": 4.6,
+        "purposes": [
+            "TM Manipulation",
+            "Others"
+        ],
+        "app_types": [
+            "Java Application"
+        ],
+        "id": "adffb60b-4c0b-4dc1-bfb6-0b4c0bbdc1ef",
+        "_rid": "qu0aAI2ji6EuAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EuAAAAAAAAAA==/",
+        "_etag": "\"00005e00-0000-0000-0000-5c0844f30000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045811
+    },
+    {
+        "creation_time": "1544025184493",
+        "source_file_types": [
+            "Others"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "ClipX is a free clipboard history manager tool. It remembers the last e.g. 20 thing you have copied, including images.\n",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/ClipX_icon.png",
+        "title": "ClipX",
+        "content": "<h2>ClipX</h2><p>ClipX is a free clipboard history manager tool. It remembers the last e.g. 20 thing you have copied, including images.</p><ul><li>Visit ClipX's main website for more information:&nbsp;<a href=\"https://bluemars.org/clipx/\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\">https://bluemars.org/clipx/</a>.</li><li>Have HelpDesk install it (and the Stickies plugin).</li></ul><h1>How it works</h1><p>ClipX remembers what you have copied so that you can go back and paste it again. For a visual of how this works, view a&nbsp;<a href=\"https://www.youtube.com/watch?v=PdQ32iZ0NaU#t=0m43s\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\">YouTube video here</a>&nbsp;(go to 43 seconds).</p><p>You can toggle between things you've last copied so that you do not have to go back to the program you had originally copied it from. E.g.</p><ul><li>You need a job number you copied 2 minutes ago but you've since copied an email address.</li><li>For tracked changes jobs, you need to copy a certain set of comments multiple times. Just browse the history.</li><li>Copy all the job information and then paste them into the QM tracker</li><li>Easily paste text as text only.</li><li>You can even paste images</li></ul><h1>Customize ClipX</h1><p>ClipX will run in the background. You'll find it by clicking on the arrow next to your clock.</p><ol><li>Right click on the icon</li><li>Choose Configure</li><li>General</li></ol><ul><li class=\"ql-indent-1\">Amend how much is remembered</li><li class=\"ql-indent-1\">Choose to ignore images (bitmap), if you want.</li><li class=\"ql-indent-1\">Amend the icon</li><li class=\"ql-indent-1\">Choose to run on when you start your PC.</li></ul><p>Learn more about the features:&nbsp;<a href=\"https://foliovision.com/seo-tools/computers/windows/clipx-clipboard-manager\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\">https://foliovision.com/seo-tools/computers/windows/clipx-clipboard-manager</a></p><p><img src=\"https://launchpad.transperfect.com/sites/default/files/ClipX1.png\" height=\"236\" width=\"279\"></p><p><img src=\"https://launchpad.transperfect.com/sites/default/files/ClipX2.png\" height=\"406\" width=\"516\"></p><h1>Change Hotkey</h1><p>The default hotkey for Secondary Pasting is Ctrl+Shit+V, which is the Outlook hotkey to move emails. As such, you'd want to change this to something else if you use that hotkey in Outlook.&nbsp;Change it to none (hit backspace) or to e.g. Ctrl+Shift+Home.</p><p><img src=\"https://launchpad.transperfect.com/sites/default/files/ClipX3.png\" height=\"405\" width=\"516\"></p><h1>ClipX Plugin - Permanently Remember</h1><p>When you ask HelpDesk to install ClipX, ask them to install the&nbsp;<strong>Stickies plugin</strong>&nbsp;too. This is found here:&nbsp;<a href=\"https://bluemars.org/clipx/\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\">https://bluemars.org/clipx/</a>&nbsp;This plugin keeps a list of permanent entries at the bottom of your history.</p><p>Think of storing an email-address or&nbsp;<strong>replies to e-mails</strong>&nbsp;you find yourself typing all the time!</p><ul><li>\"Got this - thanks NAME!\"</li><li>\"Thanks so much and have a good day.\"</li><li>\"Thank you NAME, I have moved this to your inbox on PD. Please also find your PO attached here.\"</li><li>\"Thank you NAME, please find your updated PO attached here.\"</li></ul><p>It could be wording you would otherwise keep in Windows Sticky Notes.</p>",
+        "division": "TDC",
+        "last_update_time": "1544025184493",
+        "downloads": 50,
+        "rate": 4,
+        "purposes": [
+            "Others"
+        ],
+        "app_types": [
+            "Others"
+        ],
+        "id": "cb00cab4-0c1d-4914-80ca-b40c1d5914b0",
+        "_rid": "qu0aAI2ji6EvAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EvAAAAAAAAAA==/",
+        "_etag": "\"00005f00-0000-0000-0000-5c0844fc0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045820
+    },
+    {
+        "creation_time": "1544025263222",
+        "source_file_types": [
+            "TXML"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Several scripts using AutoIT for assisting in engineering QA.",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/AutoIT+Scripts_icon.png",
+        "title": "AutoIT Scripts",
+        "content": "<h2>AutoIT Scripts</h2><p>A description of the scripts can be found on the iSP Engineering page:&nbsp;<a href=\"https://collaborate.translations.com/display/prod/iSP+Scripts\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\">https://collaborate.translations.com/display/prod/iSP+Scripts</a></p><p>The scripts can be downloaded from this FTP:</p><p><a href=\"https://sftp1.transperfect.com/\" target=\"_blank\" style=\"color: rgb(0, 136, 204); background-color: transparent;\">https://sftp1.transperfect.com</a></p><p>Username:&nbsp;ispftp</p><p>Password:&nbsp;1jdegs</p><p>Folder:&nbsp;Scripts</p>",
+        "division": "ISP",
+        "last_update_time": "1544025263222",
+        "downloads": 760,
+        "rate": 3.6,
+        "purposes": [
+            "Backend QA"
+        ],
+        "app_types": [
+            "AutoIt Script"
+        ],
+        "id": "684c1748-6365-4341-8c17-486365c341e5",
+        "_rid": "qu0aAI2ji6EwAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EwAAAAAAAAAA==/",
+        "_etag": "\"00006000-0000-0000-0000-5c08450d0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045837
+    },
+    {
+        "creation_time": "1544025339614",
+        "source_file_types": [
+            "Others"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Tool will convert the email to a .docx by default. Choose if you want to extract attachments. Choose if you want to convert the email to PDF.",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/Preflight+Email_icon.png",
+        "title": "Preflight Email",
+        "content": "",
+        "division": "TPT",
+        "last_update_time": "1544025339614",
+        "downloads": 789,
+        "rate": 2.9,
+        "purposes": [
+            "Preflight"
+        ],
+        "app_types": [
+            "Java Application"
+        ],
+        "id": "7256f213-664d-4227-96f2-13664de22769",
+        "_rid": "qu0aAI2ji6ExAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6ExAAAAAAAAAA==/",
+        "_etag": "\"00006100-0000-0000-0000-5c0845190000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045849
+    },
+    {
+        "creation_time": "1544025394435",
+        "source_file_types": [
+            "Others"
+        ],
+        "languages": [
+            "English"
+        ],
+        "author": "test_user",
+        "entityType": "app",
+        "description": "Connect TM Server strings to PD. The zip contains the tool, along with a sample of how the strings need to be formatted in order to use the tool. It is for use by LEs and trained PD team leads only.",
+        "profile_picture": "https://transaps.blob.core.windows.net/app-icon-container/TMServer2PD_icon.png",
+        "title": "TMServer2PD",
+        "content": "<h2>TMServer2PD</h2><p>Connect TM Server strings to PD. The zip contains the tool, along with a sample of how the strings need to be formatted in order to use the tool. It is for use by LEs and trained PD team leads only.</p><ol><li>Copy single line to clipboard&nbsp;</li><li>In PD, click Add TM profile&nbsp;</li><li>ClickintoProfile name</li><li>Hit Ctrl+2 for the TM to be added as TM 2 Processor or Ctrl+4 for it to be added as TM 4 Processor</li><li>For now, info on2ndpage still needs to be added manually</li><li>Copy single line to clipboard</li><li>In PD, click Add TM profile</li><li>ClickintoProfile name</li><li>Hit Ctrl+2 for the TM to be added as TM 2 Processor or Ctrl+4 for it to be added as TM 4 Processor</li><li>For now, info on2ndpage still needs to be added manually</li></ol><p><br></p>",
+        "division": "TDC",
+        "last_update_time": "1544025394435",
+        "downloads": 888,
+        "rate": 4.5,
+        "purposes": [
+            "TM Manipulation",
+            "Project Automation"
+        ],
+        "app_types": [
+            "AHK Script"
+        ],
+        "id": "d7490de9-4d26-4140-890d-e94d26e140cd",
+        "_rid": "qu0aAI2ji6EyAAAAAAAAAA==",
+        "_self": "dbs/qu0aAA==/colls/qu0aAI2ji6E=/docs/qu0aAI2ji6EyAAAAAAAAAA==/",
+        "_etag": "\"00006200-0000-0000-0000-5c08452b0000\"",
+        "_attachments": "attachments/",
+        "_ts": 1544045867
+    }
+]

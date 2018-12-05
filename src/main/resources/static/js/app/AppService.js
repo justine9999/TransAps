@@ -74,7 +74,11 @@ angular.module('mainApp').factory('AppService',
                             deferred.resolve(result);
                         },
                         function (errResponse) {
-                        	console.error('Error while creating App: ' + errResponse.data.errorMessage);
+                        	if(!errResponse.data){
+                        		console.error('Error while creating App: ' + 'server not respond.');
+                        	}else{
+                        		console.error('Error while creating App: ' + errResponse.data.errorMessage);
+                        	}
                         	deferred.reject(app);
                         }
                     );
@@ -92,7 +96,11 @@ angular.module('mainApp').factory('AppService',
                             deferred.resolve();
                         },
                         function (errResponse) {
-                        	console.error('Error while deleting App: ' + errResponse.data.errorMessage);
+                        	if(!errResponse.data){
+                        		console.error('Error while deleting App: ' + 'server not respond.');
+                        	}else{
+                        		console.error('Error while deleting App: ' + errResponse.data.errorMessage);
+                        	}
                         	deferred.reject();
                         }
                     );

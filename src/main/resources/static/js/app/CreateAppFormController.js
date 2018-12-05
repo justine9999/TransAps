@@ -18,7 +18,8 @@ app.controller('CreateAppFormController', ['$scope', '$mdDialog', function($scop
 				languages: ['English','Spanish'],
 			    purposes: ['Preflight'],		    
 			    app_types: ['VBA Add-In'],
-			    source_file_types: ['MS Word']
+			    source_file_types: ['MS Word'],
+			    normalized_info: '',
 			}, inicropinfo : {
 				x : 0,
 				y : 0,

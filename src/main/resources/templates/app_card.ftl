@@ -6,7 +6,7 @@
   	<div id="app-card-basic-info">
   		<div id="app-card-basic-info-container">
   			<div id="app-card-title">
-  				{{app.title}}
+  				&#9642; {{app.title}}
   			</div>
 	  		<div id="app-card-author">
 	  			{{app.author}}

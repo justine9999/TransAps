@@ -19,7 +19,7 @@
 			  		<img id="app-card-icon" class="mdl-shadow--2dp" ng-src="{{myapp.profile_picture || './image/default_profile_pic.png'}}" />
 			  	</div>
 			</td>
-			<td class="mdl-data-table__cell--non-numeric">{{myapp.title}}</td>
+			<td class="mdl-data-table__cell--non-numeric my-app-name-cell">{{myapp.title}}</td>
 			<td class="mdl-data-table__cell--non-numeric">	
 				<span class="fright vcenter hrspace20 tpsfade" ng-show="hover && myappctrl.myappsstatus[myapp.creation_time] === 0">
 					<md-tooltip md-direction="top">View App details</md-tooltip>
