@@ -61,7 +61,7 @@
 	        <md-fab-trigger ng-style="appctrl.isFilterOpen && appctrl.fostyle">
 	          	<md-button id="filter-menu-button" class="md-raised">
 	          		<i class="material-icons">sort</i>
-	          		Filter
+	          		SORT
 	          	</md-button>
 	        </md-fab-trigger>
 	        <md-fab-actions>
