@@ -23,14 +23,15 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.microsoft.azure.documentdb.DocumentClientException;
-import com.tp.webtools.transaps.exception.CustomError;
+import com.tp.webtools.transaps.exception.AppConflictException;
+import com.tp.webtools.transaps.exception.AppNotFoundException;
+import com.tp.webtools.transaps.exception.InternalServerException;
 import com.tp.webtools.transaps.model.App;
 import com.tp.webtools.transaps.model.Tag;
 
 
 @RestController
 @RequestMapping("/api")
-@SuppressWarnings({"unchecked","rawtypes"})
 public class AppController {
 	 public static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	 
@@ -52,12 +53,12 @@ public class AppController {
 				int sort = Integer.parseInt(_sort);
 		        List<App> apps = appService.findAllApps(tags, sort);
 		        if (apps.isEmpty()) {
-		            return new ResponseEntity(HttpStatus.NO_CONTENT);
+		        	throw new AppNotFoundException("retrieve all apps", "");
 		        }
 		        return new ResponseEntity<List<App>>(apps, HttpStatus.OK);
 			}catch(Exception ex) {
 				logger.error("Unable to retrieve all Apps. Internal Server Error:", ex);
-	        	return new ResponseEntity(new CustomError("Unable to retrieve all Apps. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+				throw new InternalServerException("retrieve all apps");
 			}
 	    }
 		
@@ -71,12 +72,12 @@ public class AppController {
 			try {
 				List<App> myapps = appService.findAllApps(new Tag[]{}, 2);
 		        if (myapps.isEmpty()) {
-		            return new ResponseEntity(HttpStatus.NO_CONTENT);
+		        	throw new AppNotFoundException("retrieve user apps", "");
 		        }
 		        return new ResponseEntity<List<App>>(myapps, HttpStatus.OK);
 			}catch(Exception ex) {
 				logger.error("Unable to retrieve user Apps. Internal Server Error:", ex);
-	        	return new ResponseEntity(new CustomError("Unable to retrieve user Apps. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+				throw new InternalServerException("retrieve user apps");
 			}   
 	    }
 		
@@ -101,7 +102,7 @@ public class AppController {
 		    	
 		        if (appService.isAppExist(app.getTitle())) {
 		            logger.error("Unable to create. An App with title '{}' already exist", app.getTitle());
-		            return new ResponseEntity(new CustomError("Unable to create. An App with title '" + app.getTitle() + "' already exist."), HttpStatus.CONFLICT);
+		            throw new AppConflictException("create", app.getTitle());
 		        }
 		        
 		        App created_app = appService.createApp(app, croppedImage);
@@ -111,7 +112,7 @@ public class AppController {
 		        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	        }catch(Exception ex) {
 	        	logger.error("Unable to create. Internal Server Error:", ex);
-	        	return new ResponseEntity(new CustomError("Unable to create. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+	        	throw new InternalServerException("create");
 	        }  
 	    }
 	    
@@ -132,14 +133,14 @@ public class AppController {
 	        }catch(DocumentClientException ex){
 	        	if(ex.getStatusCode() == 404){
 	        		logger.error("Unable to delete. The App with title '{}' does not exist", title);
-		            return new ResponseEntity(new CustomError("Unable to delete. The App with title '" + title + "' does not exist."), HttpStatus.NOT_FOUND);
+	        		throw new AppNotFoundException("delete", title);
 	        	}else{
 	        		logger.error("Unable to create. Internal Server Error:", ex);
-		        	return new ResponseEntity(new CustomError("Unable to delete. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+	        		throw new InternalServerException("delete");
 	        	} 	
 	        }catch(Exception ex) {
 	        	logger.error("Unable to create. Internal Server Error:", ex);
-	        	return new ResponseEntity(new CustomError("Unable to delete. Internal server error."), HttpStatus.INTERNAL_SERVER_ERROR);
+	        	throw new InternalServerException("delete");
 	        }  
 	    }
 }

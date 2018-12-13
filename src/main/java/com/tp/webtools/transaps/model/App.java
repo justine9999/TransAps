@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import lombok.Getter;
 import lombok.Setter;
