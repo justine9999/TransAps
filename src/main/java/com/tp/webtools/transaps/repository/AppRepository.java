@@ -15,7 +15,6 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ErrorCoded;
 import org.springframework.stereotype.Repository;
 
 import com.google.gson.Gson;
@@ -30,6 +29,7 @@ import com.microsoft.azure.storage.blob.TransferManager;
 import com.tp.webtools.transaps.dao.AppDao;
 import com.tp.webtools.transaps.dao.AppIconStorageDao;
 import com.tp.webtools.transaps.dao.DocumentClientFactory;
+import com.tp.webtools.transaps.exception.AppConflictException;
 import com.tp.webtools.transaps.model.App;
 import com.tp.webtools.transaps.model.Tag;
 
@@ -59,13 +59,7 @@ public class AppRepository {
     public List<App> readAllApps(Tag[] tags, int sort) {
 
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
-    	List<App> apps = new ArrayList<App>();
-    	
-    	//String[] array_to_search = new String[]{"purposes","languages","source_file_types","app_types"};
-    	
-    	//String[] field_to_search = new String[]{"title","description","content","author","division"};
-    	
-    	//String search_condition_clause = buildArrayFuzzySearchConditionClauseString(array_to_search, field_to_search, tags);
+    	List<App> apps = new ArrayList<App>();	
     	String search_condition_clause = buildArrayFuzzySearchConditionClauseString(tags);
 	
         final String query = "SELECT * FROM root r"
@@ -81,33 +75,10 @@ public class AppRepository {
         	app.setProfile_picture(app.getProfile_picture().replace('+', ' '));
         	apps.add(app);
         }
-        
-        logger.info(apps.size() + " App(s) read");
-        
+                
         return apps;
     }
-    
-    //build from all fields
-    /*private String buildArrayFuzzySearchConditionClauseString(String[] array_to_search, String[] field_to_search, Tag[] tags){
-    	StringBuilder sb = new StringBuilder();
-    	for(Tag tag : tags){
-    		if(sb.length()!=0) sb.append(" AND ");
-    		sb.append(" (");
-    		for(int i = 0; i < array_to_search.length; i++){
-    			String array = array_to_search[i];
-    			sb.append((i == 0?"":" OR") + " ARRAY_CONTAINS(r." + array + ", '" + tag.getText() + "', true)");
-    		}
-    		
-    		for(int i = 0; i < field_to_search.length; i++){
-    			String field = field_to_search[i];
-    			sb.append((i == 0&&array_to_search.length==0?"":" OR") + " CONTAINS(r." + field + ", '" + tag.getText() + "')");
-    		}
-    		sb.append(" )");
-    	}
-    	
-    	return sb.length()==0?"":" WHERE"+sb.toString();
-    }*/
-    
+
     //build from tags field only
     private String buildArrayFuzzySearchConditionClauseString(Tag[] tags){
     	StringBuilder sb = new StringBuilder();
@@ -171,9 +142,7 @@ public class AppRepository {
         }
         
     	App created_app = gson.fromJson(appDocument.toString(), App.class);
-    	
-    	logger.info("created App: " + created_app.toString());
-    	
+    	    	
         return created_app;
     }
     
@@ -190,18 +159,14 @@ public class AppRepository {
         try {
         	List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
             if(documentList.size() == 0){
-            	throw new DocumentClientException(404);
+            	throw new AppConflictException("delete", title);
             }
         	app = gson.fromJson(documentList.get(0).toString(), App.class);
         	documentClient.deleteDocument(documentList.get(0).getSelfLink(), null);
-        }catch(DocumentClientException ex) {
-        	throw ex;
         }catch(Exception ex) {
         	ex.printStackTrace();
         	return null;
         }
-
-    	logger.info("Deleted App: " + app.toString());
     	
     	return app;
     }

@@ -22,7 +22,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.microsoft.azure.documentdb.DocumentClientException;
 import com.tp.webtools.transaps.exception.AppConflictException;
 import com.tp.webtools.transaps.exception.AppNotFoundException;
 import com.tp.webtools.transaps.exception.InternalServerException;
@@ -33,7 +32,7 @@ import com.tp.webtools.transaps.model.Tag;
 @RestController
 @RequestMapping("/api")
 public class AppController {
-	 public static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	 public static final Logger logger = LoggerFactory.getLogger(AppController.class);
 	 
 	    @Autowired
 	    AppService appService;
@@ -43,10 +42,6 @@ public class AppController {
 	    public ResponseEntity<List<App>> listAllApps(@RequestParam("tags") String _tags, @RequestParam("sort") String _sort) {
 			
 			System.out.println("all apps");
-			
-			logger.info("Retrieve all apps");
-			logger.info("Filter info: " + "tags: "  + _tags + " sort: " + _sort);
-			
 			try {		
 				Gson gson = new GsonBuilder().create();
 				Tag[] tags = gson.fromJson(_tags, Tag[].class);
@@ -57,7 +52,6 @@ public class AppController {
 		        }
 		        return new ResponseEntity<List<App>>(apps, HttpStatus.OK);
 			}catch(Exception ex) {
-				logger.error("Unable to retrieve all Apps. Internal Server Error:", ex);
 				throw new InternalServerException("retrieve all apps");
 			}
 	    }
@@ -66,9 +60,7 @@ public class AppController {
 		@RequestMapping(value = "/app/myapps", method = RequestMethod.GET)
 	    public ResponseEntity<List<App>> listMyApps() {
 			
-			System.out.println("my apps");
-			logger.info("Retrieve all user apps");
-			
+			System.out.println("my apps");			
 			try {
 				List<App> myapps = appService.findAllApps(new Tag[]{}, 2);
 		        if (myapps.isEmpty()) {
@@ -76,7 +68,6 @@ public class AppController {
 		        }
 		        return new ResponseEntity<List<App>>(myapps, HttpStatus.OK);
 			}catch(Exception ex) {
-				logger.error("Unable to retrieve user Apps. Internal Server Error:", ex);
 				throw new InternalServerException("retrieve user apps");
 			}   
 	    }
@@ -85,10 +76,7 @@ public class AppController {
 	    @RequestMapping(value = "/app/", method = RequestMethod.POST)
 	    public ResponseEntity<?> createApp(@RequestBody String appdata, UriComponentsBuilder ucBuilder) {
 	    	
-	    	System.out.println("create app");
-	    	
-	        logger.info("Parsing App Data");
-	        
+	    	System.out.println("create app");   
 	        try {	      
 	        	Thread.sleep(2000);
 	        	
@@ -98,10 +86,7 @@ public class AppController {
 		    	App app = gson.fromJson(o.get("app"),  App.class);
 		    	String croppedImage = gson.fromJson(o.get("croppedImage"),  String.class);
 		    	
-		    	logger.info("Creating App : {}", app.getTitle());
-		    	
 		        if (appService.isAppExist(app.getTitle())) {
-		            logger.error("Unable to create. An App with title '{}' already exist", app.getTitle());
 		            throw new AppConflictException("create", app.getTitle());
 		        }
 		        
@@ -111,7 +96,6 @@ public class AppController {
 		        headers.set("iconurl", created_app.getProfile_picture());
 		        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	        }catch(Exception ex) {
-	        	logger.error("Unable to create. Internal Server Error:", ex);
 	        	throw new InternalServerException("create");
 	        }  
 	    }
@@ -120,26 +104,15 @@ public class AppController {
 	    @RequestMapping(value = "/app/{title}", method = RequestMethod.DELETE)
 	    public ResponseEntity<App> deleteApp(@PathVariable("title") String title) {
 	    	
-	    	System.out.println("delete app");
-	    		        
+	    	System.out.println("delete app");  		        
 	        try {	      
 	        	Thread.sleep(2000);
-
-		    	logger.info("Deleting App : {}", title);
 		    	
-		        App deleted_app = appService.deleteApp(title);
-		        
+		        App deleted_app = appService.deleteApp(title);		        
 		        return new ResponseEntity<App>(deleted_app, HttpStatus.OK);
-	        }catch(DocumentClientException ex){
-	        	if(ex.getStatusCode() == 404){
-	        		logger.error("Unable to delete. The App with title '{}' does not exist", title);
-	        		throw new AppNotFoundException("delete", title);
-	        	}else{
-	        		logger.error("Unable to create. Internal Server Error:", ex);
-	        		throw new InternalServerException("delete");
-	        	} 	
+	        }catch(AppNotFoundException ex){
+        		throw ex;	
 	        }catch(Exception ex) {
-	        	logger.error("Unable to create. Internal Server Error:", ex);
 	        	throw new InternalServerException("delete");
 	        }  
 	    }
