@@ -10,7 +10,8 @@ app.run(function ($rootScope,$timeout) {
 
 app.constant('urls', {
     BASE: 'http://localhost:8080/TransAps',
-    APP_SERVICE_API : 'http://localhost:8080/TransAps/api/app/'
+    APP_SERVICE_API : 'http://localhost:8080/TransAps/api/app/',
+    USER_SERVICE_API: 'http://localhost:8080/TransAps/api/user/'
 });
  
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$mdThemingProvider',
@@ -22,6 +23,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$mdThe
             .state('home', {
             	url: '/',
                 views: {
+                	'view_user_operation@': {
+	                	templateUrl: 'partials/user_operation',
+	                    controller:'UserController',
+	                    controllerAs:'usrctrl',
+	                },
 	                'view_app_filter@': {
 	                	templateUrl: 'partials/app_filter',
 	                    controller:'AppController',

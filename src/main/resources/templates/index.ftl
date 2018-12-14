@@ -26,10 +26,7 @@
 		          </span>
 		          <div class="mdl-layout-spacer"></div>
 		          <nav class="mdl-navigation mdl-layout--large-screen-only">
-		            <button  class="mdl-button mdl-js-button mdl-js-ripple-effect">
-						<i class="material-icons">account_box</i>
-						<span>Account Sign in ▾</span>
-					</button>
+		          	<div ui-view="view_user_operation"></div>
 					<div id="global-search-icon-container" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
 			            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
 			              <i id="global-search-icon" class="material-icons">search</i>
