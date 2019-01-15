@@ -55,6 +55,7 @@ public class AppRepository {
 
     /**
      * Read all app documents
+     * @throws DocumentClientException 
      */
     public List<App> readAllApps(Tag[] tags, int sort) {
 
@@ -70,7 +71,8 @@ public class AppRepository {
 
         List<Document> documentList = documentClient.queryDocuments(appDao.getDocumentCollection().getSelfLink(), query, null).getQueryIterable().toList();
         for (Document appDocument : documentList) {
-        	App app = gson.fromJson(appDocument.toString(), App.class);
+        	App app = gson.fromJson(appDocument.toString(), App.class);      	
+        	
         	//the line below is a workaround for a bug of cosmosDB that it automatically replace the space in an url with '+' when user manually update it
         	app.setProfile_picture(app.getProfile_picture().replace('+', ' '));
         	apps.add(app);
@@ -128,7 +130,7 @@ public class AppRepository {
         	upuloadAppIcon(base64Data, fromat, app);
     	}
     	
-    	//create all tags for like queruy
+    	//create all tags for like query
     	app.generateNormalized_info();
     	DocumentClient documentClient = documentClientFactory.getDocumentClient();
     	Document appDocument = new Document(gson.toJson(app));

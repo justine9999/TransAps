@@ -3,6 +3,7 @@
 <html lang="en" ng-app="mainApp">
     <head>
         <title>TransAps</title>
+        <link rel="icon" href="image/tps_tab_icon.png">
         <link href="css/app.css" rel="stylesheet"/>
         <link rel="stylesheet" href="css/material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

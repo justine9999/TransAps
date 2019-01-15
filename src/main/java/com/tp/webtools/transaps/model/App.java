@@ -5,6 +5,8 @@ import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -62,9 +64,12 @@ public class App implements Serializable{
 		StringBuilder sb = new StringBuilder();
 		Field[] fields = this.getClass().getDeclaredFields();
 		for(Field f : fields){
-			if(f.getType().equals(String.class) && !f.getName().equals("normalized_info")){
+			if(f.getName().equals("normalized_info") || f.getName().equals("profile_picture")) {
+				continue;
+			}else if(f.getType().equals(String.class)){
 				try {
-					String text = f.get(this).toString();
+					String html_text = f.get(this).toString();
+					String text = Jsoup.parse(html_text).text();
 					if(!text.equals("")){
 						sb.append(text + " ");
 					}
